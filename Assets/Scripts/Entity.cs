@@ -2,17 +2,15 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Entity : MonoBehaviour
+public abstract class Entity : MonoBehaviour
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public string Name;
+    public string Classe;
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public int MovementPoints;
+    public int ActionPoints;
+    public int HP;
+    public int Speed;       //Used to make the overall turn order
+    public List<int> ActionPool;    //TODO : Remplacer int par Action
+
 }
