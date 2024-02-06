@@ -9,14 +9,38 @@ public class Square : MonoBehaviour
     [field: SerializeField]
     public List<Square> Neighbors { get; private set; }
 
+    /// <summary>
+    /// Previous square in a path to access at this one.
+    /// </summary>
+    [field: SerializeField]
+    public Square PreviousSquare { get; set; }
+
+    /// <summary>
+    /// Number of squares between this one and the departure in a path.
+    /// </summary>
+    [field: SerializeField]
+    public int StepsForAccess { get; set; }
+
+    /// <summary>
+    /// A score representating the distance between the arrival and this square in a path.
+    /// </summary>
+    [field: SerializeField]
+    public float F { get; set; }
+
+    /// <summary>
+    /// A value indicating if the square is already closed or not.
+    /// </summary>
+    [field: SerializeField]
+    public bool IsClosed { get; set; }
+
     void Start()
     {
         DetecteNeighbors();
-
+        ResetSquare();
     }
 
     /// <summary>
-    /// Set the list of neighboring squares.
+    /// Sets the list of neighboring squares.
     /// </summary>
     private void DetecteNeighbors()
     {
@@ -51,5 +75,16 @@ public class Square : MonoBehaviour
 
             right *= -1f;
         }
+    }
+
+    /// <summary>
+    /// Called to set the different values of the square by default.
+    /// </summary>
+    public void ResetSquare()
+    {
+        PreviousSquare = null;
+        StepsForAccess = 0;
+        F = 0f;
+        IsClosed = false;
     }
 }
