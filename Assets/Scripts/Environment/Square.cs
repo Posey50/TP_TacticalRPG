@@ -12,6 +12,7 @@ public class Square : MonoBehaviour
     void Start()
     {
         DetecteNeighbors();
+
     }
 
     /// <summary>
