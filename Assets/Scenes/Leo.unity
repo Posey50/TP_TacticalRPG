@@ -1780,6 +1780,89 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 116062430}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &117760938
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 117760940}
+  - component: {fileID: 117760939}
+  - component: {fileID: 117760941}
+  m_Layer: 0
+  m_Name: Cursor
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &117760939
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117760938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 62899f850307741f2a39c98a8b639597, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Actions: {fileID: -944628639613478452, guid: e19ae22b6200d374aa4f2b4084a6b774,
+    type: 3}
+  m_NotificationBehavior: 3
+  m_UIInputModule: {fileID: 0}
+  m_DeviceLostEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_DeviceRegainedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ControlsChangedEvent:
+    m_PersistentCalls:
+      m_Calls: []
+  m_ActionEvents: []
+  m_NeverAutoSwitchControlSchemes: 0
+  m_DefaultControlScheme: 
+  m_DefaultActionMap: Player
+  m_SplitScreenIndex: -1
+  m_Camera: {fileID: 0}
+--- !u!4 &117760940
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117760938}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &117760941
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 117760938}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cd74c0e39e3d3ca45b611285c045a125, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerInput: {fileID: 0}
+  startSquare: {fileID: 311270129}
+  selectedSquare: {fileID: 0}
+  path: []
+  startMaterial: {fileID: 2100000, guid: 10ea892b8fa7b794baa32ebd92534256, type: 2}
+  selectedMaterial: {fileID: 2100000, guid: 5df8a05e22ac44e4194de8971125f1a0, type: 2}
+  pathMaterial: {fileID: 2100000, guid: 314572ff1c3b23749a091eb6e8d340f7, type: 2}
 --- !u!1 &120181097
 GameObject:
   m_ObjectHideFlags: 0
@@ -5676,13 +5759,13 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 330585543}
   serializedVersion: 2
-  m_LocalRotation: {x: 0.38268343, y: 0, z: 0, w: 0.92387956}
-  m_LocalPosition: {x: 7.5, y: 9.5, z: -3.5}
+  m_LocalRotation: {x: 0.35355338, y: -0.35355338, z: 0.1464466, w: 0.8535535}
+  m_LocalPosition: {x: 17.5, y: 9.5, z: -2.5}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
-  m_LocalEulerAnglesHint: {x: 45, y: 0, z: 0}
+  m_LocalEulerAnglesHint: {x: 45, y: -45, z: 0}
 --- !u!114 &330585547
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16019,9 +16102,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: cd7b543bebd2fc74588d3cfc57b0ceee, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  departure: {fileID: 1041075659}
-  arrival: {fileID: 218102226}
-  hilight: {fileID: 2100000, guid: 5df8a05e22ac44e4194de8971125f1a0, type: 2}
 --- !u!4 &970274987
 Transform:
   m_ObjectHideFlags: 0
@@ -33209,3 +33289,4 @@ SceneRoots:
   - {fileID: 970274987}
   - {fileID: 174765440}
   - {fileID: 863353210}
+  - {fileID: 117760940}

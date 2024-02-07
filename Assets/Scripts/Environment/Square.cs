@@ -33,8 +33,15 @@ public class Square : MonoBehaviour
     [field: SerializeField]
     public bool IsClosed { get; set; }
 
+    /// <summary>
+    /// 
+    /// </summary>
+    public Material OriginalMaterial { get; set; }
+
     void Start()
     {
+        OriginalMaterial = GetComponent<MeshRenderer>().material;
+
         DetecteNeighbors();
         ResetSquare();
     }
