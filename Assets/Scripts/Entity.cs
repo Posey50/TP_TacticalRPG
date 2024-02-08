@@ -11,7 +11,12 @@ public abstract class Entity : MonoBehaviour
     public int APs;
     public int HP;
     public int Speed;       //Used to make the overall turn order
-    //public List<int> ActionPool;    //TODO : fait Action
+
+    public List<Action> Actions;
+
+    public Square _currentSquare;
+
+    public Pointer Pointer;
 
     public void InitEntity(EntityData data)
     {
@@ -23,10 +28,16 @@ public abstract class Entity : MonoBehaviour
         HP = data.MaxHP;
         Speed = data.Speed;
 
-        //TODO : Ajout de Action
+        Actions = data.Actions;
     }
 
-    //public void Move()
+    public async void Move(Square destination)
+    {
+        //Astar ici
+        //Foreach -> MoveTo -> Wait
+        _currentSquare = destination;
+        Pointer.startSquare = _currentSquare;
+    }
 
     /// <summary>
     /// Decreases PMs of Entity by the amount given
@@ -53,9 +64,9 @@ public abstract class Entity : MonoBehaviour
     }
 
     //TODO
-    public void AttackEntity(Entity entity)
+    public void Attack(Square entity)
     {
-        entity.TakeDamage(5);   
+        //Attack Square 
     }
 
 

@@ -2,16 +2,19 @@ using UnityEngine;
 
 public class PlayerStateMachine : MonoBehaviour
 {
-    private PlayerInactiveState _stateInactive;
-    private PlayerActiveState _stateActive;
+    public PlayerMain Main { get; private set; }
+
+    [SerializeField] private PlayerInactiveState _stateInactive;
+    [SerializeField] private PlayerActiveState _stateActive;
 
     private IState _currentState;
 
     // Start is called before the first frame update
     void Start()
     {
-        _currentState = _stateInactive;
+        Main = GetComponent<PlayerMain>();
 
+        _currentState = _stateActive;
         _currentState.OnEnter(this);
     }
 
