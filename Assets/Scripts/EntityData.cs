@@ -24,6 +24,6 @@ public class EntityData : ScriptableObject
     public int Speed;
 
     //TODO : Add Action
-    private List<Action> _actions;
-    public List<Action> Actions;
+    private List<Spells> _actions;
+    public List<Spells> Actions;
 }
