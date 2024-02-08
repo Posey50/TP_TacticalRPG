@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Unity.VisualScripting;
 using UnityEngine;
@@ -13,6 +14,10 @@ public class Pointer : MonoBehaviour
     public Material selectedMaterial;
     public Material pathMaterial;
 
+    private Square _currentSquare;
+
+    public event Action<Square> CursorPress;
+
     void Start()
     {
         playerInput = GetComponent<PlayerInput>();
@@ -26,23 +31,33 @@ public class Pointer : MonoBehaviour
         switch (context.action.name)
         {
             case "CursorMove":
-                CheckSquares(context.action.ReadValue<Vector2>());
+                _currentSquare = CheckSquares(context.action.ReadValue<Vector2>());
+
+                if (_currentSquare != selectedSquare)
+                {
+                    NewSquareSelected(_currentSquare);
+                }
+                break;
+
+            case "CursorPress":
+                Debug.Log(selectedSquare.name);
+                CursorPress?.Invoke(selectedSquare);
                 break;
         }
     }
 
-    private void CheckSquares(Vector2 mousePosition) 
+    private Square CheckSquares(Vector2 mousePosition) 
     {
         if (Physics.Raycast(Camera.main.ScreenPointToRay(mousePosition), out RaycastHit hit, 200f))
         {
             if (hit.transform.CompareTag("Square"))
             {
-                if (hit.transform.GetComponent<Square>() != selectedSquare)
-                {
-                    NewSquareSelected(hit.transform.GetComponent<Square>());
-                }
+                return hit.transform.GetComponent<Square>();
+                
             }
         }
+
+        return null;
     }
 
     private void NewSquareSelected(Square newSquare)
