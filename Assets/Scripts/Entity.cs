@@ -12,7 +12,7 @@ public abstract class Entity : MonoBehaviour
     public int HP;
     public int Speed;       //Used to make the overall turn order
 
-    public List<Action> Actions;
+    public List<Spells> Actions;
 
     public Square _currentSquare;
 
