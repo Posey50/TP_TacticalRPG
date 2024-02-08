@@ -61,6 +61,7 @@ public abstract class Entity : MonoBehaviour
 
     public void TakeDamage(int damage)
     {
+        //TODO : Check Damage if correct
         HP -= damage;
     }
 
