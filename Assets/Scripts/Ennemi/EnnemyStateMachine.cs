@@ -2,17 +2,14 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class EnnemyStateMachine : MonoBehaviour
+public abstract class EnnemyStateMachine
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public IEnnemyState Current;
+    public ActiveState ActiveState;
+    public InactiveState InactiveState;
 
-    // Update is called once per frame
-    void Update()
+    public void ChangeState(IEnnemyState newState)
     {
-        
+
     }
 }
