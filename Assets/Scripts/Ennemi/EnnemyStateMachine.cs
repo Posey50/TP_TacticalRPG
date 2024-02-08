@@ -1,15 +1,20 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
-
-public abstract class EnnemyStateMachine
+public class EnnemyStateMachine : MonoBehaviour
 {
-    public IEnnemyState Current;
-    public ActiveState ActiveState;
-    public InactiveState InactiveState;
+    IEnnemyState _currentEnnemyState;
 
+    EnnemyActiveState _ennemyActiveState;
+    EnnemyInactiveState ennemyIinactiveState;
+
+    public void Start()
+    {
+        _currentEnnemyState = ennemyIinactiveState;
+        _currentEnnemyState.OnEnter(this);
+    }
     public void ChangeState(IEnnemyState newState)
     {
-
+        _currentEnnemyState.OnExit(this);
+        _currentEnnemyState = newState;
+        _currentEnnemyState.OnEnter(this);
     }
 }

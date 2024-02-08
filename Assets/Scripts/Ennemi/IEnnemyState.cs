@@ -1,18 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-
-public class IEnnemyState : MonoBehaviour
+public interface IEnnemyState
 {
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
+    public void OnEnter(EnnemyStateMachine ennemyMachine);
 
-    // Update is called once per frame
-    void Update()
-    {
-        
-    }
+    public void OnExit(EnnemyStateMachine ennemyMachine);
+
 }
