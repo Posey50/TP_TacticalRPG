@@ -16,8 +16,6 @@ public abstract class Entity : MonoBehaviour
 
     public Square _currentSquare;
 
-    
-
     public void InitEntity(EntityData data)
     {
         Name = data.Name;
