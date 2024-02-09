@@ -35,11 +35,20 @@ public class BattleManager : MonoBehaviour
     public List<Square> PlayerSquares { get; set; }
 
     /// <summary>
+    /// Component that containes all steps of the battl.
+    /// </summary>
+    [field: SerializeField]
+    private BattleSteps _battleSteps;
+
+    /// <summary>
     /// CCalled to initialise a battle.
     /// </summary>
     /// <returns></returns>
     public IEnumerator InitBattle()
     {
+        _battleSteps.PlacePlayers();
+        _battleSteps.PlaceEnnemies();
+
         yield return null;
     }
 
