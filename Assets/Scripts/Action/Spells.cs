@@ -1,6 +1,8 @@
+using System;
 using UnityEngine;
 
-public class Spells : MonoBehaviour
+[Serializable]
+public class Spells
 {
     /// <summary>
     /// Datas of the spell.
