@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using System.Collections;
 
 public class BattleManager : MonoBehaviour
 {
@@ -32,4 +33,30 @@ public class BattleManager : MonoBehaviour
     /// List of squares where playable entities will spawn.
     /// </summary>
     public List<Square> PlayerSquares { get; set; }
+
+    /// <summary>
+    /// CCalled to initialise a battle.
+    /// </summary>
+    /// <returns></returns>
+    public IEnumerator InitBattle()
+    {
+        yield return null;
+    }
+
+    /// <summary>
+    /// Called when an entity has end her turn.
+    /// </summary>
+    public void NextEntityTurn()
+    {
+        
+    }
+
+    /// <summary>
+    /// Called at the start of the battle and when every entities have end their turn.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator NewBattleTurn()
+    {
+        yield return null;
+    }
 }
