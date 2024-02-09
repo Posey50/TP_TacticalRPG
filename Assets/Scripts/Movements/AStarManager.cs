@@ -87,6 +87,7 @@ public class AStarManager : MonoBehaviour
                         // calculates its distance to the arrival and assignes its previous square to access to it
                         Square neighbor = departure.Neighbors[i];
 
+                        //TODO : rajouter condition entité sur le square
                         if (!openSquares.Contains(neighbor) && !neighbor.IsClosed)
                         {
                             if (!squaresUsedInTheCalculation.Contains(neighbor))
