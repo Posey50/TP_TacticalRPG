@@ -4,6 +4,12 @@ using System.Collections.Generic;
 public class Square : MonoBehaviour
 {
     /// <summary>
+    /// The Entity currently on the square
+    /// </summary>
+    [field:SerializeField]
+    public Entity EntityOnThisSquare { get; private set; }
+
+    /// <summary>
     /// List of neighboring squares.
     /// </summary>
     [field: SerializeField]
@@ -81,6 +87,26 @@ public class Square : MonoBehaviour
             }
 
             right *= -1f;
+        }
+    }
+
+    /// <summary>
+    /// Entity leaves the square. Square now has no Entity on it
+    /// </summary>
+    public void LeaveSquare()
+    {
+        this.EntityOnThisSquare = null;
+    }
+
+    /// <summary>
+    /// Set a new Entity. Also Checks if there wasn't an entity yet
+    /// </summary>
+    /// <param name="newEntity"></param>
+    public void SetEntity(Entity newEntity)
+    {
+        if (EntityOnThisSquare == null)
+        {
+            EntityOnThisSquare = newEntity;
         }
     }
 
