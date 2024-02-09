@@ -23,7 +23,7 @@ public class EntityData : ScriptableObject
     private int _speed;
     public int Speed;
 
-    //TODO : Add Action
-    private List<Spells> _actions;
-    public List<Spells> Actions;
+    [SerializeField]
+    private List<Spells> _spells;
+    public List<Spells> Spells { get { return _spells; } private set { } }
 }
