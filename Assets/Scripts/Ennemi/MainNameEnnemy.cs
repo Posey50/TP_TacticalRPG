@@ -95,7 +95,7 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
                 }
                 else if(EntityData.Actions.Count == i)
                 {
-                    Debug.Log("Ennemy effectue n'a pu assez de PA");
+                    Debug.Log("Ennemy n'a pu assez de PA");
                     BattleManager.Instance.NextEntityTurn();
                 }
             }
