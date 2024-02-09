@@ -16,7 +16,7 @@ public abstract class Entity : MonoBehaviour
 
     public Square _currentSquare;
 
-    public Pointer Pointer;
+    
 
     public void InitEntity(EntityData data)
     {
@@ -31,12 +31,12 @@ public abstract class Entity : MonoBehaviour
         Actions = data.Actions;
     }
 
-    public async void Move(Square destination)
+    public virtual async void Move(Square destination)
     {
         //Astar ici
         //Foreach -> MoveTo -> Wait
         _currentSquare = destination;
-        Pointer.startSquare = _currentSquare;
+        
     }
 
     /// <summary>
