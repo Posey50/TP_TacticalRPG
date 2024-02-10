@@ -35,12 +35,16 @@ public class PlayerActiveState : MonoBehaviour, IState
 
                 _playerStateMachine.Main.Pointer.SetCurrentSquare(_playerStateMachine.Main.Pointer.GetSquareUnderPosition(context.action.ReadValue<Vector2>()));    //Sets the pointer's current Square to the square below the mouse
 
-                _playerStateMachine.Main.Pointer.UpdateSelectedSquare();  
+                _playerStateMachine.Main.Pointer.UpdateSelectedSquare(); 
                 
                 break;
 
             case "CursorPress":
-                OnCursorPress(_playerStateMachine.Main.Pointer.selectedSquare);
+                if (_playerStateMachine.Main.Pointer.CurrentSquareIsSelectedSquare())
+                {
+                    OnCursorPress(_playerStateMachine.Main.Pointer.selectedSquare);
+                }
+
                 break;
         }
     }

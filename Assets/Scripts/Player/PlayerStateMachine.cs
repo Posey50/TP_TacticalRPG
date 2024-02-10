@@ -25,28 +25,36 @@ public class PlayerStateMachine : MonoBehaviour
     }
 
     /// <summary>
+    /// Stats current state to Active
+    /// </summary>
+    public void ChangeToActive()
+    {
+        ChangeState(StateActive);
+    }
+
+    /// <summary>
+    /// Stats current state to Inactive
+    /// </summary>
+    public void ChangeToInactive()
+    {
+        ChangeState(StateInactive);
+    }
+
+    /// <summary>
     /// Changes the player's state. Also calls the states OnExit and OnEnter
     /// </summary>
     /// <param name="newState"></param>
-    public void ChangeState(IState newState)
+    private void ChangeState(IState newState)
     {
+        if (_currentState.Equals(newState))
+        {
+            return;
+        }
+
         _currentState.OnExit(this);
 
         _currentState = newState;
 
         _currentState.OnEnter(this);
-    }
-
-    //Here for DebugPurpose
-    public void SwitchSate()
-    {
-        if (_currentState.Equals(StateInactive))
-        {
-            ChangeState(StateActive);
-        }
-        else
-        {
-            ChangeState(StateInactive);
-        }
     }
 }

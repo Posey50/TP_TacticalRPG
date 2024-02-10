@@ -88,7 +88,7 @@ public class Pointer : MonoBehaviour
     /// <summary>
     /// Draws a path from the starting Square to the Selected Square
     /// </summary>
-    private void ShowPath()
+    public void ShowPath()
     {
         HidePath();
 
@@ -106,6 +106,9 @@ public class Pointer : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Restores the path's cubes to their original material
+    /// </summary>
     private void HidePath()
     {
         if (path != null)
