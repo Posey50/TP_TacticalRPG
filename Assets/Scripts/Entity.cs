@@ -24,6 +24,7 @@ public abstract class Entity : MonoBehaviour
     private void Awake()
     {
         _currentSquare = _startingSquare;
+        _currentSquare.SetEntity(this);
         transform.position = _currentSquare.transform.position;
     }
 
@@ -79,10 +80,17 @@ public abstract class Entity : MonoBehaviour
     }
 
     //TODO
-    public void Attack(Square attackedSquare, Spells attackingSpell)
+    public void Attack(Square attackedSquare, SpellsData attackingSpell)
     {
         //Attack Square 
-        Debug.Log($"Attack {attackedSquare.name}");
+        Debug.Log($"{Name} uses {attackingSpell.Name} to attack {attackedSquare.name}");
+
+        attackedSquare.TargetEntity(attackingSpell);
+    }
+
+    public void TakeAttack(SpellsData attackingSpell)
+    {
+        Debug.Log($"{Name} recieves {attackingSpell.Name} on the face");
     }
 
     public void TakeDamage(int damage)

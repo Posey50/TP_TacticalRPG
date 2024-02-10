@@ -15,7 +15,7 @@ MonoBehaviour:
   Name: John
   Class: Warrior
   MPs: 5
-  APs: 40
+  APs: 10
   MaxHP: 100
   Speed: 30
   _spells:

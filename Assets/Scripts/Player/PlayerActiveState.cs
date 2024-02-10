@@ -7,11 +7,10 @@ using UnityEngine.InputSystem;
 public class PlayerActiveState : MonoBehaviour, IState
 {
     private PlayerStateMachine _playerStateMachine;
-    [SerializeField]
-    private Spells _selectedSpells;
+    
+    private int _selectedSpellIndex = -1;
+    private SpellsData _selectedSpellData;  
 
-    [SerializeField]
-    private bool _hasSpellSelected; //TODO : remove 
 
     public void OnEnter(PlayerStateMachine playerStateMachine)
     {
@@ -53,19 +52,23 @@ public class PlayerActiveState : MonoBehaviour, IState
         }
     }
 
+    /// <summary>
+    /// Selectes a spell to use from the Entity's Spell list
+    /// </summary>
+    /// <param name="index"></param>
     public void SelectSpellByIndex(int index)
     {
-        if (_selectedSpells == null)
+        if (0 <= index && index < _playerStateMachine.Main.Spells.Count)
         {
-            //_selectedSpells = spell;
+            _selectedSpellIndex = index;
         }
     }
 
     public void CancelSpell()
     {
-        if (_selectedSpells != null)
+        if (_selectedSpellIndex >= 0)
         {
-            _selectedSpells = null;
+            _selectedSpellIndex = -1;
         }
     }
 
@@ -75,7 +78,7 @@ public class PlayerActiveState : MonoBehaviour, IState
     /// <param name="selectedSquare"></param>
     private void OnCursorPress(Square selectedSquare)
     {
-        if (!_hasSpellSelected)  //TODO : _selectedSpells == null
+        if (_selectedSpellIndex < 0)    //If No spell selected, try to move
         {
             if (_playerStateMachine.Main.Pointer.path.Count - 1 <= _playerStateMachine.Main.MPs)    //If the player has enough MPs. "- 1" ignores the Square the player is currently standing on
             {
@@ -88,9 +91,22 @@ public class PlayerActiveState : MonoBehaviour, IState
                 Debug.Log($"Not enough MPs to Move {_playerStateMachine.Main.MPs}, needs {_playerStateMachine.Main.Pointer.path.Count - 1}");
             }
         }
-        else
+        else                            //If spell selected, attack
         {
-            _playerStateMachine.Main.Attack(selectedSquare, _selectedSpells);
+            _selectedSpellData = _playerStateMachine.Main.Spells[_selectedSpellIndex].ActionBase;
+
+            if (_selectedSpellData.PaCost <= _playerStateMachine.Main.APs)
+            {
+                _playerStateMachine.Main.Attack(selectedSquare, _selectedSpellData);
+
+                _playerStateMachine.Main.DecreasePA(_selectedSpellData.PaCost);
+
+                CancelSpell();
+            }
+            else
+            {
+                Debug.Log($"Not enough APs to Attack {_playerStateMachine.Main.APs}, needs {_selectedSpellData.PaCost}");
+            }
         }
     }
 }

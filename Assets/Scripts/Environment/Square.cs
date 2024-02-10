@@ -120,4 +120,12 @@ public class Square : MonoBehaviour
         F = 0f;
         IsClosed = false;
     }
+
+    public void TargetEntity(SpellsData spellData)
+    {
+        if (EntityOnThisSquare != null)
+        {
+            EntityOnThisSquare.TakeAttack(spellData);
+        }
+    }
 }

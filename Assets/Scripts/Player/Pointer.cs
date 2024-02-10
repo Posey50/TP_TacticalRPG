@@ -26,6 +26,7 @@ public class Pointer : MonoBehaviour
     public void SetStartSquare(Square newStart)
     {
         startSquare = newStart;
+        selectedSquare = newStart;
     }
 
     public void SetCurrentSquare(Square newCurrent)
