@@ -79,7 +79,11 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
-    //TODO
+    /// <summary>
+    /// Sends a spell to a specified Square. 
+    /// </summary>
+    /// <param name="attackedSquare"></param>
+    /// <param name="attackingSpell"></param>
     public void Attack(Square attackedSquare, SpellsData attackingSpell)
     {
         //Attack Square 
@@ -88,6 +92,10 @@ public abstract class Entity : MonoBehaviour
         attackedSquare.TargetEntity(attackingSpell);
     }
 
+    /// <summary>
+    /// Recieves a spell and correctly takes it (heal or damage)
+    /// </summary>
+    /// <param name="attackingSpell"></param>
     public void TakeAttack(SpellsData attackingSpell)
     {
         Debug.Log($"{Name} recieves {attackingSpell.Name} on the face");
@@ -101,7 +109,11 @@ public abstract class Entity : MonoBehaviour
             TakeDamage(attackingSpell.Damages);
         }
     }
-
+    
+    /// <summary>
+    /// Applies the damage of spell
+    /// </summary>
+    /// <param name="damage"></param>
     public void TakeDamage(int damage)
     {
         if (damage > 0)
@@ -112,6 +124,10 @@ public abstract class Entity : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Applies the healing of a spell
+    /// </summary>
+    /// <param name="heal"></param>
     public void HealHP(int heal)
     {
         if (heal > 0)

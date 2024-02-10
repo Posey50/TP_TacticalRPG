@@ -61,6 +61,9 @@ public class Pointer : MonoBehaviour
         return (_currentSquare == selectedSquare) ? true : false;
     }
 
+    /// <summary>
+    /// Changes the selected square if the mouse is pointing at a new square
+    /// </summary>
     public void UpdateSelectedSquare()
     {
         if (_currentSquare == null)    //If the Mouse isn't pointing to a Square, return
@@ -74,11 +77,6 @@ public class Pointer : MonoBehaviour
             return;
         }
 
-        if (selectedSquare != null)     // If there is currently a square beign selected, restore the square to its original material
-        {
-            //selectedSquare.GetComponent<MeshRenderer>().material = selectedSquare.OriginalMaterial;
-        }
-
         selectedSquare = _currentSquare;
 
         ShowPath();
@@ -89,7 +87,7 @@ public class Pointer : MonoBehaviour
     /// <summary>
     /// Draws a path from the starting Square to the Selected Square
     /// </summary>
-    public void ShowPath()
+    private void ShowPath()
     {
         HidePath();
 

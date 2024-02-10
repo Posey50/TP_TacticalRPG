@@ -11,7 +11,10 @@ public class PlayerActiveState : MonoBehaviour, IState
     private int _selectedSpellIndex = -1;
     private SpellsData _selectedSpellData;  
 
-
+    /// <summary>
+    /// Properly sets up the State before its use
+    /// </summary>
+    /// <param name="playerStateMachine"></param>
     public void OnEnter(PlayerStateMachine playerStateMachine)
     {
         Debug.Log("Player Enters Active State");
@@ -20,6 +23,10 @@ public class PlayerActiveState : MonoBehaviour, IState
         _playerStateMachine.Main.PlayerInput.onActionTriggered += OnAction;
     }
 
+    /// <summary>
+    /// Properly cleans up the State after its use
+    /// </summary>
+    /// <param name="playerStateMachine"></param>
     public void OnExit(PlayerStateMachine playerStateMachine)
     {
         Debug.Log("Player Exits Active State");
@@ -27,6 +34,10 @@ public class PlayerActiveState : MonoBehaviour, IState
         _playerStateMachine.Main.PlayerInput.onActionTriggered -= OnAction;
     }
 
+    /// <summary>
+    /// Called when the player does an Imput
+    /// </summary>
+    /// <param name="context"></param>
     private void OnAction(InputAction.CallbackContext context)
     {
         switch (context.action.name)
@@ -53,7 +64,7 @@ public class PlayerActiveState : MonoBehaviour, IState
     }
 
     /// <summary>
-    /// Selectes a spell to use from the Entity's Spell list
+    /// Selects the index of the Entity's spell list
     /// </summary>
     /// <param name="index"></param>
     public void SelectSpellByIndex(int index)
@@ -64,6 +75,9 @@ public class PlayerActiveState : MonoBehaviour, IState
         }
     }
 
+    /// <summary>
+    /// Unselects a spell
+    /// </summary>
     public void CancelSpell()
     {
         if (_selectedSpellIndex >= 0)
