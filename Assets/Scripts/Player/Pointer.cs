@@ -51,29 +51,38 @@ public class Pointer : MonoBehaviour
         return null;
     }
 
+    /// <summary>
+    /// Returns if the mouse is pointing at the selected square
+    /// </summary>
+    /// <returns></returns>
+    public bool CurrentSquareIsSelectedSquare()
+    {
+        return (_currentSquare == selectedSquare) ? true : false;
+    }
 
     public void UpdateSelectedSquare()
     {
         if (_currentSquare == null)    //If the Mouse isn't pointing to a Square, return
-        {   
+        {
+            HidePath();
             return;
         }
 
-        if (_currentSquare == selectedSquare)      //If the Mouse is pointing at the Square currently selected, return
+        if (CurrentSquareIsSelectedSquare())      //If the Mouse is pointing at the Square currently selected, return
         {
             return;
         }
 
         if (selectedSquare != null)     // If there is currently a square beign selected, restore the square to its original material
         {
-            selectedSquare.GetComponent<MeshRenderer>().material = selectedSquare.OriginalMaterial;
+            //selectedSquare.GetComponent<MeshRenderer>().material = selectedSquare.OriginalMaterial;
         }
 
         selectedSquare = _currentSquare;
 
-        selectedSquare.GetComponent<MeshRenderer>().material = selectedMaterial;
-
         ShowPath();
+
+        selectedSquare.GetComponent<MeshRenderer>().material = selectedMaterial;
     }
 
     /// <summary>
@@ -81,13 +90,7 @@ public class Pointer : MonoBehaviour
     /// </summary>
     private void ShowPath()
     {
-        if (path != null)
-        {
-            for (int i = 0; i < path.Count; i++)
-            {
-                path[i].GetComponent<MeshRenderer>().material = path[i].OriginalMaterial;
-            }
-        }
+        HidePath();
 
         path = AStarManager.Instance.CalculateShortestPathBetween(startSquare, selectedSquare);
 
@@ -95,10 +98,21 @@ public class Pointer : MonoBehaviour
         {
             for (int i = 0; i < path.Count; i++)
             {
-                if (i != 0 && i != path.Count - 1)
+                if (i != 0 && i != path.Count - 1)  //Excludes the first and the last cube
                 {
                     path[i].GetComponent<MeshRenderer>().material = pathMaterial;
                 }
+            }
+        }
+    }
+
+    private void HidePath()
+    {
+        if (path != null)
+        {
+            for (int i = 0; i < path.Count; i++)
+            {
+                path[i].GetComponent<MeshRenderer>().material = path[i].OriginalMaterial;
             }
         }
     }
