@@ -91,18 +91,35 @@ public abstract class Entity : MonoBehaviour
     public void TakeAttack(SpellsData attackingSpell)
     {
         Debug.Log($"{Name} recieves {attackingSpell.Name} on the face");
+
+        if (attackingSpell.IsForHeal)
+        {
+            HealHP(attackingSpell.Damages);
+        }
+        else
+        {
+            TakeDamage(attackingSpell.Damages);
+        }
     }
 
     public void TakeDamage(int damage)
     {
-        //TODO : Check Damage if correct
-        HP -= damage;
+        if (damage > 0)
+        {
+            HP -= damage;
+
+            Debug.Log($"{Name} takes {damage} damage");
+        }
     }
 
     public void HealHP(int heal)
     {
-        //TODO : Check PVs Max
-        HP += heal;
+        if (heal > 0)
+        {
+            HP = Mathf.Clamp(HP + heal, 0, _entityData.MaxHP);  //Can't heal higher than your maxHP
+
+            Debug.Log($"{Name} recieves {heal} of healing");
+        }
     }
 
     public abstract void ResetPoints();
