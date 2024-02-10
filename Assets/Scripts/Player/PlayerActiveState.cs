@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerActiveState : MonoBehaviour, IState
 {
-    private PlayerStateMachine _state;
+    private PlayerStateMachine _playerStateMachine;
     [SerializeField]
     private Spells _selectedSpells;
 
@@ -15,17 +16,33 @@ public class PlayerActiveState : MonoBehaviour, IState
     {
         Debug.Log("Player Enters Active State");
 
-        _state = playerStateMachine;
-        _state.Main.Pointer.enabled = true;
-        _state.Main.Pointer.CursorPress += OnCursorPress;  
+        _playerStateMachine = playerStateMachine;
+        _playerStateMachine.Main.PlayerInput.onActionTriggered += OnAction;
     }
 
     public void OnExit(PlayerStateMachine playerStateMachine)
     {
         Debug.Log("Player Exits Active State");
 
-        _state.Main.Pointer.enabled = false;
-        _state.Main.Pointer.CursorPress -= OnCursorPress;
+        _playerStateMachine.Main.PlayerInput.onActionTriggered -= OnAction;
+    }
+
+    private void OnAction(InputAction.CallbackContext context)
+    {
+        switch (context.action.name)
+        {
+            case "CursorMove":
+
+                _playerStateMachine.Main.Pointer.SetCurrentSquare(_playerStateMachine.Main.Pointer.GetSquareUnderPosition(context.action.ReadValue<Vector2>()));    //Sets the pointer's current Square to the square below the mouse
+
+                _playerStateMachine.Main.Pointer.UpdateSelectedSquare();  
+                
+                break;
+
+            case "CursorPress":
+                OnCursorPress(_playerStateMachine.Main.Pointer.selectedSquare);
+                break;
+        }
     }
 
     public void SelectSpell(Spells spell)
@@ -52,11 +69,11 @@ public class PlayerActiveState : MonoBehaviour, IState
     {
         if (!_hasSpellSelected)  //TODO : _selectedSpells == null
         {
-            _state.Main.Move(selectedSquare);
+            _playerStateMachine.Main.Move(selectedSquare);
         }
         else
         {
-            _state.Main.Attack(selectedSquare, _selectedSpells);
+            _playerStateMachine.Main.Attack(selectedSquare, _selectedSpells);
         }
     }
 }

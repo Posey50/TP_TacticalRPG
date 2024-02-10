@@ -20,7 +20,7 @@ public class PlayerStateMachine : MonoBehaviour
         StateInactive = GetComponent<PlayerInactiveState>();
         StateActive = GetComponent<PlayerActiveState>();
 
-        _currentState = StateActive;
+        _currentState = StateInactive;
         _currentState.OnEnter(this);
     }
 
@@ -35,5 +35,18 @@ public class PlayerStateMachine : MonoBehaviour
         _currentState = newState;
 
         _currentState.OnEnter(this);
+    }
+
+    //Here for DebugPurpose
+    public void SwitchSate()
+    {
+        if (_currentState.Equals(StateInactive))
+        {
+            ChangeState(StateActive);
+        }
+        else
+        {
+            ChangeState(StateInactive);
+        }
     }
 }

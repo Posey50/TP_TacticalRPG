@@ -19,7 +19,6 @@ public abstract class Entity : MonoBehaviour
     [SerializeField]
     protected Square _startingSquare;
 
-    [SerializeField]
     protected EntityData _entityData;
 
     private void Awake()

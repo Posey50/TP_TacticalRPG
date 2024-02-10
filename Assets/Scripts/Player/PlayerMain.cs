@@ -1,8 +1,9 @@
 using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class PlayerMain : Entity
 {
-    
+    public PlayerInput PlayerInput { get; private set; }
     public PlayerStateMachine StateMachine { get; private set; }
     public Pointer Pointer { get; private set; }
 
@@ -11,12 +12,13 @@ public class PlayerMain : Entity
 
     private void Start()
     {
-        base._entityData = EntityData;
-
-        Pointer.startSquare = _currentSquare;
-
+        PlayerInput = GetComponent<PlayerInput>();
         StateMachine = GetComponent<PlayerStateMachine>();
         Pointer = GetComponent<Pointer>();
+
+        base._entityData = EntityData;
+
+        Pointer.SetStartSquare(_currentSquare);
     }
 
     /// <summary>
@@ -39,7 +41,7 @@ public class PlayerMain : Entity
         _currentSquare = destination;
         _currentSquare.SetEntity(this);
 
-        Pointer.startSquare = _currentSquare;
+        Pointer.SetStartSquare(_currentSquare);
         transform.position = _currentSquare.transform.position;
     }
 }

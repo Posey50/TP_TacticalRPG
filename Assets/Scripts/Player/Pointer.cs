@@ -6,74 +6,79 @@ using UnityEngine.InputSystem;
 
 public class Pointer : MonoBehaviour
 {
-    public PlayerInput playerInput;
-    public Square startSquare;
-    public Square selectedSquare;
-    public List<Square> path;
+    public Square startSquare { get; private set; }
+    public Square selectedSquare { get; private set; }
+    
     public Material startMaterial;
     public Material selectedMaterial;
     public Material pathMaterial;
 
     private Square _currentSquare;
+    private List<Square> path;
 
     public event Action<Square> CursorPress;
 
     void Start()
     {
-        playerInput = GetComponent<PlayerInput>();
-        playerInput.onActionTriggered += OnAction;
-
         startSquare.GetComponent<MeshRenderer>().material = startMaterial;
     }
 
-    private void OnAction(InputAction.CallbackContext context)
+    public void SetStartSquare(Square newStart)
     {
-        switch (context.action.name)
-        {
-            case "CursorMove":
-                _currentSquare = CheckSquares(context.action.ReadValue<Vector2>());
-
-                if (_currentSquare != selectedSquare)
-                {
-                    NewSquareSelected(_currentSquare);
-                }
-                break;
-
-            case "CursorPress":
-                Debug.Log(selectedSquare.name);
-                CursorPress?.Invoke(selectedSquare);
-                break;
-        }
+        startSquare = newStart;
     }
 
-    private Square CheckSquares(Vector2 mousePosition) 
+    public void SetCurrentSquare(Square newCurrent)
+    {
+        _currentSquare = newCurrent;
+    }
+
+    /// <summary>
+    /// Returns a Square if the mouse is above a Square. Returns null if not
+    /// </summary>
+    /// <param name="mousePosition"></param>
+    /// <returns></returns>
+    public Square GetSquareUnderPosition(Vector2 mousePosition) 
     {
         if (Physics.Raycast(Camera.main.ScreenPointToRay(mousePosition), out RaycastHit hit, 200f))
         {
             if (hit.transform.CompareTag("Square"))
             {
                 return hit.transform.GetComponent<Square>();
-                
             }
         }
 
         return null;
     }
 
-    private void NewSquareSelected(Square newSquare)
+
+    public void UpdateSelectedSquare()
     {
-        if (selectedSquare != null)
+        if (_currentSquare == null)    //If the Mouse isn't pointing to a Square, return
+        {   
+            return;
+        }
+
+        if (_currentSquare == selectedSquare)      //If the Mouse is pointing at the Square currently selected, return
+        {
+            return;
+        }
+
+        if (selectedSquare != null)     // If there is currently a square beign selected, restore the square to its original material
         {
             selectedSquare.GetComponent<MeshRenderer>().material = selectedSquare.OriginalMaterial;
         }
 
-        selectedSquare = newSquare;
+        selectedSquare = _currentSquare;
 
-        newSquare.GetComponent<MeshRenderer>().material = selectedMaterial;
+        selectedSquare.GetComponent<MeshRenderer>().material = selectedMaterial;
 
         ShowPath();
     }
 
+    /// <summary>
+    /// Draws a path from the starting Square to the Selected Square
+    /// </summary>
     private void ShowPath()
     {
         if (path != null)
