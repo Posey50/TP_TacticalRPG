@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -40,20 +41,23 @@ public class PlayerActiveState : MonoBehaviour, IState
                 break;
 
             case "CursorPress":
-                if (_playerStateMachine.Main.Pointer.CurrentSquareIsSelectedSquare())
+                if (context.started)    //Only on the press of the button
                 {
-                    OnCursorPress(_playerStateMachine.Main.Pointer.selectedSquare);
+                    if (_playerStateMachine.Main.Pointer.CurrentSquareIsSelectedSquare())
+                    {
+                        OnCursorPress(_playerStateMachine.Main.Pointer.selectedSquare);
+                    }
                 }
 
                 break;
         }
     }
 
-    public void SelectSpell(Spells spell)
+    public void SelectSpellByIndex(int index)
     {
         if (_selectedSpells == null)
         {
-            _selectedSpells = spell;
+            //_selectedSpells = spell;
         }
     }
 
@@ -73,7 +77,16 @@ public class PlayerActiveState : MonoBehaviour, IState
     {
         if (!_hasSpellSelected)  //TODO : _selectedSpells == null
         {
-            _playerStateMachine.Main.Move(selectedSquare);
+            if (_playerStateMachine.Main.Pointer.path.Count - 1 <= _playerStateMachine.Main.MPs)    //If the player has enough MPs. "- 1" ignores the Square the player is currently standing on
+            {
+                _playerStateMachine.Main.Move(selectedSquare);
+
+                _playerStateMachine.Main.DecreasePM(_playerStateMachine.Main.Pointer.path.Count - 1);
+            }
+            else
+            {
+                Debug.Log($"Not enough MPs to Move {_playerStateMachine.Main.MPs}, needs {_playerStateMachine.Main.Pointer.path.Count - 1}");
+            }
         }
         else
         {

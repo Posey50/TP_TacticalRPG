@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   _name: BowShot
-  _paCost: 15
+  _paCost: 3
   _damages: 25
   _range: 6
   _isForHeal: 0

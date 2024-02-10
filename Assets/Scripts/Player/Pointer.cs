@@ -8,13 +8,13 @@ public class Pointer : MonoBehaviour
 {
     public Square startSquare { get; private set; }
     public Square selectedSquare { get; private set; }
-    
+    public List<Square> path { get; private set; }
+
     public Material startMaterial;
     public Material selectedMaterial;
     public Material pathMaterial;
 
     private Square _currentSquare;
-    private List<Square> path;
 
     public event Action<Square> CursorPress;
 

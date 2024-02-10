@@ -27,7 +27,7 @@ public abstract class Entity : MonoBehaviour
         transform.position = _currentSquare.transform.position;
     }
 
-    protected void InitEntity()
+    public void InitEntity()
     {
         Name = _entityData.Name;
         Class = _entityData.Class;
@@ -38,6 +38,8 @@ public abstract class Entity : MonoBehaviour
         Speed = _entityData.Speed;
 
         Spells = _entityData.Spells;
+
+        Debug.Log($"{Name} has been initialized");
     }
 
     public virtual async void Move(Square destination)
