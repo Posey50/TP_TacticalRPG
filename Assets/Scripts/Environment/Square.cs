@@ -121,6 +121,10 @@ public class Square : MonoBehaviour
         IsClosed = false;
     }
 
+    /// <summary>
+    /// Redirects the spell to the Entity currently on the Square. Does nothing if there is no Entity
+    /// </summary>
+    /// <param name="spellData"></param>
     public void TargetEntity(SpellsData spellData)
     {
         if (EntityOnThisSquare != null)
