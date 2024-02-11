@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnnemyInactiveState : IEnnemyState
+public class EnnemyInactiveState : MonoBehaviour, IEnnemyState
 {
     public void OnEnter(EnnemyStateMachine ennemyStateMachine)
     {

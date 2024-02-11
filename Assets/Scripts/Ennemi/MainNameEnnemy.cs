@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainNameEnnemy : MonoBehaviour, IComportement
+public class MainNameEnnemy : Entity, IComportement
 {
     public EntityData EntityData;
-    public Entity Entity;
     public EnnemyStateMachine EnemyStateMachine;
 
     public List<Square> path;
@@ -15,7 +14,7 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
     private int _minDistanceToPlayer;
 
     public bool CanAttack;
-     
+
     public void Start()
     {
         startSquare.GetComponent<MeshRenderer>().material = startMaterial;
@@ -58,8 +57,8 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
 
         startSquare = path[_minDistanceToPlayer];
 
-        Entity.DecreasePM(_minDistanceToPlayer);
-        Entity.Move(startSquare);
+        DecreasePM(_minDistanceToPlayer);
+        Move(startSquare);
 
         ChoseAnAction();
     }
@@ -76,7 +75,7 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
             {
                 CanAttack = true;
             }
-            else if(Square.Neighbors.Count == i)
+            else if (Square.Neighbors.Count == i)
             {
                 BattleManager.Instance.NextEntityTurn();
             }
@@ -91,10 +90,10 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
                 if (EntityData.Spells[randomAction].ActionBase.PaCost <= EntityData.APs)
                 {
                     Debug.Log($"Ennemy effectue {EntityData.Spells[randomAction].ActionBase.Name}");
-                    Entity.Attack(path[_minDistanceToPlayer], EntityData.Spells[randomAction]);
-                    Entity.DecreasePA(EntityData.Spells[randomAction].ActionBase.PaCost);
+                    Attack(path[_minDistanceToPlayer], EntityData.Spells[randomAction]);
+                    DecreasePA(EntityData.Spells[randomAction].ActionBase.PaCost);
                 }
-                else if(EntityData.Spells.Count == i)
+                else if (EntityData.Spells.Count == i)
                 {
                     Debug.Log("Ennemy n'a pu assez de PA");
                     BattleManager.Instance.NextEntityTurn();
@@ -102,5 +101,11 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
             }
         }
     }
+
+    public override void ResetPoints()
+    {
+
+    }
+
 }
 
