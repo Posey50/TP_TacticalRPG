@@ -18,7 +18,7 @@ public class PlayerMain : Entity
 
         base.EntityData = EntityData;
 
-        Pointer.SetStartSquare(SquareUnderTheEntity);
+
     }
 
     /// <summary>

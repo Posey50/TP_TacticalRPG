@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerInactiveState : MonoBehaviour, IState
+public class PlayerInactiveState : IState
 {
     private PlayerStateMachine _playerStateMachine;
 

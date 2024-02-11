@@ -5931,11 +5931,9 @@ GameObject:
   - component: {fileID: 351195328}
   - component: {fileID: 351195327}
   - component: {fileID: 351195326}
-  - component: {fileID: 351195325}
-  - component: {fileID: 351195324}
   - component: {fileID: 351195323}
   - component: {fileID: 351195322}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player2
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -5980,7 +5978,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 351195321}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd74c0e39e3d3ca45b611285c045a125, type: 3}
   m_Name: 
@@ -5988,30 +5986,6 @@ MonoBehaviour:
   startMaterial: {fileID: 2100000, guid: 10ea892b8fa7b794baa32ebd92534256, type: 2}
   selectedMaterial: {fileID: 2100000, guid: 5df8a05e22ac44e4194de8971125f1a0, type: 2}
   pathMaterial: {fileID: 2100000, guid: 314572ff1c3b23749a091eb6e8d340f7, type: 2}
---- !u!114 &351195324
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351195321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3434377b3a2941841ade11d207502bc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &351195325
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 351195321}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9633b46d468baca449a3a9cd4298d3c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &351195326
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6036,7 +6010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b7754af9b3d051342a0e161a9d948216, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingSquare: {fileID: 1585262228}
+  _startingSquare: {fileID: 871770920}
   EntityData: {fileID: 11400000, guid: f323e420b7b6a454b816935ac915607f, type: 2}
 --- !u!23 &351195328
 MeshRenderer:
@@ -10785,7 +10759,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1007057258}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerActiveState, Assembly-CSharp
         m_MethodName: CancelSpell
         m_Mode: 1
@@ -12673,7 +12647,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1007057258}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerActiveState, Assembly-CSharp
         m_MethodName: SelectSpellByIndex
         m_Mode: 3
@@ -16798,11 +16772,9 @@ GameObject:
   - component: {fileID: 1007057260}
   - component: {fileID: 1007057255}
   - component: {fileID: 1007057254}
-  - component: {fileID: 1007057258}
-  - component: {fileID: 1007057257}
   - component: {fileID: 1007057259}
   - component: {fileID: 1007057262}
-  m_Layer: 0
+  m_Layer: 2
   m_Name: Player1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -16850,30 +16822,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1007057257
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007057253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 3434377b3a2941841ade11d207502bc5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1007057258
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1007057253}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9633b46d468baca449a3a9cd4298d3c1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &1007057259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -16881,7 +16829,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1007057253}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cd74c0e39e3d3ca45b611285c045a125, type: 3}
   m_Name: 
@@ -34972,7 +34920,7 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1007057258}
+      - m_Target: {fileID: 0}
         m_TargetAssemblyTypeName: PlayerActiveState, Assembly-CSharp
         m_MethodName: SelectSpellByIndex
         m_Mode: 3

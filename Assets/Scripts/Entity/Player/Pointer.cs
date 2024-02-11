@@ -6,9 +6,9 @@ using UnityEngine.InputSystem;
 
 public class Pointer : MonoBehaviour
 {
-    public Square startSquare { get; private set; }
-    public Square selectedSquare { get; private set; }
-    public List<Square> path { get; private set; }
+    //public Square StartSquare { get; private set; }
+    public Square SelectedSquare { get; private set; }
+    public List<Square> Path { get; private set; }
 
     public Material startMaterial;
     public Material selectedMaterial;
@@ -18,15 +18,15 @@ public class Pointer : MonoBehaviour
 
     public event Action<Square> CursorPress;
 
+    private PlayerMain _player;
+
     void Start()
     {
-        startSquare.GetComponent<MeshRenderer>().material = startMaterial;
-    }
+        _player = GetComponent<PlayerMain>();
 
-    public void SetStartSquare(Square newStart)
-    {
-        startSquare = newStart;
-        selectedSquare = newStart;
+        _player.SquareUnderTheEntity.GetComponent<MeshRenderer>().material = startMaterial;
+
+        SelectedSquare = _player.SquareUnderTheEntity;
     }
 
     public void SetCurrentSquare(Square newCurrent)
@@ -58,7 +58,7 @@ public class Pointer : MonoBehaviour
     /// <returns></returns>
     public bool CurrentSquareIsSelectedSquare()
     {
-        return (_currentSquare == selectedSquare) ? true : false;
+        return (_currentSquare == SelectedSquare) ? true : false;
     }
 
     /// <summary>
@@ -77,11 +77,11 @@ public class Pointer : MonoBehaviour
             return;
         }
 
-        selectedSquare = _currentSquare;
+        SelectedSquare = _currentSquare;
 
         ShowPath();
 
-        selectedSquare.GetComponent<MeshRenderer>().material = selectedMaterial;
+        SelectedSquare.GetComponent<MeshRenderer>().material = selectedMaterial;
     }
 
     /// <summary>
@@ -91,15 +91,15 @@ public class Pointer : MonoBehaviour
     {
         HidePath();
 
-        path = AStarManager.Instance.CalculateShortestPathBetween(startSquare, selectedSquare);
+        Path = AStarManager.Instance.CalculateShortestPathBetween(_player.SquareUnderTheEntity, SelectedSquare);
 
-        if (path != null)
+        if (Path != null)
         {
-            for (int i = 0; i < path.Count; i++)
+            for (int i = 0; i < Path.Count; i++)
             {
-                if (i != 0 && i != path.Count - 1)  //Excludes the first and the last cube
+                if (i != 0 && i != Path.Count - 1)  //Excludes the first and the last cube
                 {
-                    path[i].GetComponent<MeshRenderer>().material = pathMaterial;
+                    Path[i].GetComponent<MeshRenderer>().material = pathMaterial;
                 }
             }
         }
@@ -110,11 +110,11 @@ public class Pointer : MonoBehaviour
     /// </summary>
     private void HidePath()
     {
-        if (path != null)
+        if (Path != null)
         {
-            for (int i = 0; i < path.Count; i++)
+            for (int i = 0; i < Path.Count; i++)
             {
-                path[i].GetComponent<MeshRenderer>().material = path[i].OriginalMaterial;
+                Path[i].GetComponent<MeshRenderer>().material = Path[i].OriginalMaterial;
             }
         }
     }

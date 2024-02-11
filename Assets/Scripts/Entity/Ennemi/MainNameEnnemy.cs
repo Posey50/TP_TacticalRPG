@@ -59,7 +59,7 @@ public class MainNameEnnemy : Entity, IComportement
         startSquare = path[_minDistanceToPlayer];
 
         DecreasePM(_minDistanceToPlayer);
-        Move(startSquare);
+        //Move(startSquare);    Erreur de truc, Rip bozo
 
         ChoseAnAction();
     }

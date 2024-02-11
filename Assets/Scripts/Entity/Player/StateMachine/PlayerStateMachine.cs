@@ -7,8 +7,8 @@ public class PlayerStateMachine : MonoBehaviour
     /// </summary>
     public PlayerMain Main { get; private set; }
 
-    public PlayerInactiveState StateInactive { get; private set; }
-    public PlayerActiveState StateActive { get; private set; }
+    public PlayerInactiveState StateInactive = new();
+    public PlayerActiveState StateActive = new();
 
     private IState _currentState;
 
@@ -17,11 +17,7 @@ public class PlayerStateMachine : MonoBehaviour
     {
         Main = GetComponent<PlayerMain>();
 
-        StateInactive = GetComponent<PlayerInactiveState>();
-        StateActive = GetComponent<PlayerActiveState>();
-
-        _currentState = StateInactive;
-        _currentState.OnEnter(this);
+        ChangeState(StateInactive);
     }
 
     /// <summary>
@@ -46,12 +42,10 @@ public class PlayerStateMachine : MonoBehaviour
     /// <param name="newState"></param>
     private void ChangeState(IState newState)
     {
-        if (_currentState.Equals(newState))
+        if (_currentState != null)
         {
-            return;
+            _currentState.OnExit(this);
         }
-
-        _currentState.OnExit(this);
 
         _currentState = newState;
 

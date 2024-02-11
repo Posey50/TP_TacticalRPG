@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System.Threading.Tasks;
 using DG.Tweening;
+using System.Collections;
 
 public abstract class Entity : MonoBehaviour
 {
@@ -77,18 +78,27 @@ public abstract class Entity : MonoBehaviour
         APs = EntityData.APs;
         HP = EntityData.MaxHP;
         Speed = EntityData.Speed;
+        _moveSpeed = EntityData.MoveSpeed;
         Spells = EntityData.Spells;
+    }
+
+    /// <summary>
+    /// Starts the Coroutine FollowThePath
+    /// </summary>
+    public void StartFollowPath(List<Square> path)
+    {
+        StartCoroutine(FollowThePath(path));
     }
 
     /// <summary>
     /// Called to make an entity following a path.
     /// </summary>
     /// <param name="path"> Path to follow. </param>
-    public virtual async void FollowThePath(List<Square> path)
+    private IEnumerator FollowThePath(List<Square> path)
     {
         for (int i = 0; i < path.Count; i++)
         {
-            await Move(path[i]);
+            yield return StartCoroutine(Move(path[i]));
         }
     }
 
@@ -97,14 +107,15 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     /// <param name="destination"> Destination to reach. </param>
     /// <returns></returns>
-    public virtual async Task Move(Square destination)
+    private IEnumerator Move(Square destination)
     {
         SquareUnderTheEntity.LeaveSquare();
 
-        transform.DOMove(destination.transform.position, _moveSpeed);
+        yield return transform.DOMove(destination.transform.position, 0.2f); //_moveSpeed * Time.deltaTime
+        yield return new WaitForSeconds(0.2f);
 
         SquareUnderTheEntity = destination;
-        transform.position = SquareUnderTheEntity.transform.position;
+        //transform.position = SquareUnderTheEntity.transform.position;
 
         SquareUnderTheEntity.SetEntity(this);
     }

@@ -10,15 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 0f9fa2966545db34bbf71216810fb788, type: 3}
-  m_Name: Player1
+  m_Name: PlayerRandom
   m_EditorClassIdentifier: 
-  _name: John
-  _class: Warrior
-  _mPs: 5
-  _aPs: 10
-  _maxHP: 100
-  _speed: 30
-  _moveSpeed: 2
-  _spells:
-  - _actionBase: {fileID: 11400000, guid: 922da584c9eab5442b4ae7d36383111b, type: 2}
-  - _actionBase: {fileID: 11400000, guid: 19031e3b1aa59774985018b05b52c81b, type: 2}
+  _spells: []

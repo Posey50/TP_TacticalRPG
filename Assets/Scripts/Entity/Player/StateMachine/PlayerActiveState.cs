@@ -1,10 +1,7 @@
-using System.Collections;
-using System.Collections.Generic;
-using System.Linq;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
-public class PlayerActiveState : MonoBehaviour, IState
+public class PlayerActiveState : IState
 {
     private PlayerStateMachine _playerStateMachine;
     
@@ -55,7 +52,7 @@ public class PlayerActiveState : MonoBehaviour, IState
                 {
                     if (_playerStateMachine.Main.Pointer.CurrentSquareIsSelectedSquare())
                     {
-                        OnCursorPress(_playerStateMachine.Main.Pointer.selectedSquare);
+                        OnCursorPress(_playerStateMachine.Main.Pointer.SelectedSquare);
                     }
                 }
 
@@ -94,15 +91,17 @@ public class PlayerActiveState : MonoBehaviour, IState
     {
         if (_selectedSpellIndex < 0)    //If No spell selected, try to move
         {
-            if (_playerStateMachine.Main.Pointer.path.Count - 1 <= _playerStateMachine.Main.MPs)    //If the player has enough MPs. "- 1" ignores the Square the player is currently standing on
+            if (_playerStateMachine.Main.Pointer.Path.Count - 1 <= _playerStateMachine.Main.MPs)    //If the player has enough MPs. "- 1" ignores the Square the player is currently standing on
             {
-                _playerStateMachine.Main.Move(selectedSquare);
+                //_playerStateMachine.Main.Move(selectedSquare);
 
-                _playerStateMachine.Main.DecreasePM(_playerStateMachine.Main.Pointer.path.Count - 1);
+                _playerStateMachine.Main.StartFollowPath(_playerStateMachine.Main.Pointer.Path);
+
+                _playerStateMachine.Main.DecreasePM(_playerStateMachine.Main.Pointer.Path.Count - 1);
             }
             else
             {
-                Debug.Log($"Not enough MPs to Move {_playerStateMachine.Main.MPs}, needs {_playerStateMachine.Main.Pointer.path.Count - 1}");
+                Debug.Log($"Not enough MPs to Move {_playerStateMachine.Main.MPs}, needs {_playerStateMachine.Main.Pointer.Path.Count - 1}");
             }
         }
         else                            //If spell selected, attack
