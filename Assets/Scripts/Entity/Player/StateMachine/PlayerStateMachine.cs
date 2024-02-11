@@ -10,7 +10,7 @@ public class PlayerStateMachine : MonoBehaviour
     public PlayerInactiveState StateInactive = new();
     public PlayerActiveState StateActive = new();
 
-    private IState _currentState;
+    private IPlayerState _currentState;
 
     
     void Start()
@@ -40,7 +40,7 @@ public class PlayerStateMachine : MonoBehaviour
     /// Changes the player's state. Also calls the states OnExit and OnEnter
     /// </summary>
     /// <param name="newState"></param>
-    private void ChangeState(IState newState)
+    private void ChangeState(IPlayerState newState)
     {
         if (_currentState != null)
         {

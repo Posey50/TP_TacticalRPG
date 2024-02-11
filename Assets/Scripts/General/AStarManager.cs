@@ -54,6 +54,7 @@ public class AStarManager : MonoBehaviour
     /// <param name="arrival"> Arrival of the path. </param>
     /// <param name="openSquares"> List of open squares that must be browsed. </param>
     /// <param name="shortestPath"> Shortest path to complete at the end of the calculation. </param>
+    /// <param name="squaresUsedInTheCalculation"> Squares used in the calculation. </param>
     /// <returns></returns>
     private List<Square> ShortestPath(Square departure, Square arrival, List<Square> openSquares, List<Square> shortestPath, List<Square> squaresUsedInTheCalculation)
     {
@@ -179,6 +180,7 @@ public class AStarManager : MonoBehaviour
     /// </summary>
     /// <param name="arrival"> Arrival of the path. </param>
     /// <param name="shortestPath"> Shortest path to complete. </param>
+    /// <param name="squaresUsedInTheCalculation"> Squares used in the calculation. </param>
     /// <returns></returns>
     private List<Square> ReturnShortestPath(Square arrival, List<Square> shortestPath, List<Square> squaresUsedInTheCalculation)
     {
@@ -195,12 +197,57 @@ public class AStarManager : MonoBehaviour
         }
     }
 
+    /// <summary>
+    /// Called at the end of a calculation to reset all squares used in the calculation.
+    /// </summary>
+    /// <param name="squaresUsedInTheCalculation"> Squares to reset. </param>
     private void ResetAllSquaresUsed(List<Square> squaresUsedInTheCalculation)
     {
-        for (int i = 0; i  < squaresUsedInTheCalculation.Count; i++)
+        for (int i = 0; i < squaresUsedInTheCalculation.Count; i++)
         {
             squaresUsedInTheCalculation[i].ResetSquare();
         }
-
     }
+
+    /// <summary>
+    /// Return a list of squares into a list of positions
+    /// </summary>
+    /// <param name="squares"> Squares to convert. </param>
+    /// <returns></returns>
+    public List<Vector3> ConvertSquaresIntoPositions(List<Square> squares)
+    {
+        List <Vector3> path = new ();
+        
+        for (int i = 0; i < squares.Count; i++)
+        {
+            path.Add(squares[i].transform.position);
+        }
+
+        return path;
+    }
+
+    /// <summary>
+    /// Called to get the shortest path between two squares.
+    /// </summary>
+    /// <param name="departure"> Departure of the path. </param>
+    /// <param name="arrival"> Arrival of the path. </param>
+    /// <returns></returns>
+    //public List<Square> CalculateRange(Square departure, int range)
+    //{
+    //    List<Square> shortestPath = ShortestPath(departure, arrival, new(), new(), new());
+
+    //    if (shortestPath != null)
+    //    {
+    //        for (int i = 0; i < shortestPath.Count; i++)
+    //        {
+    //            shortestPath[i].ResetSquare();
+    //        }
+
+    //        return shortestPath;
+    //    }
+    //    else
+    //    {
+    //        return null;
+    //    }
+    //}
 }

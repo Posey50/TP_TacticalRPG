@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class MainNameEnnemy : Entity, IComportement
 {
-    public EntityData EntityData;
-    public EnnemyStateMachine EnemyStateMachine;
+    public EntityDatas EntityData;
+    public EnemyStateMachine EnemyStateMachine;
 
     public List<Square> path;
     public Square startSquare;
@@ -12,7 +12,7 @@ public class MainNameEnnemy : Entity, IComportement
 
     public Square Square;
     private int _minDistanceToPlayer;
-    private SpellsData _spellsData; 
+    private SpellDatas _spellsData; 
 
     public bool CanAttack;
 
@@ -47,18 +47,18 @@ public class MainNameEnnemy : Entity, IComportement
     /// </summary>
     public void MPToPlayer()
     {
-        if (_minDistanceToPlayer > EntityData.MPs)
+        if (_minDistanceToPlayer > EntityData.MP)
         {
-            _minDistanceToPlayer = EntityData.MPs;
+            _minDistanceToPlayer = EntityData.MP;
         }
-        else if (_minDistanceToPlayer == EntityData.MPs)
+        else if (_minDistanceToPlayer == EntityData.MP)
         {
             _minDistanceToPlayer--;
         }
 
         startSquare = path[_minDistanceToPlayer];
 
-        DecreasePM(_minDistanceToPlayer);
+        DecreaseMP(_minDistanceToPlayer);
         //Move(startSquare);    Erreur de truc, Rip bozo
 
         ChoseAnAction();
@@ -88,12 +88,12 @@ public class MainNameEnnemy : Entity, IComportement
             {
                 int randomAction = Random.Range(0, EntityData.Spells.Count);
 
-                if (EntityData.Spells[randomAction].ActionBase.PaCost <= EntityData.APs)
+                if (EntityData.Spells[randomAction].SpellDatas.PaCost <= EntityData.AP)
                 {
-                    Debug.Log($"Ennemy effectue {EntityData.Spells[randomAction].ActionBase.Name}");
+                    Debug.Log($"Ennemy effectue {EntityData.Spells[randomAction].SpellDatas.Name}");
 
                     //Attack(path[_minDistanceToPlayer], EntityData.Spells[randomAction]);
-                    DecreasePA(EntityData.Spells[randomAction].ActionBase.PaCost);
+                    DecreaseAP(EntityData.Spells[randomAction].SpellDatas.PaCost);
                 }
                 else if (EntityData.Spells.Count == i)
                 {
@@ -106,8 +106,8 @@ public class MainNameEnnemy : Entity, IComportement
 
     public override void ResetPoints()
     {
-        MPs = EntityData.MPs;
-        APs = EntityData.APs;
+        MP = EntityData.MP;
+        AP = EntityData.AP;
     }
 }
 

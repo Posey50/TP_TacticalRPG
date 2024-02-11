@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class PlayerInactiveState : IState
+public class PlayerInactiveState : IPlayerState
 {
     private PlayerStateMachine _playerStateMachine;
 

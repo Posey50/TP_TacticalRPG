@@ -75,7 +75,7 @@ public class BattleManager : MonoBehaviour
         {
             playerStateMachine.ChangeToActive();
         }
-        else if (EntitiesInActionOrder[0].TryGetComponent<EnnemyStateMachine>(out EnnemyStateMachine ennemyStateMachine))
+        else if (EntitiesInActionOrder[0].TryGetComponent<EnemyStateMachine>(out EnemyStateMachine ennemyStateMachine))
         {
             // TODO
             //ennemyStateMachine.ChangeToActive();

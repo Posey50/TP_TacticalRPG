@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using System.Threading.Tasks;
 using DG.Tweening;
 using System.Collections;
 
@@ -9,7 +8,7 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// The database which represents this entity.
     /// </summary>
-    public EntityData EntityData { get; protected set; }
+    public EntityDatas EntityDatas { get; protected set; }
 
     /// <summary>
     /// Name of the entity.
@@ -24,12 +23,12 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// Movement points which determines the number of movement that an entity cans do in one turn.
     /// </summary>
-    public int MPs { get; protected set; }
+    public int MP { get; protected set; }
 
     /// <summary>
     /// Action points which determines the total ammount of action points that an entity can use in one turn.
     /// </summary>
-    public int APs { get; protected set; }
+    public int AP { get; protected set; }
 
     /// <summary>
     /// Health points of the entity.
@@ -44,7 +43,7 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// List of spells that the entity can use.
     /// </summary>
-    public List<Spells> Spells { get; protected set; }
+    public List<Spell> Spells { get; protected set; }
 
     /// <summary>
     /// Square on which the entity is located.
@@ -72,135 +71,113 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     public void InitEntity()
     {
-        Name = EntityData.Name;
-        Class = EntityData.Class;
-        MPs = EntityData.MPs;
-        APs = EntityData.APs;
-        HP = EntityData.MaxHP;
-        Speed = EntityData.Speed;
-        _moveSpeed = EntityData.MoveSpeed;
-        Spells = EntityData.Spells;
+        Name = EntityDatas.Name;
+        Class = EntityDatas.Class;
+        MP = EntityDatas.MP;
+        AP = EntityDatas.AP;
+        HP = EntityDatas.MaxHP;
+        Speed = EntityDatas.Speed;
+        Spells = EntityDatas.Spells;
+        _moveSpeed = EntityDatas.MoveSpeed;
     }
 
     /// <summary>
-    /// Starts the Coroutine FollowThePath
+    /// Called to start following a path.
     /// </summary>
+    /// <param name="path"> Path to follow. </param>
     public void StartFollowPath(List<Square> path)
     {
         StartCoroutine(FollowThePath(path));
     }
 
     /// <summary>
-    /// Called to make an entity following a path.
+    /// Makes the entity following a path.
     /// </summary>
     /// <param name="path"> Path to follow. </param>
     private IEnumerator FollowThePath(List<Square> path)
     {
-        for (int i = 0; i < path.Count; i++)
-        {
-            yield return StartCoroutine(Move(path[i]));
-        }
-    }
-
-    /// <summary>
-    /// Called to move to a destination
-    /// </summary>
-    /// <param name="destination"> Destination to reach. </param>
-    /// <returns></returns>
-    private IEnumerator Move(Square destination)
-    {
         SquareUnderTheEntity.LeaveSquare();
 
-        yield return transform.DOMove(destination.transform.position, 0.2f).WaitForCompletion(); //_moveSpeed * Time.deltaTime
-        //yield return new WaitForSeconds(0.2f);
+        Vector3[] pathToFollow = AStarManager.Instance.ConvertSquaresIntoPositions(path).ToArray();
 
-        SquareUnderTheEntity = destination;
-        //transform.position = SquareUnderTheEntity.transform.position;
+        yield return transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear);
 
+        SquareUnderTheEntity = path[^1];
         SquareUnderTheEntity.SetEntity(this);
     }
 
     /// <summary>
-    /// Decreases PMs of Entity by the amount given
+    /// Decreases MP of the entity by the amount given.
     /// </summary>
-    /// <param name="amount"></param>
-    public void DecreasePM(int amount)
+    /// <param name="amount"> MP to decrease. </param>
+    public void DecreaseMP(int amount)
     {
-        if (amount <= MPs)
+        if (amount <= MP)
         {
-            MPs -= amount;
+            MP -= amount;
         }
     }
 
     /// <summary>
-    /// Decreases PAs of Entity by the amount given
+    /// Decreases AP of the entity by the amount given.
     /// </summary>
-    /// <param name="amount"></param>
-    public void DecreasePA(int amount)
+    /// <param name="amount"> AP to decrease. </param>
+    public void DecreaseAP(int amount)
     {
-        if (amount <= APs)
+        if (amount <= AP)
         {
-            APs -= amount;
+            AP -= amount;
         }
     }
 
     /// <summary>
-    /// Sends a spell to a specified Square. 
+    /// Attack an entity with the spell given.
     /// </summary>
-    /// <param name="attackedSquare"></param>
-    /// <param name="attackingSpell"></param>
-    public void Attack(Square attackedSquare, SpellsData attackingSpell)
+    /// <param name="attackedSquare"> Spell used. </param>
+    /// <param name="attackingSpell"> Entity to attack. </param>
+    public void Attack(Spell spell, Entity entityToAttack)
     {
-        //Attack Square 
-        Debug.Log($"{Name} uses {attackingSpell.Name} to attack {attackedSquare.name}");
-
-        attackedSquare.TargetEntity(attackingSpell);
+        entityToAttack.TakeAttack(spell);
     }
 
     /// <summary>
-    /// Recieves a spell and correctly takes it (heal or damage)
+    /// Recieves a spell and does the the effect of the spell.
     /// </summary>
     /// <param name="attackingSpell"></param>
-    public void TakeAttack(SpellsData attackingSpell)
+    public void TakeAttack(Spell spellReceived)
     {
-        Debug.Log($"{Name} recieves {attackingSpell.Name} on the face");
-
-        if (attackingSpell.IsForHeal)
+        if (spellReceived.SpellDatas.IsForHeal)
         {
-            HealHP(attackingSpell.Damages);
+            HealHP(spellReceived.SpellDatas.Damages);
         }
         else
         {
-            TakeDamage(attackingSpell.Damages);
+            TakeDamage(spellReceived.SpellDatas.Damages);
         }
     }
-    
+
     /// <summary>
-    /// Applies the damage of spell
+    /// Applies damages of a spell.
     /// </summary>
-    /// <param name="damage"></param>
-    public void TakeDamage(int damage)
+    /// <param name="damage"> Damages to take. </param>
+    public void TakeDamage(int damages)
     {
-        if (damage > 0)
-        {
-            HP -= damage;
+        HP -= damages;
 
-            Debug.Log($"{Name} takes {damage} damage");
+        if (HP < 0)
+        {
+            HP = 0;
         }
     }
 
     /// <summary>
-    /// Applies the healing of a spell
+    /// Applies the healing of a spell.
     /// </summary>
-    /// <param name="heal"></param>
+    /// <param name="heal"> HP to heal. </param>
     public void HealHP(int heal)
     {
-        if (heal > 0)
-        {
-            HP = Mathf.Clamp(HP + heal, 0, EntityData.MaxHP);  //Can't heal higher than your maxHP
-
-            Debug.Log($"{Name} recieves {heal} of healing");
-        }
+        // Prevents the healing over the maximum of HP
+        HP = Mathf.Clamp(HP + heal, 0, EntityDatas.MaxHP);
     }
 
     public abstract void ResetPoints();

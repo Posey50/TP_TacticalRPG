@@ -3,30 +3,48 @@ using UnityEngine.InputSystem;
 
 public class PlayerMain : Entity
 {
+    /// <summary>
+    /// Player input component of the playable entity.
+    /// </summary>
     public PlayerInput PlayerInput { get; private set; }
-    public PlayerStateMachine StateMachine { get; private set; }
-    public Pointer Pointer { get; private set; }
 
+    /// <summary>
+    /// Player state machine of the playable entity.
+    /// </summary>
+    public PlayerStateMachine StateMachine { get; private set; }
+
+    /// <summary>
+    /// Cursor component of the playable entity.
+    /// </summary>
+    public Cursor Cursor { get; private set; }
+
+    /// <summary>
+    /// Actions component of the playable entity.
+    /// </summary>
+    public Actions Actions { get; private set; }
+
+    /// <summary>
+    /// Datas of the playable entity.
+    /// </summary>
     [SerializeField]
-    private EntityData EntityData;
+    private new EntityDatas EntityDatas;
 
     private void Start()
     {
         PlayerInput = GetComponent<PlayerInput>();
         StateMachine = GetComponent<PlayerStateMachine>();
-        Pointer = GetComponent<Pointer>();
+        Cursor = GetComponent<Cursor>();
+        Actions = GetComponent<Actions>();
 
-        base.EntityData = EntityData;
-
-
+        base.EntityDatas = this.EntityDatas;
     }
 
     /// <summary>
-    /// Resets the players Movement and Action point at the end of its turn
+    /// Resets the movement and action points at the end of the turn.
     /// </summary>
     public override void ResetPoints()
     {
-        MPs = EntityData.MPs;
-        APs = EntityData.APs;
+        MP = EntityDatas.MP;
+        AP = EntityDatas.AP;
     }
 }

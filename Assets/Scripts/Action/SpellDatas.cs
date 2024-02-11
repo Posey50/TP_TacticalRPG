@@ -1,12 +1,13 @@
 using UnityEngine;
 
 [CreateAssetMenu(fileName = "Spells", menuName = "ScriptableObjects/Spells", order = 1)]
-public class SpellsData : ScriptableObject
+public class SpellDatas : ScriptableObject
 {
     /// <summary>
     /// Name of the spell.
     /// </summary>
-    [SerializeField] private string _name;
+    [SerializeField]
+    private string _name;
 
     /// <summary>
     /// Gets the name of the spell.
@@ -16,7 +17,8 @@ public class SpellsData : ScriptableObject
     /// <summary>
     /// Cost of the spell.
     /// </summary>
-    [SerializeField] private int _paCost;
+    [SerializeField]
+    private int _paCost;
 
     /// <summary>
     /// Gets the cost of the spell.
@@ -26,7 +28,8 @@ public class SpellsData : ScriptableObject
     /// <summary>
     /// Damages inflincted or treated by the spell.
     /// </summary>
-    [SerializeField] private int _damages;
+    [SerializeField]
+    private int _damages;
 
     /// <summary>
     /// Gets damages inflincted or treated by the spell.
@@ -36,33 +39,33 @@ public class SpellsData : ScriptableObject
     /// <summary>
     /// Range to attack of the spell.
     /// </summary>
-    [SerializeField] private int _range;
+    [SerializeField]
+    private int _range;
 
     /// <summary>
     /// Get the range to attack of the spell.
     /// </summary>
-    public int Range
-    { get { return _range; } private set { } }
+    public int Range { get { return _range; } private set { } }
 
     /// <summary>
     /// A value indicating that this spell is for heal.
     /// </summary>
-    [SerializeField] private bool _isForHeal;
+    [SerializeField]
+    private bool _isForHeal;
 
     /// <summary>
     /// Gets a value indicating that this spell is for heal.
     /// </summary>
-    public bool IsForHeal 
-    { get { return _isForHeal; } private set { } }
+    public bool IsForHeal { get { return _isForHeal; } private set { } }
 
     /// <summary>
     /// Sprite to show on the HUD of the spell.
     /// </summary>
-    [SerializeField] private Sprite _image;
+    [SerializeField]
+    private Sprite _sprite;
 
     /// <summary>
     /// Gets the sprite to show on the HUD of the spell.
     /// </summary>
-    public Sprite Image
-    { get { return _image; } private set { } }
+    public Sprite Sprite { get { return _sprite; } private set { } }
 }

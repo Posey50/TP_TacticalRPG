@@ -14,11 +14,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _name: John
   _class: Warrior
-  _mPs: 5
-  _aPs: 10
+  _mP: 10
+  _aP: 10
   _maxHP: 100
   _speed: 30
-  _moveSpeed: 2
   _spells:
-  - _actionBase: {fileID: 11400000, guid: 922da584c9eab5442b4ae7d36383111b, type: 2}
-  - _actionBase: {fileID: 11400000, guid: 19031e3b1aa59774985018b05b52c81b, type: 2}
+  - _spellDatas: {fileID: 0}
+  - _spellDatas: {fileID: 0}
+  _moveSpeed: 0.3

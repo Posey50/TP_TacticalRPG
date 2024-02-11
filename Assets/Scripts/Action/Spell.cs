@@ -2,16 +2,16 @@ using System;
 using UnityEngine;
 
 [Serializable]
-public class Spells
+public class Spell
 {
     /// <summary>
     /// Datas of the spell.
     /// </summary>
-    [SerializeField] private SpellsData _actionBase;
+    [SerializeField]
+    private SpellDatas _spellDatas;
 
     /// <summary>
     /// Gets datas of the spell.
     /// </summary>
-    public SpellsData ActionBase
-    { get { return _actionBase; } private set { } }
+    public SpellDatas SpellDatas { get { return _spellDatas; } private set { } }
 }
