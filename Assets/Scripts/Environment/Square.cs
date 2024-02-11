@@ -4,9 +4,9 @@ using System.Collections.Generic;
 public class Square : MonoBehaviour
 {
     /// <summary>
-    /// The Entity currently on the square
+    /// The Entity currently on the square;
     /// </summary>
-    [field:SerializeField]
+    [field: SerializeField]
     public Entity EntityOnThisSquare { get; private set; }
 
     /// <summary>
@@ -40,7 +40,7 @@ public class Square : MonoBehaviour
     public bool IsClosed { get; set; }
 
     /// <summary>
-    /// 
+    /// Original material of the square.
     /// </summary>
     public Material OriginalMaterial { get; set; }
 
@@ -91,20 +91,20 @@ public class Square : MonoBehaviour
     }
 
     /// <summary>
-    /// Entity leaves the square. Square now has no Entity on it
+    /// Called to remove the entity on this square.
     /// </summary>
     public void LeaveSquare()
     {
-        this.EntityOnThisSquare = null;
+        EntityOnThisSquare = null;
     }
 
     /// <summary>
-    /// Set a new Entity. Also Checks if there wasn't an entity yet
+    /// Called to set the new entity on this square.
     /// </summary>
-    /// <param name="newEntity"></param>
+    /// <param name="newEntity"> New entity on the square. </param>
     public void SetEntity(Entity newEntity)
     {
-        if (EntityOnThisSquare == null)
+        if (newEntity != null)
         {
             EntityOnThisSquare = newEntity;
         }

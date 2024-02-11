@@ -16,9 +16,9 @@ public class PlayerMain : Entity
         StateMachine = GetComponent<PlayerStateMachine>();
         Pointer = GetComponent<Pointer>();
 
-        base._entityData = EntityData;
+        base.EntityData = EntityData;
 
-        Pointer.SetStartSquare(_currentSquare);
+        Pointer.SetStartSquare(SquareUnderTheEntity);
     }
 
     /// <summary>
@@ -28,20 +28,5 @@ public class PlayerMain : Entity
     {
         MPs = EntityData.MPs;
         APs = EntityData.APs;
-    }
-
-    /// <summary>
-    /// Override of EntityMove to use the Cursor
-    /// </summary>
-    /// <param name="destination"></param>
-    public override void Move(Square destination)
-    {
-        _currentSquare.LeaveSquare();
-
-        _currentSquare = destination;
-        _currentSquare.SetEntity(this);
-
-        Pointer.SetStartSquare(_currentSquare);
-        transform.position = _currentSquare.transform.position;
     }
 }
