@@ -111,8 +111,8 @@ public abstract class Entity : MonoBehaviour
     {
         SquareUnderTheEntity.LeaveSquare();
 
-        yield return transform.DOMove(destination.transform.position, 0.2f); //_moveSpeed * Time.deltaTime
-        yield return new WaitForSeconds(0.2f);
+        yield return transform.DOMove(destination.transform.position, 0.2f).WaitForCompletion(); //_moveSpeed * Time.deltaTime
+        //yield return new WaitForSeconds(0.2f);
 
         SquareUnderTheEntity = destination;
         //transform.position = SquareUnderTheEntity.transform.position;
