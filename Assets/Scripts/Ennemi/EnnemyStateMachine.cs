@@ -1,14 +1,18 @@
 using UnityEngine;
 public class EnnemyStateMachine : MonoBehaviour
 {
-    IEnnemyState _currentEnnemyState;
+    private IEnnemyState _currentEnnemyState;
 
-    EnnemyActiveState _ennemyActiveState;
-    EnnemyInactiveState ennemyIinactiveState;
+    public EnnemyActiveState EnnemyActiveState { get; private set; }
+    public EnnemyInactiveState EnnemyIinactiveState { get; private set; }
+   
 
     public void Start()
     {
-        _currentEnnemyState = ennemyIinactiveState;
+        EnnemyActiveState = GetComponent<EnnemyActiveState>();
+        EnnemyIinactiveState = GetComponent<EnnemyInactiveState>();
+
+        _currentEnnemyState = EnnemyIinactiveState;
         _currentEnnemyState.OnEnter(this);
     }
     public void ChangeState(IEnnemyState newState)

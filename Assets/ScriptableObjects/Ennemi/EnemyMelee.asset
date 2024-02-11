@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f9fa2966545db34bbf71216810fb788, type: 3}
+  m_Name: EnemyMelee
+  m_EditorClassIdentifier: 
+  Name: Enemy
+  Class: Melee
+  MPs: 8
+  APs: 30
+  MaxHP: 80
+  Speed: 20
+  _spells:
+  - _actionBase: {fileID: 11400000, guid: 59c64108fc0590c45acbbd9201b98715, type: 2}
+  - _actionBase: {fileID: 11400000, guid: 922da584c9eab5442b4ae7d36383111b, type: 2}

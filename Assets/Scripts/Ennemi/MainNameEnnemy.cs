@@ -1,10 +1,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MainNameEnnemy : MonoBehaviour, IComportement
+public class MainNameEnnemy : Entity, IComportement
 {
     public EntityData EntityData;
-    public Entity Entity;
     public EnnemyStateMachine EnemyStateMachine;
 
     public List<Square> path;
@@ -15,12 +14,11 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
     private int _minDistanceToPlayer;
 
     public bool CanAttack;
-     
-
 
     public void Start()
     {
         startSquare.GetComponent<MeshRenderer>().material = startMaterial;
+        ChosePlayer();
     }
 
     /// <summary>
@@ -59,8 +57,10 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
 
         startSquare = path[_minDistanceToPlayer];
 
-        Entity.DecreasePM(_minDistanceToPlayer);
-        Entity.Move(startSquare);
+        DecreasePM(_minDistanceToPlayer);
+        Move(startSquare);
+
+        ChoseAnAction();
     }
 
 
@@ -75,7 +75,7 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
             {
                 CanAttack = true;
             }
-            else if(Square.Neighbors.Count == i)
+            else if (Square.Neighbors.Count == i)
             {
                 BattleManager.Instance.NextEntityTurn();
             }
@@ -83,17 +83,17 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
 
         if (CanAttack)
         {
-            for (int i = 0; i <= EntityData.Actions.Count; i++)
+            for (int i = 0; i <= EntityData.Spells.Count; i++)
             {
-                int randomAction = Random.Range(0, EntityData.Actions.Count);
+                int randomAction = Random.Range(0, EntityData.Spells.Count);
 
-                if (EntityData.Actions[randomAction].ActionBase.PaCost <= EntityData.APs)
+                if (EntityData.Spells[randomAction].ActionBase.PaCost <= EntityData.APs)
                 {
-                    Debug.Log($"Ennemy effectue {EntityData.Actions[randomAction].ActionBase.Name}");
-                    Entity.Attack(path[_minDistanceToPlayer]);
-                    Entity.DecreasePA(EntityData.Actions[randomAction].ActionBase.PaCost);
+                    Debug.Log($"Ennemy effectue {EntityData.Spells[randomAction].ActionBase.Name}");
+                    Attack(path[_minDistanceToPlayer], EntityData.Spells[randomAction]);
+                    DecreasePA(EntityData.Spells[randomAction].ActionBase.PaCost);
                 }
-                else if(EntityData.Actions.Count == i)
+                else if (EntityData.Spells.Count == i)
                 {
                     Debug.Log("Ennemy n'a pu assez de PA");
                     BattleManager.Instance.NextEntityTurn();
@@ -101,5 +101,11 @@ public class MainNameEnnemy : MonoBehaviour, IComportement
             }
         }
     }
+
+    public override void ResetPoints()
+    {
+
+    }
+
 }
 
