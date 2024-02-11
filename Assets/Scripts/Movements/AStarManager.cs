@@ -83,12 +83,11 @@ public class AStarManager : MonoBehaviour
                     // ...foreach neighbors...
                     for (int i = 0; i < departure.Neighbors.Count; i++)
                     {
-                        // ...if the neighbor is not already open or closed then add this square to the open squares list
+                        // ...if the neighbor is not already open or closed and if there is no entity on it, then add this square to the open squares list,
                         // calculates its distance to the arrival and assignes its previous square to access to it
                         Square neighbor = departure.Neighbors[i];
 
-                        //TODO : rajouter condition entité sur le square
-                        if (!openSquares.Contains(neighbor) && !neighbor.IsClosed)
+                        if (!openSquares.Contains(neighbor) && !neighbor.IsClosed && neighbor.EntityOnThisSquare == null)
                         {
                             if (!squaresUsedInTheCalculation.Contains(neighbor))
                             {

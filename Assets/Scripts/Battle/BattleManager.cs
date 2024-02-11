@@ -58,12 +58,12 @@ public class BattleManager : MonoBehaviour
     /// CCalled to initialise a battle.
     /// </summary>
     /// <returns></returns>
-    public IEnumerator InitBattle()
+    public void InitBattle()
     {
         _battleSteps.PlacePlayers();
         _battleSteps.PlaceEnnemies();
 
-        yield return null;
+        NewBattleTurn();
     }
 
     /// <summary>
@@ -71,15 +71,28 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     public void NextEntityTurn()
     {
-        
+        if (EntitiesInActionOrder[0].TryGetComponent<PlayerStateMachine>(out PlayerStateMachine playerStateMachine))
+        {
+            playerStateMachine.ChangeToActive();
+        }
+        else if (EntitiesInActionOrder[0].TryGetComponent<EnnemyStateMachine>(out EnnemyStateMachine ennemyStateMachine))
+        {
+            // TODO
+            //ennemyStateMachine.ChangeToActive();
+        }
     }
 
     /// <summary>
     /// Called at the start of the battle and when every entities have end their turn.
     /// </summary>
     /// <returns></returns>
-    private IEnumerator NewBattleTurn()
+    private void NewBattleTurn()
     {
-        yield return null;
+        EntitiesInActionOrder.Clear();
+        EntitiesInActionOrder.AddRange(PlayableEntitiesInBattle);
+        EntitiesInActionOrder.AddRange(EnemiesInBattle);
+        EntitiesInActionOrder = _battleSteps.DeterminesOrder(EntitiesInActionOrder);
+
+        NextEntityTurn();
     }
 }

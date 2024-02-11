@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class BattleSteps : MonoBehaviour
@@ -22,6 +23,8 @@ public class BattleSteps : MonoBehaviour
 
             playableEntityToAdd.transform.position = playerSquares[Random.Range(0, playerSquares.Count)].transform.position;
         }
+
+        InitEntities(playableEntitiesInGame);
     }
 
     /// <summary>
@@ -43,11 +46,14 @@ public class BattleSteps : MonoBehaviour
 
             enemiesToAdd.transform.position = enemiesSquares[Random.Range(0, enemiesSquares.Count)].transform.position;
         }
+
+        InitEntities(enemiesInGame);
     }
 
     /// <summary>
     /// Called when entities in the battle are chosen and initialises them.
     /// </summary>
+    /// <param name="entities"> List of entities to initialise. </param>
     private void InitEntities(List<Entity> entities)
     {
         for (int i = 0; i < entities.Count; i++)
@@ -57,12 +63,12 @@ public class BattleSteps : MonoBehaviour
     }
 
     /// <summary>
-    /// return the list of entities given.
+    /// return the list of entities given in order of action.
     /// </summary>
-    /// <param name="entitiesInBattle"></param>
+    /// <param name="entitiesInBattle"> List of all entities in battle. </param>
     /// <returns></returns>
     public List<Entity> DeterminesOrder(List <Entity> entitiesInBattle)
     {
-        return null;
+        return entitiesInBattle.OrderByDescending(entity => entity.Speed).ToList();
     }
 }
