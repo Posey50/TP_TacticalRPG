@@ -12,6 +12,7 @@ public class MainNameEnnemy : Entity, IComportement
 
     public Square Square;
     private int _minDistanceToPlayer;
+    private SpellsData _spellsData; 
 
     public bool CanAttack;
 
@@ -90,7 +91,8 @@ public class MainNameEnnemy : Entity, IComportement
                 if (EntityData.Spells[randomAction].ActionBase.PaCost <= EntityData.APs)
                 {
                     Debug.Log($"Ennemy effectue {EntityData.Spells[randomAction].ActionBase.Name}");
-                    Attack(path[_minDistanceToPlayer], EntityData.Spells[randomAction]);
+
+                    //Attack(path[_minDistanceToPlayer], EntityData.Spells[randomAction]);
                     DecreasePA(EntityData.Spells[randomAction].ActionBase.PaCost);
                 }
                 else if (EntityData.Spells.Count == i)
@@ -104,8 +106,8 @@ public class MainNameEnnemy : Entity, IComportement
 
     public override void ResetPoints()
     {
-
+        MPs = EntityData.MPs;
+        APs = EntityData.APs;
     }
-
 }
 
