@@ -32,7 +32,7 @@ public class Actions : MonoBehaviour
 
         SelectedSpell = spell;
 
-        PlayerMain.Cursor.UnselectSquare();
+        PlayerMain.Cursor.UnselectSquareForPath();
 
         CurrentRange = AStarManager.Instance.CalculateRange(PlayerMain.SquareUnderTheEntity, spell.SpellDatas.Range);
 

@@ -72,7 +72,7 @@ public class HighlightGroundManager : MonoBehaviour
             {
                 for (int i = 0; i < CurrentPath.Count; i++)
                 {
-                    CurrentPath[i].GetComponent<MeshRenderer>().material = InvalideSquareMaterial;
+                    CurrentPath[i].SetMaterial(InvalideSquareMaterial);
                 }
             }
             else
@@ -81,11 +81,11 @@ public class HighlightGroundManager : MonoBehaviour
                 {
                     if (i == CurrentPath.Count - 1)
                     {
-                        CurrentPath[i].GetComponent<MeshRenderer>().material = ValideSquareMaterial;
+                        CurrentPath[i].SetMaterial(ValideSquareMaterial);
                     }
                     else
                     {
-                        CurrentPath[i].GetComponent<MeshRenderer>().material = PathMaterial;
+                        CurrentPath[i].SetMaterial(PathMaterial);
                     }
                 }
             }
@@ -101,7 +101,7 @@ public class HighlightGroundManager : MonoBehaviour
         {
             for (int i = 0; i < CurrentPath.Count; i++)
             {
-                CurrentPath[i].GetComponent<MeshRenderer>().material = CurrentPath[i].OriginalMaterial;
+                CurrentPath[i].ResetMaterial();
             }
         }
     }
@@ -114,11 +114,18 @@ public class HighlightGroundManager : MonoBehaviour
     {
         CurrentRange = range;
 
-        if (range != null)
+        if (CurrentRange != null)
         {
             for (int i = 0; i < CurrentRange.Count; i++)
             {
-                CurrentRange[i].GetComponent<MeshRenderer>().material = RangeMaterial;
+                if (CurrentRange[i].EntityOnThisSquare != null)
+                {
+                    CurrentRange[i].SetMaterial(ValideSquareMaterial);
+                }
+                else
+                {
+                    CurrentRange[i].SetMaterial(RangeMaterial);
+                }
             }
         }
     }
@@ -132,8 +139,42 @@ public class HighlightGroundManager : MonoBehaviour
         {
             for (int i = 0; i < CurrentRange.Count; i++)
             {
-                CurrentRange[i].GetComponent<MeshRenderer>().material = CurrentRange[i].OriginalMaterial;
+                CurrentRange[i].ResetMaterial();
             }
+        }
+    }
+
+    /// <summary>
+    /// Called to highlight the selected square when a spell is selected.
+    /// </summary>
+    /// <param name="selectedSquare"> Selected square to highlight. </param>
+    public void HighlightSelectedSquareForAttack(Square selectedSquare)
+    {
+        if (BattleManager.Instance.CurrentActiveEntity.GetComponent<Actions>().CurrentRange.Contains(selectedSquare))
+        {
+            if (selectedSquare.EntityOnThisSquare != null)
+            {
+                selectedSquare.SetMaterial(ValideSquareMaterial);
+            }
+            else
+            {
+                selectedSquare.SetMaterial(InvalideSquareMaterial);
+            }
+        }
+        else
+        {
+            selectedSquare.SetMaterial(InvalideSquareMaterial);
+        }
+    }
+
+    /// <summary>
+    /// Called to hide the selected square when a spell is selected.
+    /// </summary>
+    public void HideSelectedSquareForAttack(Square selectedSquare)
+    {
+        if (selectedSquare != null)
+        {
+            selectedSquare.SetPreviousMaterial();
         }
     }
 }

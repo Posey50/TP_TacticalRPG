@@ -40,13 +40,24 @@ public class Square : MonoBehaviour
     public bool IsClosed { get; set; }
 
     /// <summary>
+    /// Mesh renderer component of the square.
+    /// </summary>
+    private MeshRenderer _meshRenderer;
+
+    /// <summary>
     /// Original material of the square.
     /// </summary>
-    public Material OriginalMaterial { get; set; }
+    private Material _originalMaterial;
+
+    /// <summary>
+    /// Previous material of the square.
+    /// </summary>
+    private Material _previousMaterial;
 
     void Start()
     {
-        OriginalMaterial = GetComponent<MeshRenderer>().material;
+        _meshRenderer = GetComponent<MeshRenderer>();
+        _originalMaterial = GetComponent<MeshRenderer>().material;
 
         DetecteNeighbors();
         ResetSquare();
@@ -108,6 +119,32 @@ public class Square : MonoBehaviour
         {
             EntityOnThisSquare = newEntity;
         }
+    }
+
+    /// <summary>
+    /// Called to set a new material on the square.
+    /// </summary>
+    /// <param name="newMaterial"> Material to set. </param>
+    public void SetMaterial(Material newMaterial)
+    {
+        _previousMaterial = _meshRenderer.material;
+        _meshRenderer.material = newMaterial;
+    }
+
+    /// <summary>
+    /// Called to set the previous material on the square.
+    /// </summary>
+    public void SetPreviousMaterial()
+    {
+        _meshRenderer.material = _previousMaterial;
+    }
+
+    /// <summary>
+    /// Called to reset the material on the square.
+    /// </summary>
+    public void ResetMaterial()
+    {
+        _meshRenderer.material = _originalMaterial;
     }
 
     /// <summary>

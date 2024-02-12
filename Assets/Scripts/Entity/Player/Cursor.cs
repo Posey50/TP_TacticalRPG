@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.InputSystem.HID;
 
 public class Cursor : MonoBehaviour
 {
@@ -28,16 +29,16 @@ public class Cursor : MonoBehaviour
     /// </summary>
     public void UpdateSelectedSquare(Vector2 mousePosition)
     {
+        Square currentSquarePointed = GetSquareUnderPosition(mousePosition);
+
         if (_playerMain.Actions.SelectedSpell == null)
         {
-            Square currentSquarePointed = GetSquareUnderPosition(mousePosition);
-
             if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
             {
-                SelectedSquare = currentSquarePointed;
-
                 // Hides the previous path
-                HighlightGroundManager.Instance.HideCurrentPath();
+                UnselectSquareForPath();
+
+                SelectedSquare = currentSquarePointed;
 
                 // Gets the new one
                 Path = AStarManager.Instance.CalculateShortestPathBetween(_playerMain.SquareUnderTheEntity, SelectedSquare);
@@ -47,17 +48,51 @@ public class Cursor : MonoBehaviour
             }
             else if (currentSquarePointed == null)
             {
-                UnselectSquare();
+                // Hides the path
+                UnselectSquareForPath();
+            }
+        }
+        else
+        {
+            if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+            {
+                // Hides the previous square selected
+                UnselectSquareForAttack();
+
+                // Gets the new one
+                SelectedSquare = currentSquarePointed;
+
+                // Shows the new one
+                HighlightGroundManager.Instance.HighlightSelectedSquareForAttack(SelectedSquare);
+            }
+            else if (currentSquarePointed == null)
+            {
+                // Hides the previous square selected
+                UnselectSquareForAttack();
             }
         }
     }
 
-    public void UnselectSquare()
+    /// <summary>
+    /// Called to unselect the selected square with the path.
+    /// </summary>
+    public void UnselectSquareForPath()
     {
         SelectedSquare = null;
 
         // Hides the previous path
         HighlightGroundManager.Instance.HideCurrentPath();
+    }
+
+    /// <summary>
+    /// Called to hunselect the selected square when a spell is selected.
+    /// </summary>
+    public void UnselectSquareForAttack()
+    {
+        // Hides the selected square
+        HighlightGroundManager.Instance.HideSelectedSquareForAttack(SelectedSquare);
+
+        SelectedSquare = null;
     }
 
     /// <summary>
