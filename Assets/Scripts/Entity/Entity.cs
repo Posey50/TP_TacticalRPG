@@ -167,6 +167,7 @@ public abstract class Entity : MonoBehaviour
         if (HP < 0)
         {
             HP = 0;
+            BattleManager.Instance.EntityDeath(this);
         }
     }
 

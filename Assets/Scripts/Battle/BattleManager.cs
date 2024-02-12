@@ -99,6 +99,27 @@ public class BattleManager : MonoBehaviour
     }
 
     /// <summary>
+    /// Called when an entity dies. Removes the entity from the battle.
+    /// </summary>
+    /// <param name="deadEntity"> the dead entity.</param>
+    public void EntityDeath(Entity deadEntity)
+    {
+        if (PlayableEntitiesInBattle.Contains(deadEntity))
+        {
+            PlayableEntitiesInBattle.Remove(deadEntity);
+        }
+        else if (EnemiesInBattle.Contains(deadEntity))
+        {
+            EnemiesInBattle.Remove(deadEntity);
+        }
+
+        if (EntitiesInActionOrder.Contains(deadEntity))
+        {
+            EntitiesInActionOrder.Remove(deadEntity);
+        }
+    }
+
+    /// <summary>
     /// Called at the start of the battle and when every entities have end their turn.
     /// </summary>
     /// <returns></returns>
