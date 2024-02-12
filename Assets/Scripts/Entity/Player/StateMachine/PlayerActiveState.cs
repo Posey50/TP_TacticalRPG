@@ -75,18 +75,22 @@ public class PlayerActiveState : IPlayerState
     private void OnLeftClick(Square selectedSquare)
     {
         PlayerMain playerMain = _playerStateMachine.Main;
-        Spell selectedSpell = playerMain.Actions.SelectedSpell;
-        Entity entityOnThisSquare = selectedSquare.EntityOnThisSquare;
 
-        // If there is a selected spell and an entity on the selected square and if the selected square is in the range of the spell then attacks the entity
-        if (selectedSpell != null && entityOnThisSquare != null && playerMain.Actions.CurrentRange.Contains(selectedSquare))
+        if (!playerMain.IsMoving)
         {
-            playerMain.Attack(selectedSpell, entityOnThisSquare);
-        }
-        // If there is no selected spell and no entity on the square selected and if the path is less or equal to left MP then moves to the selected square
-        else if (selectedSpell == null && entityOnThisSquare == null && playerMain.Cursor.Path.Count <= playerMain.MP)
-        {
-            playerMain.StartFollowPath(playerMain.Cursor.Path);
+            Spell selectedSpell = playerMain.Actions.SelectedSpell;
+            Entity entityOnThisSquare = selectedSquare.EntityOnThisSquare;
+
+            // If there is a selected spell and an entity on the selected square and if the selected square is in the range of the spell then attacks the entity
+            if (selectedSpell != null && entityOnThisSquare != null && playerMain.Actions.CurrentRange.Contains(selectedSquare))
+            {
+                playerMain.Attack(selectedSpell, entityOnThisSquare);
+            }
+            // If there is no selected spell and no entity on the square selected and if the path is less or equal to left MP then moves to the selected square
+            else if (selectedSpell == null && entityOnThisSquare == null && playerMain.Cursor.Path.Count <= playerMain.MP)
+            {
+                playerMain.StartFollowPath(playerMain.Cursor.Path);
+            }
         }
     }
 
@@ -96,18 +100,22 @@ public class PlayerActiveState : IPlayerState
     private void OnRigthClick()
     {
         PlayerMain playerMain = _playerStateMachine.Main;
-        Spell selectedSpell = playerMain.Actions.SelectedSpell;
-        Cursor cursor = playerMain.Cursor;
-        Actions actions = playerMain.Actions;
 
-        if (selectedSpell != null)
+        if (!playerMain.IsMoving)
         {
-            cursor.UnselectSquareForAttack();
-            actions.UnselectSpell();
-        }
-        else
-        {
-            cursor.UnselectSquareForPath();
+            Spell selectedSpell = playerMain.Actions.SelectedSpell;
+            Cursor cursor = playerMain.Cursor;
+            Actions actions = playerMain.Actions;
+
+            if (selectedSpell != null)
+            {
+                cursor.UnselectSquareForAttack();
+                actions.UnselectSpell();
+            }
+            else
+            {
+                cursor.UnselectSquareForPath();
+            }
         }
     }
 }

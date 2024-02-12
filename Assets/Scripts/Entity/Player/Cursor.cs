@@ -30,44 +30,47 @@ public class Cursor : MonoBehaviour
     {
         Square currentSquarePointed = GetSquareUnderPosition(mousePosition);
 
-        if (_playerMain.Actions.SelectedSpell == null)
+        if (!_playerMain.IsMoving)
         {
-            if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+            if (_playerMain.Actions.SelectedSpell == null)
             {
-                // Hides the previous path
-                UnselectSquareForPath();
+                if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+                {
+                    // Hides the previous path
+                    UnselectSquareForPath();
 
-                SelectedSquare = currentSquarePointed;
+                    SelectedSquare = currentSquarePointed;
 
-                // Gets the new one
-                Path = AStarManager.Instance.CalculateShortestPathBetween(_playerMain.SquareUnderTheEntity, SelectedSquare);
+                    // Gets the new one
+                    Path = AStarManager.Instance.CalculateShortestPathBetween(_playerMain.SquareUnderTheEntity, SelectedSquare);
 
-                // Shows the new one
-                HighlightGroundManager.Instance.ShowPath(Path);
+                    // Shows the new one
+                    HighlightGroundManager.Instance.ShowPath(Path);
+                }
+                else if (currentSquarePointed == null)
+                {
+                    // Hides the path
+                    UnselectSquareForPath();
+                }
             }
-            else if (currentSquarePointed == null)
+            else
             {
-                // Hides the path
-                UnselectSquareForPath();
-            }
-        }
-        else
-        {
-            if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
-            {
-                // Hides the previous square selected
-                UnselectSquareForAttack();
+                if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+                {
+                    // Hides the previous square selected
+                    UnselectSquareForAttack();
 
-                // Gets the new one
-                SelectedSquare = currentSquarePointed;
+                    // Gets the new one
+                    SelectedSquare = currentSquarePointed;
 
-                // Shows the new one
-                HighlightGroundManager.Instance.HighlightSelectedSquareForAttack(SelectedSquare);
-            }
-            else if (currentSquarePointed == null)
-            {
-                // Hides the previous square selected
-                UnselectSquareForAttack();
+                    // Shows the new one
+                    HighlightGroundManager.Instance.HighlightSelectedSquareForAttack(SelectedSquare);
+                }
+                else if (currentSquarePointed == null)
+                {
+                    // Hides the previous square selected
+                    UnselectSquareForAttack();
+                }
             }
         }
     }

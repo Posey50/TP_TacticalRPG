@@ -51,10 +51,14 @@ public abstract class Entity : MonoBehaviour
     public Square SquareUnderTheEntity { get; protected set; }
 
     /// <summary>
+    /// A value indicating if the entity is moving.
+    /// </summary>
+    public bool IsMoving { get; private set; }
+
+    /// <summary>
     /// Speed at which the entity moves.
     /// </summary>
     protected float _moveSpeed;
-
 
     [SerializeField]
     protected Square _startingSquare;
@@ -96,14 +100,18 @@ public abstract class Entity : MonoBehaviour
     /// <param name="path"> Path to follow. </param>
     private IEnumerator FollowThePath(List<Square> path)
     {
+        IsMoving = true;
+
         SquareUnderTheEntity.LeaveSquare();
 
         Vector3[] pathToFollow = AStarManager.Instance.ConvertSquaresIntoPositions(path).ToArray();
 
-        yield return transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear);
+        yield return transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear).OnWaypointChange((int i) => path[i].ResetMaterial()).WaitForCompletion();
 
         SquareUnderTheEntity = path[^1];
         SquareUnderTheEntity.SetEntity(this);
+
+        IsMoving = false;
     }
 
     /// <summary>
