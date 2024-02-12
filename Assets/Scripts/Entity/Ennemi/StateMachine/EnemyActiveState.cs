@@ -1,6 +1,6 @@
 using UnityEngine;
 
-public class EnemyActiveState :  IEnemyState
+public class EnemyActiveState : IEnemyState
 {
     [SerializeField] private EnemyStateMachine _stateMachine;
     public void OnEnter(EnemyStateMachine enemyStateMachine)
@@ -13,5 +13,4 @@ public class EnemyActiveState :  IEnemyState
     {
         Debug.Log("Enemy Exit ActiveState");
     }
-
 }

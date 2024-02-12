@@ -9,8 +9,8 @@ public class EnemyStateMachine : MonoBehaviour
 
     public void Start()
     {
-        EnemyActiveState = GetComponent<EnemyActiveState>();
-        EnemyIinactiveState = GetComponent<EnemyInactiveState>();
+        EnemyActiveState = new();
+        EnemyIinactiveState = new();
 
         ChangeToInactive();
     }

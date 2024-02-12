@@ -5,9 +5,8 @@ public class MainNameEnemy : Entity, IComportement
 {
     public EnemyStateMachine EnemyStateMachine;
 
-    public List<Square> Path;
+    private List<Square> Path;
 
-    [SerializeField] private Square _square;
     [SerializeField] private bool _canAttack;
     private int _minDistanceToPlayer;
 

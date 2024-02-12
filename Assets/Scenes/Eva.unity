@@ -7217,12 +7217,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba17f1d7bdd15114cae48069f8724aa3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  _startingSquare: {fileID: 0}
+  _startingSquare: {fileID: 641618219}
   EnemyStateMachine: {fileID: 399216068}
-  Path: []
-  startMaterial: {fileID: 0}
-  _square: {fileID: 0}
-  CanAttack: 0
+  _canAttack: 0
 --- !u!1 &401970809
 GameObject:
   m_ObjectHideFlags: 0
