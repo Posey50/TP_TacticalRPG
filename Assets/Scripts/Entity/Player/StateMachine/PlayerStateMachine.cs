@@ -7,6 +7,16 @@ public class PlayerStateMachine : MonoBehaviour
     /// </summary>
     public PlayerMain Main { get; private set; }
 
+    /// <summary>
+    /// Manager of the battle.
+    /// </summary>
+    public BattleManager BattleManager { get; private set; }
+
+    /// <summary>
+    /// Manager of the spell buttons.
+    /// </summary>
+    public SpellButtonsManager SpellButtonsManager { get; private set; }
+
     public PlayerInactiveState StateInactive = new();
     public PlayerActiveState StateActive = new();
 
@@ -16,6 +26,8 @@ public class PlayerStateMachine : MonoBehaviour
     void Start()
     {
         Main = GetComponent<PlayerMain>();
+        BattleManager = BattleManager.Instance;
+        SpellButtonsManager = SpellButtonsManager.Instance;
 
         ChangeState(StateInactive);
     }

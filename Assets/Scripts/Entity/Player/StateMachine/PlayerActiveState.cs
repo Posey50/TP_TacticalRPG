@@ -8,12 +8,11 @@ public class PlayerActiveState : IPlayerState
     /// </summary>
     private PlayerStateMachine _playerStateMachine;
 
-    private int _selectedSpellIndex = -1;
-    private Spell _selectedSpell;
-
     public void OnEnter(PlayerStateMachine playerStateMachine)
     {
         _playerStateMachine = playerStateMachine;
+        _playerStateMachine.BattleManager.CurrentActiveEntity = _playerStateMachine.Main;
+        SetSpellButton();
         _playerStateMachine.Main.PlayerInput.onActionTriggered += OnAction;
     }
 
@@ -48,25 +47,18 @@ public class PlayerActiveState : IPlayerState
     }
 
     /// <summary>
-    /// Selects the index of the Entity's spell list
+    /// Called to attache the spells of the current active playable entity on the spell buttons.
     /// </summary>
-    /// <param name="index"></param>
-    public void SelectSpellByIndex(int index)
+    private void SetSpellButton()
     {
-        if (0 <= index && index < _playerStateMachine.Main.Spells.Count)
+        for (int i = 0; i < _playerStateMachine.Main.Spells.Count; i++)
         {
-            _selectedSpellIndex = index;
-        }
-    }
+            SpellButton spellButton = _playerStateMachine.SpellButtonsManager.SpellButtons[i];
 
-    /// <summary>
-    /// Unselects a spell
-    /// </summary>
-    public void CancelSpell()
-    {
-        if (_selectedSpellIndex >= 0)
-        {
-            _selectedSpellIndex = -1;
+            if (_playerStateMachine.Main.Spells[i].SpellDatas != null && spellButton != null)
+            {
+                spellButton.Spell = _playerStateMachine.Main.Spells[i];
+            }
         }
     }
 
@@ -80,50 +72,15 @@ public class PlayerActiveState : IPlayerState
         Spell selectedSpell = playerMain.Actions.SelectedSpell;
         Entity entityOnThisSquare = selectedSquare.EntityOnThisSquare;
 
-        // If there is a selected spell and an entity on the selected square then attacks the entity
-        if (selectedSpell != null && entityOnThisSquare != null)
+        // If there is a selected spell and an entity on the selected square and if the selected square is in the range of the spell then attacks the entity
+        if (selectedSpell != null && entityOnThisSquare != null && playerMain.Actions.CurrentRange.Contains(selectedSquare))
         {
             playerMain.Attack(selectedSpell, entityOnThisSquare);
         }
-        // If there is no selected spell and no entity on the square selected then moves to the selected square
-        else if (selectedSpell == null && entityOnThisSquare == null)
+        // If there is no selected spell and no entity on the square selected and if the path is less or equal to left MP then moves to the selected square
+        else if (selectedSpell == null && entityOnThisSquare == null && playerMain.Cursor.Path.Count <= playerMain.MP)
         {
-            playerMain.StartFollowPath(AStarManager.Instance.CalculateShortestPathBetween(playerMain.SquareUnderTheEntity, selectedSquare));
-        }
-
-
-
-        if (_selectedSpellIndex < 0)    //If No spell selected, try to move
-        {
-            if (_playerStateMachine.Main.Cursor.Path.Count - 1 <= _playerStateMachine.Main.MP)    //If the player has enough MPs. "- 1" ignores the Square the player is currently standing on
-            {
-                //_playerStateMachine.Main.Move(selectedSquare);
-
-                _playerStateMachine.Main.StartFollowPath(_playerStateMachine.Main.Cursor.Path);
-
-                _playerStateMachine.Main.DecreaseMP(_playerStateMachine.Main.Cursor.Path.Count - 1);
-            }
-            else
-            {
-                Debug.Log($"Not enough MPs to Move {_playerStateMachine.Main.MP}, needs {_playerStateMachine.Main.Cursor.Path.Count - 1}");
-            }
-        }
-        else                            //If spell selected, attack
-        {
-            _selectedSpell = _playerStateMachine.Main.Spells[_selectedSpellIndex];
-
-            if (_selectedSpell.SpellDatas.PaCost <= _playerStateMachine.Main.AP)
-            {
-                _playerStateMachine.Main.Attack(_selectedSpell, selectedSquare.EntityOnThisSquare);
-
-                _playerStateMachine.Main.DecreaseAP(_selectedSpell.SpellDatas.PaCost);
-
-                CancelSpell();
-            }
-            else
-            {
-                Debug.Log($"Not enough APs to Attack {_playerStateMachine.Main.AP}, needs {_selectedSpell.SpellDatas.PaCost}");
-            }
+            playerMain.StartFollowPath(playerMain.Cursor.Path);
         }
     }
 }

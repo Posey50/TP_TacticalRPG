@@ -9,19 +9,40 @@ public class HighlightGroundManager : MonoBehaviour
     public static HighlightGroundManager Instance => _instance;
 
     /// <summary>
-    /// Material to apply if the square is the start of a path.
+    /// Material to apply if the selected square is not valid.
     /// </summary>
-    public Material startMaterial;
+    [field: SerializeField]
+    public Material InvalideSquareMaterial {  get; private set; }
 
     /// <summary>
-    /// Material to apply if the square is the current square selected.
+    /// Material to apply if the selected square is valid.
     /// </summary>
-    public Material selectedMaterial;
+    [field: SerializeField]
+    public Material ValideSquareMaterial { get; private set; }
 
     /// <summary>
     /// Material to apply if the square is in a path.
     /// </summary>
-    public Material pathMaterial;
+    [field: SerializeField]
+    public Material PathMaterial { get; private set; }
+
+    /// <summary>
+    /// Material to apply if the square is in a range.
+    /// </summary>
+    [field: SerializeField]
+    public Material RangeMaterial { get; private set; }
+
+    /// <summary>
+    /// Path to show at screen.
+    /// </summary>
+    public List<Square> CurrentPath { get; private set; }
+
+    /// <summary>
+    /// Range to show at screen.
+    /// </summary>
+    public List<Square> CurrentRange { get; private set; }
+
+
 
     private void Awake()
     {
@@ -43,37 +64,75 @@ public class HighlightGroundManager : MonoBehaviour
     /// <param name="path"> Path to show. </param>
     public void ShowPath(List<Square> path)
     {
-        if (path != null)
+        CurrentPath = path;
+
+        if (CurrentPath != null)
         {
-            for (int i = 0; i < path.Count; i++)
+            if (CurrentPath.Count > BattleManager.Instance.CurrentActiveEntity.MP)
             {
-                if (i == 0)
+                for (int i = 0; i < CurrentPath.Count; i++)
                 {
-                    path[i].GetComponent<MeshRenderer>().material = startMaterial;
+                    CurrentPath[i].GetComponent<MeshRenderer>().material = InvalideSquareMaterial;
                 }
-                else if (i != path.Count - 1)
+            }
+            else
+            {
+                for (int i = 0; i < CurrentPath.Count; i++)
                 {
-                    path[i].GetComponent<MeshRenderer>().material = selectedMaterial;
-                }
-                else
-                {
-                    path[i].GetComponent<MeshRenderer>().material = pathMaterial;
+                    if (i == CurrentPath.Count - 1)
+                    {
+                        CurrentPath[i].GetComponent<MeshRenderer>().material = ValideSquareMaterial;
+                    }
+                    else
+                    {
+                        CurrentPath[i].GetComponent<MeshRenderer>().material = PathMaterial;
+                    }
                 }
             }
         }
     }
 
     /// <summary>
-    /// Restores the original material of each square in the path given.
+    /// Restores the original material of each square in the path current path showed.
     /// </summary>
-    /// <param name="path"> Path to hide. </param>
-    public void HidePath(List<Square> path)
+    public void HideCurrentPath()
     {
-        if (path != null)
+        if (CurrentPath != null)
         {
-            for (int i = 0; i < path.Count; i++)
+            for (int i = 0; i < CurrentPath.Count; i++)
             {
-                path[i].GetComponent<MeshRenderer>().material = path[i].OriginalMaterial;
+                CurrentPath[i].GetComponent<MeshRenderer>().material = CurrentPath[i].OriginalMaterial;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Called to show a range.
+    /// </summary>
+    /// <param name="range"> Range to show. </param>
+    public void ShowRange(List<Square> range)
+    {
+        CurrentRange = range;
+
+        if (range != null)
+        {
+            for (int i = 0; i < CurrentRange.Count; i++)
+            {
+                CurrentRange[i].GetComponent<MeshRenderer>().material = RangeMaterial;
+            }
+        }
+    }
+
+    /// <summary>
+    /// Called to hide the cuurent range showed.
+    /// </summary>
+    public void HideRange()
+    {
+        if (CurrentRange != null)
+        {
+            for (int i = 0; i < CurrentRange.Count; i++)
+            {
+                CurrentRange[i].GetComponent<MeshRenderer>().material = CurrentRange[i].OriginalMaterial;
             }
         }
     }

@@ -1,3 +1,5 @@
+using DG.Tweening;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -37,6 +39,11 @@ public class PlayerMain : Entity
         Actions = GetComponent<Actions>();
 
         base.EntityDatas = this.EntityDatas;
+
+        GameManager gameManager = GameManager.Instance;
+        List<Entity> entities = gameManager.EntitiesInGame;
+        entities.Add(this);
+        GameManager.Instance.PlayableEntitiesInGame.Add(this);
     }
 
     /// <summary>

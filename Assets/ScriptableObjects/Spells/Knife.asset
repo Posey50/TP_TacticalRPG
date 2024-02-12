@@ -9,12 +9,12 @@ MonoBehaviour:
   m_GameObject: {fileID: 0}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9a1f193353ed8164a8c3ee98dd77971f, type: 3}
+  m_Script: {fileID: 11500000, guid: 2b823ee967184e1438880e1ef06ed1cb, type: 3}
   m_Name: Knife
   m_EditorClassIdentifier: 
-  _name: Stab
-  _paCost: 5
-  _damages: 15
+  _name: Knife
+  _paCost: 3
+  _damages: 50
   _range: 1
   _isForHeal: 0
-  _image: {fileID: 433514648, guid: 4dc4e674ec9b24e4a9578637ec93b305, type: 3}
+  _sprite: {fileID: 0}

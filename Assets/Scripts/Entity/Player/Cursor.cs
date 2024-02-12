@@ -9,7 +9,7 @@ public class Cursor : MonoBehaviour
     public Square SelectedSquare { get; private set; }
 
     /// <summary>
-    /// Path to show at screen.
+    /// Current path that the playable entity can follow.
     /// </summary>
     public List<Square> Path { get; private set; }
 
@@ -28,28 +28,36 @@ public class Cursor : MonoBehaviour
     /// </summary>
     public void UpdateSelectedSquare(Vector2 mousePosition)
     {
-        Square currentSquarePointed = GetSquareUnderPosition(mousePosition);
-
-        if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+        if (_playerMain.Actions.SelectedSpell == null)
         {
-            SelectedSquare = currentSquarePointed;
+            Square currentSquarePointed = GetSquareUnderPosition(mousePosition);
 
-            // Hides the previous path
-            HighlightGroundManager.Instance.HidePath(Path);
+            if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+            {
+                SelectedSquare = currentSquarePointed;
 
-            // Gets the new one
-            Path = AStarManager.Instance.CalculateShortestPathBetween(_playerMain.SquareUnderTheEntity, SelectedSquare);
+                // Hides the previous path
+                HighlightGroundManager.Instance.HideCurrentPath();
 
-            // Shows the new one
-            HighlightGroundManager.Instance.ShowPath(Path);
+                // Gets the new one
+                Path = AStarManager.Instance.CalculateShortestPathBetween(_playerMain.SquareUnderTheEntity, SelectedSquare);
+
+                // Shows the new one
+                HighlightGroundManager.Instance.ShowPath(Path);
+            }
+            else if (currentSquarePointed == null)
+            {
+                UnselectSquare();
+            }
         }
-        else if (currentSquarePointed == null)
-        {
-            SelectedSquare = currentSquarePointed;
+    }
 
-            // Hides the previous path
-            HighlightGroundManager.Instance.HidePath(Path);
-        }
+    public void UnselectSquare()
+    {
+        SelectedSquare = null;
+
+        // Hides the previous path
+        HighlightGroundManager.Instance.HideCurrentPath();
     }
 
     /// <summary>

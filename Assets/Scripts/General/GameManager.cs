@@ -11,17 +11,17 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// List of all instances of entity in the game.
     /// </summary>
-    public List<Entity> EntitiesInGame {  get; private set; }
+    public List<Entity> EntitiesInGame { get; set; } = new();
 
     /// <summary>
     /// List of all instances of entity as playable in the game.
     /// </summary>
-    public List<Entity> PlayableEntitiesInGame { get; private set; }
+    public List<Entity> PlayableEntitiesInGame { get; set; } = new();
 
     /// <summary>
     /// List of all instances of entity as enemy in the game.
     /// </summary>
-    public List<Entity> EnemiesInGame { get; private set; }
+    public List<Entity> EnemiesInGame { get; set; } = new();
 
     /// <summary>
     /// A value indicating that the game is over.
@@ -32,6 +32,20 @@ public class GameManager : MonoBehaviour
     /// A value indicating that the game is on pause.
     /// </summary>
     public bool GameIsOnPause { get; private set; }
+
+    private void Awake()
+    {
+        // Singleton
+        if (_instance != null && _instance != this)
+        {
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            _instance = this;
+        }
+    }
 
     /// <summary>
     /// Called to stop the game.

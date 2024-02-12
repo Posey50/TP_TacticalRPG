@@ -1,6 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using System.Collections;
 
 public class BattleManager : MonoBehaviour
 {
@@ -12,6 +11,7 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// Size of each team.
     /// </summary>
+    [field: SerializeField]
     public int TeamsSize { get; private set; }
 
     /// <summary>
@@ -40,17 +40,27 @@ public class BattleManager : MonoBehaviour
     public List<Square> PlayerSquares { get; set; }
 
     /// <summary>
+    /// The current active entity in the battle.
+    /// </summary>
+    public Entity CurrentActiveEntity { get; set; }
+
+    /// <summary>
     /// Component that containes all steps of the battle.
     /// </summary>
     [field: SerializeField]
     private BattleSteps _battleSteps;
 
-    private void Start()
+    private void Awake()
     {
-        // Prevents that the team size is greater than what is possible
-        if (TeamsSize > GameManager.Instance.PlayableEntitiesInGame.Count)
+        // Singleton
+        if (_instance != null && _instance != this)
         {
-            TeamsSize = GameManager.Instance.PlayableEntitiesInGame.Count;
+            Destroy(this.gameObject);
+            return;
+        }
+        else
+        {
+            _instance = this;
         }
     }
 
@@ -60,6 +70,12 @@ public class BattleManager : MonoBehaviour
     /// <returns></returns>
     public void InitBattle()
     {
+        // Prevents that the team size is greater than what is possible
+        if (TeamsSize > GameManager.Instance.PlayableEntitiesInGame.Count)
+        {
+            TeamsSize = GameManager.Instance.PlayableEntitiesInGame.Count;
+        }
+
         _battleSteps.PlacePlayers();
         _battleSteps.PlaceEnnemies();
 

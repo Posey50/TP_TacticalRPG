@@ -19,6 +19,6 @@ MonoBehaviour:
   _maxHP: 100
   _speed: 30
   _spells:
-  - _spellDatas: {fileID: 0}
-  - _spellDatas: {fileID: 0}
+  - _spellDatas: {fileID: 11400000, guid: 922da584c9eab5442b4ae7d36383111b, type: 2}
+  - _spellDatas: {fileID: 11400000, guid: 59c64108fc0590c45acbbd9201b98715, type: 2}
   _moveSpeed: 0.3

@@ -3,14 +3,14 @@ using UnityEngine;
 
 public class AStarManager : MonoBehaviour
 {
-    //Singleton
+    // Singleton
     private static AStarManager _instance = null;
 
     public static AStarManager Instance => _instance;
 
     private void Awake()
     {
-        //Singleton
+        // Singleton
         if (_instance != null && _instance != this)
         {
             Destroy(this.gameObject);
@@ -227,27 +227,53 @@ public class AStarManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Called to get the shortest path between two squares.
+    /// Called to get all squares in the range given.
     /// </summary>
-    /// <param name="departure"> Departure of the path. </param>
-    /// <param name="arrival"> Arrival of the path. </param>
+    /// <param name="departure"> Center of the range. </param>
+    /// <param name="range"> Range. </param>
     /// <returns></returns>
-    //public List<Square> CalculateRange(Square departure, int range)
-    //{
-    //    List<Square> shortestPath = ShortestPath(departure, arrival, new(), new(), new());
+    public List<Square> CalculateRange(Square departure, int range)
+    {
+        List<Square> squaresInRange = new ();
+        List<Square> squaresOpen = new ();
 
-    //    if (shortestPath != null)
-    //    {
-    //        for (int i = 0; i < shortestPath.Count; i++)
-    //        {
-    //            shortestPath[i].ResetSquare();
-    //        }
+        squaresInRange.Add(departure);
+        squaresOpen.Add(departure);
 
-    //        return shortestPath;
-    //    }
-    //    else
-    //    {
-    //        return null;
-    //    }
-    //}
+        // For each layer of the range
+        for (int i = 0; i < range; i++)
+        {
+            // List of squares to check in the layer
+            List<Square> squaresToCheck = new(squaresOpen);
+
+            // For each square in the layer
+            for (int j = 0; j < squaresToCheck.Count; j++)
+            {
+                // Current square to check
+                Square currentSquaresToCheck = squaresToCheck[j];
+
+                // For each neighbor of the current square to check
+                for (int k = 0; k < currentSquaresToCheck.Neighbors.Count; k++)
+                {
+                    // Current neighbor
+                    Square currentNeighbor = currentSquaresToCheck.Neighbors[k];
+
+                    // Checks if the neighbor is already stocked in the range
+                    if (currentNeighbor != null && !squaresInRange.Contains(currentNeighbor))
+                    {
+                        squaresInRange.Add(currentNeighbor);
+                        squaresOpen.Add(currentNeighbor);
+                    }
+                }
+
+                // Remove the current square to the open squares list
+                squaresOpen.Remove(currentSquaresToCheck);
+            }
+
+            // Clear the list of squares to check in the layer
+            squaresToCheck.Clear();
+        }
+
+        return squaresInRange;
+    }
 }
