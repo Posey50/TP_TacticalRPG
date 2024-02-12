@@ -29,15 +29,18 @@ public class Actions : MonoBehaviour
     /// <param name="spell"></param>
     public void UpdateSelectedSpell(Spell spell)
     {
-        UnselectSpell();
+        if (!_playerMain.IsMoving)
+        {
+            UnselectSpell();
 
-        SelectedSpell = spell;
+            SelectedSpell = spell;
 
-        _playerMain.Cursor.UnselectSquareForPath();
+            _playerMain.Cursor.UnselectSquareForPath();
 
-        CurrentRange = AStarManager.Instance.CalculateRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.Range);
+            CurrentRange = AStarManager.Instance.CalculateRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.Range);
 
-        HighlightGroundManager.Instance.ShowRange(CurrentRange);
+            HighlightGroundManager.Instance.ShowRange(CurrentRange);
+        }
     }
 
     /// <summary>
