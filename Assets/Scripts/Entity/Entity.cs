@@ -179,6 +179,13 @@ public abstract class Entity : MonoBehaviour
         // Prevents the healing over the maximum of HP
         HP = Mathf.Clamp(HP + heal, 0, EntityDatas.MaxHP);
     }
-
-    public abstract void ResetPoints();
+    
+    /// <summary>
+    /// Resets MP and AP of the entity.
+    /// </summary>
+    public void ResetPoints()
+    {
+        MP = EntityDatas.MP;
+        AP = EntityDatas.AP;
+    }
 }
