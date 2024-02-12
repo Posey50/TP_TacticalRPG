@@ -40,9 +40,7 @@ public class PlayerMain : Entity
 
         base.EntityDatas = this.EntityDatas;
 
-        GameManager gameManager = GameManager.Instance;
-        List<Entity> entities = gameManager.EntitiesInGame;
-        entities.Add(this);
+        GameManager.Instance.EntitiesInGame.Add(this);
         GameManager.Instance.PlayableEntitiesInGame.Add(this);
     }
 

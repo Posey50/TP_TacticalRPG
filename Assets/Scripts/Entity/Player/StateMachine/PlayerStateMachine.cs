@@ -29,7 +29,7 @@ public class PlayerStateMachine : MonoBehaviour
         BattleManager = BattleManager.Instance;
         SpellButtonsManager = SpellButtonsManager.Instance;
 
-        ChangeState(StateInactive);
+        ChangeToInactive();
     }
 
     /// <summary>
