@@ -1,5 +1,3 @@
-using DG.Tweening;
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -33,23 +31,17 @@ public class PlayerMain : Entity
 
     private void Start()
     {
+        // Entity declares itself to the game manager.
+        GameManager.Instance.EntitiesInGame.Add(this);
+        GameManager.Instance.PlayableEntitiesInGame.Add(this);
+
+        // Get all components on the entity
         PlayerInput = GetComponent<PlayerInput>();
         StateMachine = GetComponent<PlayerStateMachine>();
         Cursor = GetComponent<Cursor>();
         Actions = GetComponent<Actions>();
 
+        // Set the entity datas with database given
         base.EntityDatas = this.EntityDatas;
-
-        GameManager.Instance.EntitiesInGame.Add(this);
-        GameManager.Instance.PlayableEntitiesInGame.Add(this);
-    }
-
-    /// <summary>
-    /// Resets the movement and action points at the end of the turn.
-    /// </summary>
-    public override void ResetPoints()
-    {
-        MP = EntityDatas.MP;
-        AP = EntityDatas.AP;
     }
 }
