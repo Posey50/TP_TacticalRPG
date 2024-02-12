@@ -1,6 +1,5 @@
 using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.InputSystem.HID;
 
 public class Cursor : MonoBehaviour
 {
@@ -19,7 +18,7 @@ public class Cursor : MonoBehaviour
     /// </summary>
     private PlayerMain _playerMain;
 
-    void Start()
+    private void Start()
     {
         _playerMain = GetComponent<PlayerMain>();
     }

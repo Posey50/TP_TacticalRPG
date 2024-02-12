@@ -33,14 +33,20 @@ public class PlayerActiveState : IPlayerState
                 _playerStateMachine.Main.Cursor.UpdateSelectedSquare(context.action.ReadValue<Vector2>());
                 break;
 
-            case "CursorPress":
-                if (context.started)
+            case "MouseLeftClick":
+                if (context.canceled)
                 {
                     Square selectedSquare = _playerStateMachine.Main.Cursor.SelectedSquare;
                     if (selectedSquare != null)
                     {
                         OnLeftClick(selectedSquare);
                     }
+                }
+                break;
+            case "MouseRightClick":
+                if (context.started)
+                {
+                    OnRigthClick();
                 }
                 break;
         }
@@ -63,9 +69,9 @@ public class PlayerActiveState : IPlayerState
     }
 
     /// <summary>
-    /// Called when the cursor is pressed. Will either move or attack depending of if a spall has been selected
+    /// Called when the mouse left button is released and checks to move or make attack the playable entity.
     /// </summary>
-    /// <param name="selectedSquare"></param>
+    /// <param name="selectedSquare"> Selected square when the button is clicked. </param>
     private void OnLeftClick(Square selectedSquare)
     {
         PlayerMain playerMain = _playerStateMachine.Main;
@@ -81,6 +87,27 @@ public class PlayerActiveState : IPlayerState
         else if (selectedSpell == null && entityOnThisSquare == null && playerMain.Cursor.Path.Count <= playerMain.MP)
         {
             playerMain.StartFollowPath(playerMain.Cursor.Path);
+        }
+    }
+
+    /// <summary>
+    /// Called when the mouse right button is pressed and checks to cancel the attack or the movement.
+    /// </summary>
+    private void OnRigthClick()
+    {
+        PlayerMain playerMain = _playerStateMachine.Main;
+        Spell selectedSpell = playerMain.Actions.SelectedSpell;
+        Cursor cursor = playerMain.Cursor;
+        Actions actions = playerMain.Actions;
+
+        if (selectedSpell != null)
+        {
+            cursor.UnselectSquareForAttack();
+            actions.UnselectSpell();
+        }
+        else
+        {
+            cursor.UnselectSquareForPath();
         }
     }
 }

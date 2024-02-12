@@ -4,10 +4,6 @@ using UnityEngine;
 public class Actions : MonoBehaviour
 {
     /// <summary>
-    /// Main component of the playable entity.
-    /// </summary>
-    public PlayerMain PlayerMain {  get; private set; }
-    /// <summary>
     /// Spell currently selected.
     /// </summary>
     public Spell SelectedSpell {  get; set; }
@@ -17,9 +13,14 @@ public class Actions : MonoBehaviour
     /// </summary>
     public List<Square> CurrentRange {  get; set; }
 
+    /// <summary>
+    /// Main component of the playable entity.
+    /// </summary>
+    private PlayerMain _playerMain;
+
     private void Start()
     {
-        PlayerMain = GetComponent<PlayerMain>();
+        _playerMain = GetComponent<PlayerMain>();
     }
 
     /// <summary>
@@ -32,9 +33,9 @@ public class Actions : MonoBehaviour
 
         SelectedSpell = spell;
 
-        PlayerMain.Cursor.UnselectSquareForPath();
+        _playerMain.Cursor.UnselectSquareForPath();
 
-        CurrentRange = AStarManager.Instance.CalculateRange(PlayerMain.SquareUnderTheEntity, spell.SpellDatas.Range);
+        CurrentRange = AStarManager.Instance.CalculateRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.Range);
 
         HighlightGroundManager.Instance.ShowRange(CurrentRange);
     }
