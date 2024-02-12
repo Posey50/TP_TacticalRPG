@@ -183,7 +183,7 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// Resets MP and AP of the entity.
     /// </summary>
-    public void ResetPoints()
+    public virtual void ResetPoints()
     {
         MP = EntityDatas.MP;
         AP = EntityDatas.AP;
