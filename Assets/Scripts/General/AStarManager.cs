@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AStarManager : MonoBehaviour
@@ -193,7 +194,7 @@ public class AStarManager : MonoBehaviour
         {
             shortestPath.Reverse();
             ResetAllSquaresUsed(squaresUsedInTheCalculation);
-            return shortestPath;
+            return shortestPath.ToArray()[1..].ToList();
         }
     }
 
@@ -237,7 +238,6 @@ public class AStarManager : MonoBehaviour
         List<Square> squaresInRange = new ();
         List<Square> squaresOpen = new ();
 
-        squaresInRange.Add(departure);
         squaresOpen.Add(departure);
 
         // For each layer of the range
@@ -259,7 +259,7 @@ public class AStarManager : MonoBehaviour
                     Square currentNeighbor = currentSquaresToCheck.Neighbors[k];
 
                     // Checks if the neighbor is already stocked in the range
-                    if (currentNeighbor != null && !squaresInRange.Contains(currentNeighbor))
+                    if (currentNeighbor != null && !squaresInRange.Contains(currentNeighbor) && currentNeighbor != departure)
                     {
                         squaresInRange.Add(currentNeighbor);
                         squaresOpen.Add(currentNeighbor);

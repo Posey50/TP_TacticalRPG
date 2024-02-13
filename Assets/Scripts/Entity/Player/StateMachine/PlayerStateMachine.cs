@@ -3,9 +3,9 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     /// <summary>
-    /// The reference towards the player's Main
+    /// Main component of the playable entity.
     /// </summary>
-    public PlayerMain Main { get; private set; }
+    public PlayerMain PlayerMain { get; private set; }
 
     /// <summary>
     /// Manager of the battle.
@@ -17,50 +17,52 @@ public class PlayerStateMachine : MonoBehaviour
     /// </summary>
     public SpellButtonsManager SpellButtonsManager { get; private set; }
 
-    public PlayerInactiveState StateInactive = new();
-    public PlayerActiveState StateActive = new();
+    /// <summary>
+    /// Active state of the playable entity.
+    /// </summary>
+    public PlayerActiveState ActiveState = new();
 
-    private IPlayerState _currentState;
+    /// <summary>
+    /// Inactive state of the playable entity.
+    /// </summary>
+    public PlayerInactiveState InactiveState = new();
+
+    /// <summary>
+    /// Current state of the playable entity.
+    /// </summary>
+    public IPlayerState CurrentState {  get; private set; }
 
     
     void Start()
     {
-        Main = GetComponent<PlayerMain>();
+        PlayerMain = GetComponent<PlayerMain>();
         BattleManager = BattleManager.Instance;
         SpellButtonsManager = SpellButtonsManager.Instance;
 
-        ChangeToInactive();
+        PlayerMain.TurnIsEnd += DesactiveEntity;
+
+        // Sets state by default
+        ChangeState(InactiveState);
     }
 
     /// <summary>
-    /// Stats current state to Active
+    /// Called to desactive the entity.
     /// </summary>
-    public void ChangeToActive()
+    private void DesactiveEntity()
     {
-        ChangeState(StateActive);
+        ChangeState(InactiveState);
     }
 
     /// <summary>
-    /// Stats current state to Inactive
+    /// Called to change the current state.
     /// </summary>
-    public void ChangeToInactive()
+    /// <param name="newState"> New state to set. </param>
+    public void ChangeState(IPlayerState newState)
     {
-        ChangeState(StateInactive);
-    }
+        CurrentState?.OnExit(this);
 
-    /// <summary>
-    /// Changes the player's state. Also calls the states OnExit and OnEnter
-    /// </summary>
-    /// <param name="newState"></param>
-    private void ChangeState(IPlayerState newState)
-    {
-        if (_currentState != null)
-        {
-            _currentState.OnExit(this);
-        }
+        CurrentState = newState;
 
-        _currentState = newState;
-
-        _currentState.OnEnter(this);
+        CurrentState.OnEnter(this);
     }
 }

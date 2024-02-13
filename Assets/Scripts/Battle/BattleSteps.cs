@@ -21,10 +21,16 @@ public class BattleSteps : MonoBehaviour
             playableEntitiesInGame.Remove(playableEntityToAdd);
             playableEntitiesInBattle.Add(playableEntityToAdd);
 
-            playableEntityToAdd.transform.position = playerSquares[Random.Range(0, playerSquares.Count)].transform.position;
+            Square squareForTheEntity = playerSquares[Random.Range(0, playerSquares.Count)];
+            playerSquares.Remove(squareForTheEntity);
+
+            playableEntityToAdd.SquareUnderTheEntity = squareForTheEntity;
+            playableEntityToAdd.transform.position = squareForTheEntity.transform.position;
+
+            squareForTheEntity.SetEntity(playableEntityToAdd);
         }
 
-        InitEntities(playableEntitiesInGame);
+        InitEntities(playableEntitiesInBattle);
     }
 
     /// <summary>
@@ -44,10 +50,16 @@ public class BattleSteps : MonoBehaviour
             enemiesInGame.Remove(enemiesToAdd);
             enemiesInBattle.Add(enemiesToAdd);
 
-            enemiesToAdd.transform.position = enemiesSquares[Random.Range(0, enemiesSquares.Count)].transform.position;
+            Square squareForTheEntity = enemiesSquares[Random.Range(0, enemiesSquares.Count)];
+            enemiesSquares.Remove(squareForTheEntity);
+
+            enemiesToAdd.SquareUnderTheEntity = squareForTheEntity;
+            enemiesToAdd.transform.position = squareForTheEntity.transform.position;
+
+            squareForTheEntity.SetEntity(enemiesToAdd);
         }
 
-        InitEntities(enemiesInGame);
+        InitEntities(enemiesInBattle);
     }
 
     /// <summary>
@@ -58,7 +70,7 @@ public class BattleSteps : MonoBehaviour
     {
         for (int i = 0; i < entities.Count; i++)
         {
-            //entities[i].InitEntity();
+            entities[i].InitEntity();
         }
     }
 

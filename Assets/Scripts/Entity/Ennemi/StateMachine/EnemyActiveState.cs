@@ -2,11 +2,15 @@ using UnityEngine;
 
 public class EnemyActiveState : IEnemyState
 {
-    [SerializeField] private EnemyStateMachine _stateMachine;
+    /// <summary>
+    /// State machine of the enemy.
+    /// </summary>
+    private EnemyStateMachine _enemyStateMachine;
+
     public void OnEnter(EnemyStateMachine enemyStateMachine)
     {
-        _stateMachine = enemyStateMachine;
-        _stateMachine.Main.ChosePlayer();
+        _enemyStateMachine = enemyStateMachine;
+        _enemyStateMachine.EnemyMain.StartReflexion();
     }
 
     public void OnExit(EnemyStateMachine enemyStateMachine)

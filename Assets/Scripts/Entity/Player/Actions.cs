@@ -6,7 +6,8 @@ public class Actions : MonoBehaviour
     /// <summary>
     /// Spell currently selected.
     /// </summary>
-    public Spell SelectedSpell {  get; set; }
+    [field: SerializeField]
+    public Spell SelectedSpell { get; set; } = new ();
 
     /// <summary>
     /// Current range where the player can attack.
@@ -20,7 +21,10 @@ public class Actions : MonoBehaviour
 
     private void Start()
     {
+        SelectedSpell = null;
         _playerMain = GetComponent<PlayerMain>();
+
+        _playerMain.TurnIsEnd += UnselectSpell;
     }
 
     /// <summary>

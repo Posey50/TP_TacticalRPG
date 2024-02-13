@@ -35,14 +35,14 @@ public class HighlightGroundManager : MonoBehaviour
     /// <summary>
     /// Path to show at screen.
     /// </summary>
+    [field: SerializeField]
     public List<Square> CurrentPath { get; private set; }
 
     /// <summary>
     /// Range to show at screen.
     /// </summary>
+    [field: SerializeField]
     public List<Square> CurrentRange { get; private set; }
-
-
 
     private void Awake()
     {
@@ -103,6 +103,8 @@ public class HighlightGroundManager : MonoBehaviour
             {
                 CurrentPath[i].ResetMaterial();
             }
+
+            CurrentPath.Clear();
         }
     }
 
@@ -141,6 +143,8 @@ public class HighlightGroundManager : MonoBehaviour
             {
                 CurrentRange[i].ResetMaterial();
             }
+
+            CurrentRange.Clear();
         }
     }
 

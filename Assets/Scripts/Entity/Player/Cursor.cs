@@ -21,6 +21,9 @@ public class Cursor : MonoBehaviour
     private void Start()
     {
         _playerMain = GetComponent<PlayerMain>();
+
+        _playerMain.TurnIsEnd += UnselectSquareForPath;
+        _playerMain.TurnIsEnd += UnselectSquareForAttack;
     }
 
     /// <summary>
@@ -34,7 +37,7 @@ public class Cursor : MonoBehaviour
         {
             if (_playerMain.Actions.SelectedSpell == null)
             {
-                if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+                if (currentSquarePointed != null && currentSquarePointed != SelectedSquare && currentSquarePointed.EntityOnThisSquare == null)
                 {
                     // Hides the previous path
                     UnselectSquareForPath();
