@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Bow
   _paCost: 3
   _damages: 100
-  _range: 7
-  _isForHeal: 0
+  _minRange: 3
+  _maxRange: 7
+  _type: 1
   _sprite: {fileID: 21300000, guid: 7c7d7657af9016e4b9495fde7081ad5d, type: 3}

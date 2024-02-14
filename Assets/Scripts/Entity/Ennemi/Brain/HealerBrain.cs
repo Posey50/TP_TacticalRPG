@@ -11,7 +11,7 @@ public class HealerBrain : Brain
 
         for (int i = 0;  i < _spells.Count; i++)
         {
-            if (!_spells[i].SpellDatas.IsForHeal)
+            if (_spells[i].SpellDatas.Type != Type.heal)
             {
                 Debug.LogError(_spells[i].SpellDatas.Name + " is not a valid spell for " + _enemyMain.Name);
             }
@@ -26,7 +26,7 @@ public class HealerBrain : Brain
         yield return new WaitForSeconds(Random.Range(1f, 4f));
 
         // Sorts spells by descending order of their range
-        _spells.OrderByDescending(spell => spell.SpellDatas.Range);
+        _spells.OrderByDescending(spell => spell.SpellDatas.MaxRange);
 
         // Gets a copy of the list of spells of the enemy in descending order of their range
         List<Spell> spells = new(_spells);
@@ -57,7 +57,8 @@ public class HealerBrain : Brain
                 // If the enemy has remained MP then he tries to move to a random position
                 if (_enemyMain.MP > 0)
                 {
-                    yield return StartCoroutine(MoveRandom());
+                    yield return StartCoroutine(TryToEscape());
+                    //yield return StartCoroutine(MoveRandom());
                 }
 
                 // Makes the turn end
@@ -68,7 +69,8 @@ public class HealerBrain : Brain
         {
             Debug.Log(_enemyMain.Name + " try to escape");
 
-            yield return StartCoroutine(MoveRandom());
+            yield return StartCoroutine(TryToEscape());
+            //yield return StartCoroutine(MoveRandom());
             _enemyMain.EndOfTheTurn();
         }
     }
@@ -98,7 +100,7 @@ public class HealerBrain : Brain
                 List<Square> shortestPathToTheAlly = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, ally.SquareUnderTheEntity, true);
 
                 // If the ally is reachable with the attack that has the greatest range
-                if (shortestPathToTheAlly.Count <= _enemyMain.MP + _spells[0].SpellDatas.Range)
+                if (shortestPathToTheAlly.Count <= _enemyMain.MP + _spells[0].SpellDatas.MaxRange)
                 {
                     // Add the ally to the list of allies
                     allies.Add(ally, shortestPathToTheAlly.Count);
@@ -241,7 +243,7 @@ public class HealerBrain : Brain
     private IEnumerator TryToHeal(Entity allyToHeal, Spell spellToUse)
     {
         // Gets the range of the spell
-        List<Square> range = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.Range);
+        List<Square> range = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MaxRange);
 
         // Checks if the ally to heal is in the range
         if (range.Contains(allyToHeal.SquareUnderTheEntity))
@@ -256,7 +258,7 @@ public class HealerBrain : Brain
             Square[] pathToAlly = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, allyToHeal.SquareUnderTheEntity, true).ToArray();
 
             // Reduces the path by one for the ally and by the range of the spell to save MP
-            List<Square> pathToGetCloser = pathToAlly[..^((spellToUse.SpellDatas.Range - 1) + 1)].ToList();
+            List<Square> pathToGetCloser = pathToAlly[..^((spellToUse.SpellDatas.MaxRange - 1) + 1)].ToList();
 
             // Makes the enemy following the path
             yield return _enemyMain.FollowThePath(pathToGetCloser);
@@ -296,53 +298,53 @@ public class HealerBrain : Brain
     /// <summary>
     /// // Called to try to find a position at a certain distance from any enemy entity
     /// </summary>
-    //private IEnumerator TryToEscape()
-    //{
-    //    int minDistanceFromAnyEnemy = 5;
+    private IEnumerator TryToEscape()
+    {
+        int minDistanceFromAnyEnemy = 5;
 
-    //    // Sets the minimum distance at a certain value or less if it doesn't remain enough MP
-    //    if (_enemyMain.MP <  minDistanceFromAnyEnemy)
-    //    {
-    //        minDistanceFromAnyEnemy = _enemyMain.MP;
-    //    }
+        // Sets the minimum distance at a certain value or less if it doesn't remain enough MP
+        if (_enemyMain.MP < minDistanceFromAnyEnemy)
+        {
+            minDistanceFromAnyEnemy = _enemyMain.MP;
+        }
 
-    //    // All possible positions with remaining MP
-    //    List<Square> possiblePositions = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, _enemyMain.MP);
+        // All possible positions with remaining MP
+        List<Square> possiblePositions = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, _enemyMain.MP);
 
-    //    // For each possible position
-    //    for (int i = 0; i < possiblePositions.Count; i++)
-    //    {
-    //        bool isThisPositionSafe = true;
-    //        Square position = possiblePositions[i];
+        // For each possible position
+        for (int i = 0; i < possiblePositions.Count; i++)
+        {
+            bool isThisPositionSafe = true;
+            Square position = possiblePositions[i];
 
-    //        // If there is no enemy on it
-    //        if (position.EntityOnThisSquare == null)
-    //        {
-    //            // For each enemy entity
-    //            for (int j = 0; j < BattleManager.Instance.PlayableEntitiesInBattle.Count; j++) 
-    //            {
-    //                // Calculates distance from the entity
-    //                Entity enemyEntity = BattleManager.Instance.PlayableEntitiesInBattle[j];
-    //                List<Square> path = AStarManager.Instance.CalculateShortestPathBetween(position, enemyEntity.SquareUnderTheEntity, true);
-    //                int distanceFromThisEnemyEntity = path.Count;
+            // If there is no enemy on it
+            if (position.EntityOnThisSquare == null)
+            {
+                // For each enemy entity
+                for (int j = 0; j < BattleManager.Instance.PlayableEntitiesInBattle.Count; j++)
+                {
+                    // Calculates distance from the entity
+                    Entity enemyEntity = BattleManager.Instance.PlayableEntitiesInBattle[j];
+                    List<Square> path = AStarManager.Instance.CalculateShortestPathBetween(position, enemyEntity.SquareUnderTheEntity, true);
+                    int distanceFromThisEnemyEntity = path.Count;
 
-    //                // If the distance is lower than the minimum distance then finds another position
-    //                if (distanceFromThisEnemyEntity < minDistanceFromAnyEnemy)
-    //                {
-    //                    isThisPositionSafe = false;
-    //                    break;
-    //                }
-    //            }
-    //        }
+                    // If the distance is lower than the minimum distance then finds another position
+                    if (distanceFromThisEnemyEntity < minDistanceFromAnyEnemy)
+                    {
+                        isThisPositionSafe = false;
+                        break;
+                    }
+                }
+            }
 
-    //        // If the position is safe then go to this place
-    //        if (isThisPositionSafe)
-    //        {
-    //            List<Square> path = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, position, false);
-    //            yield return _enemyMain.FollowThePath(path);
-    //            break;
-    //        }
-    //    }
-    //}
+            // If the position is safe then go to this place
+            if (isThisPositionSafe)
+            {
+                List<Square> path = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, position, false);
+                yield return _enemyMain.FollowThePath(path);
+                break;
+            }
+        }
+    }
 
 }

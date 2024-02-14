@@ -157,7 +157,7 @@ public abstract class Entity : MonoBehaviour
     /// <param name="spellReceived"> Spell received by the entity. </param>
     public void TakeAttack(Spell spellReceived)
     {
-        if (spellReceived.SpellDatas.IsForHeal)
+        if (spellReceived.SpellDatas.Type == Type.heal)
         {
             HealHP(spellReceived.SpellDatas.Damages);
         }

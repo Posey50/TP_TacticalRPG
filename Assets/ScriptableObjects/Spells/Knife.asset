@@ -15,6 +15,7 @@ MonoBehaviour:
   _name: Knife
   _paCost: 3
   _damages: 50
-  _range: 1
-  _isForHeal: 0
+  _minRange: 1
+  _maxRange: 1
+  _type: 2
   _sprite: {fileID: 21300000, guid: b643fbf81564b4a46a6ade595e2d10ce, type: 3}

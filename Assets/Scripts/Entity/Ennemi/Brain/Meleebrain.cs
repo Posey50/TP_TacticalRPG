@@ -9,13 +9,13 @@ public class MeleeBrain : Brain
     {
         base.InitBrain();
 
-        //for (int i = 0; i < _spells.Count; i++)
-        //{
-        //    if (!_spells[i].SpellDatas.IsForHeal)
-        //    {
-        //        Debug.LogError(_spells[i].SpellDatas.Name + " is not a valid spell for " + _enemyMain.Name);
-        //    }
-        //}
+        for (int i = 0; i < _spells.Count; i++)
+        {
+            if (_spells[i].SpellDatas.Type != Type.melee)
+            {
+                Debug.LogError(_spells[i].SpellDatas.Name + " is not a valid spell for " + _enemyMain.Name);
+            }
+        }
     }
 
     public override IEnumerator EnemyPattern()
@@ -26,7 +26,7 @@ public class MeleeBrain : Brain
         yield return new WaitForSeconds(Random.Range(1f, 4f));
 
         // Sorts spells by descending order of their range
-        _spells.OrderByDescending(spell => spell.SpellDatas.Range);
+        _spells.OrderByDescending(spell => spell.SpellDatas.MaxRange);
 
         // Gets a copy of the list of spells of the enemy in descending order of their range
         List<Spell> spells = new(_spells);
@@ -94,7 +94,7 @@ public class MeleeBrain : Brain
                 List<Square> shortestPathToTheEnemy = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, enemy.SquareUnderTheEntity, true);
 
                 // If the enemy is reachable with the attack that has the greatest range or if it's not for an attack
-                if (!itsToAttack || shortestPathToTheEnemy.Count <= _enemyMain.MP + _spells[0].SpellDatas.Range)
+                if (!itsToAttack || shortestPathToTheEnemy.Count <= _enemyMain.MP + _spells[0].SpellDatas.MaxRange)
                 {
                     // Add the enemy to the list of enemies
                     enemies.Add(enemy, shortestPathToTheEnemy.Count);
@@ -228,7 +228,7 @@ public class MeleeBrain : Brain
     private IEnumerator TryToAttack(Entity enemyToAttack, Spell spellToUse)
     {
         // Gets the range of the spell
-        List<Square> range = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.Range);
+        List<Square> range = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MaxRange);
 
         // Checks if the enemy to attack is in the range
         if (range.Contains(enemyToAttack.SquareUnderTheEntity))
@@ -243,7 +243,7 @@ public class MeleeBrain : Brain
             Square[] pathToEnemy = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, enemyToAttack.SquareUnderTheEntity, true).ToArray();
 
             // Reduces the path by one for the enemy and by the range of the spell to save MP
-            List<Square> pathToGetCloser = pathToEnemy[..^((spellToUse.SpellDatas.Range - 1) + 1)].ToList();
+            List<Square> pathToGetCloser = pathToEnemy[..^((spellToUse.SpellDatas.MaxRange - 1) + 1)].ToList();
 
             // Makes the enemy following the path
             yield return _enemyMain.FollowThePath(pathToGetCloser);

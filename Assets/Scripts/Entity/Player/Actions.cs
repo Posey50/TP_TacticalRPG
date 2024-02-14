@@ -41,7 +41,14 @@ public class Actions : MonoBehaviour
 
             _playerMain.Cursor.UnselectSquareForPath();
 
-            CurrentRange = RangeManager.Instance.CalculateSimpleRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.Range);
+            if (spell.SpellDatas.Type == Type.melee || spell.SpellDatas.Type == Type.heal)
+            {
+                CurrentRange = RangeManager.Instance.CalculateSimpleRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.MaxRange);
+            }
+            else if (spell.SpellDatas.Type == Type.distance)
+            {
+                CurrentRange = RangeManager.Instance.CalculateComplexeRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.MinRange, spell.SpellDatas.MaxRange);
+            }
 
             HighlightGroundManager.Instance.ShowRange(CurrentRange);
         }

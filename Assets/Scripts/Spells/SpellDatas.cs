@@ -37,26 +37,37 @@ public class SpellDatas : ScriptableObject
     public int Damages { get { return _damages; } private set { } }
 
     /// <summary>
-    /// Range to attack of the spell.
+    /// Minimum range of the spell.
     /// </summary>
     [SerializeField]
-    private int _range;
+    private int _minRange;
 
     /// <summary>
-    /// Get the range to attack of the spell.
+    /// Get the minimum range of the spell.
     /// </summary>
-    public int Range { get { return _range; } private set { } }
+    public int MinRange { get { return _minRange; } private set { } }
 
     /// <summary>
-    /// A value indicating that this spell is for heal.
+    /// Maximum range of the spell.
     /// </summary>
     [SerializeField]
-    private bool _isForHeal;
+    private int _maxRange;
 
     /// <summary>
-    /// Gets a value indicating that this spell is for heal.
+    /// Get the maximum range of the spell.
     /// </summary>
-    public bool IsForHeal { get { return _isForHeal; } private set { } }
+    public int MaxRange { get { return _maxRange; } private set { } }
+
+    /// <summary>
+    /// The type of the spell.
+    /// </summary>
+    [SerializeField]
+    private Type _type;
+
+    /// <summary>
+    /// Gets the type of the attack.
+    /// </summary>
+    public Type Type { get { return _type; } private set { } }
 
     /// <summary>
     /// Sprite to show on the HUD of the spell.
@@ -68,4 +79,11 @@ public class SpellDatas : ScriptableObject
     /// Gets the sprite to show on the HUD of the spell.
     /// </summary>
     public Sprite Sprite { get { return _sprite; } private set { } }
+}
+
+public enum Type
+{
+    heal,
+    distance,
+    melee
 }
