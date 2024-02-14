@@ -1,3 +1,4 @@
+using TMPro;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -12,12 +13,14 @@ public class PlayerActiveState : IPlayerState
     {
         _playerStateMachine = playerStateMachine;
         _playerStateMachine.BattleManager.CurrentActiveEntity = _playerStateMachine.PlayerMain;
-        SetSpellButton();
+        //SetSpellButton();
+        _playerStateMachine.SpellButtonsManager.UpdateButtons(_playerStateMachine.PlayerMain);
         _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered += OnAction;
     }
 
     public void OnExit(PlayerStateMachine playerStateMachine)
     {
+        _playerStateMachine.SpellButtonsManager.HideButtons();
         _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered -= OnAction;
     }
 
@@ -53,19 +56,11 @@ public class PlayerActiveState : IPlayerState
     }
 
     /// <summary>
-    /// Called to attache the spells of the current active playable entity on the spell buttons.
+    /// Called to attach the spells of the current active playable entity on the spell buttons.
     /// </summary>
     private void SetSpellButton()
     {
-        for (int i = 0; i < _playerStateMachine.PlayerMain.Spells.Count; i++)
-        {
-            SpellButton spellButton = _playerStateMachine.SpellButtonsManager.SpellButtons[i];
-
-            if (_playerStateMachine.PlayerMain.Spells[i].SpellDatas != null && spellButton != null)
-            {
-                spellButton.Spell = _playerStateMachine.PlayerMain.Spells[i];
-            }
-        }
+        _playerStateMachine.SpellButtonsManager.UpdateButtons(_playerStateMachine.PlayerMain);
     }
 
     /// <summary>

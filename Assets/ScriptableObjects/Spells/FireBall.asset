@@ -17,4 +17,4 @@ MonoBehaviour:
   _damages: 150
   _range: 5
   _isForHeal: 0
-  _sprite: {fileID: 0}
+  _sprite: {fileID: 21300000, guid: 7a7adcfa30b00e546b17a888fe7f99da, type: 3}
