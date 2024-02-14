@@ -45,7 +45,7 @@ public class Cursor : MonoBehaviour
                     SelectedSquare = currentSquarePointed;
 
                     // Gets the new one
-                    Path = AStarManager.Instance.CalculateShortestPathBetween(_playerMain.SquareUnderTheEntity, SelectedSquare);
+                    Path = AStarManager.Instance.CalculateShortestPathBetween(_playerMain.SquareUnderTheEntity, SelectedSquare, false);
 
                     // Shows the new one
                     HighlightGroundManager.Instance.ShowPath(Path);

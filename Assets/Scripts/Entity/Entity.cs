@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 
 public abstract class Entity : MonoBehaviour
 {
@@ -88,34 +91,28 @@ public abstract class Entity : MonoBehaviour
     }
 
     /// <summary>
-    /// Called to start following a path. (Used for playable entities)
-    /// </summary>
-    /// <param name="path"> Path to follow. </param>
-    public void StartFollowPath(List<Square> path)
-    {
-        StartCoroutine(FollowThePath(path));
-    }
-
-    /// <summary>
     /// Makes the entity following a path.
     /// </summary>
     /// <param name="path"> Path to follow. </param>
-    public IEnumerator FollowThePath(List<Square> path)
+    public async UniTask FollowThePath(List<Square> path)
     {
-        IsMoving = true;
+        if(path != null)
+        {
+            IsMoving = true;
 
-        SquareUnderTheEntity.LeaveSquare();
+            SquareUnderTheEntity.LeaveSquare();
 
-        Vector3[] pathToFollow = AStarManager.Instance.ConvertSquaresIntoPositions(path).ToArray();
+            Vector3[] pathToFollow = AStarManager.Instance.ConvertSquaresIntoPositions(path).ToArray();
 
-        yield return transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear).OnWaypointChange((int i) => path[i].ResetMaterial()).WaitForCompletion();
+            await transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear, PathMode.Full3D).SetEase(Ease.Linear).OnWaypointChange((int i) => path[i - 1].ResetMaterial()).AsyncWaitForCompletion();
 
-        DecreaseMP(path.Count);
+            DecreaseMP(path.Count);
 
-        SquareUnderTheEntity = path[^1];
-        SquareUnderTheEntity.SetEntity(this);
+            SquareUnderTheEntity = path[^1];
+            SquareUnderTheEntity.SetEntity(this);
 
-        IsMoving = false;
+            IsMoving = false;
+        }
     }
 
     /// <summary>
@@ -143,23 +140,15 @@ public abstract class Entity : MonoBehaviour
     }
 
     /// <summary>
-    /// Called to start attacking an entity. (Used for playable entities)
+    /// Attack an entity with the spell given.
     /// </summary>
     /// <param name="spell"> Spell used. </param>
     /// <param name="entityToAttack"> Entity to attack. </param>
-    public void StartAttack(Spell spell, Entity entityToAttack)
+    public void Attack(Spell spell, Entity entityToAttack)
     {
-        StartCoroutine(Attack(spell, entityToAttack));
-    }
+        Debug.Log(Name + " attacks " + entityToAttack.Name + " with " + spell.SpellDatas.Name);
 
-    /// <summary>
-    /// Attack an entity with the spell given.
-    /// </summary>
-    /// <param name="attackedSquare"> Spell used. </param>
-    /// <param name="attackingSpell"> Entity to attack. </param>
-    public IEnumerator Attack(Spell spell, Entity entityToAttack)
-    {
-        yield return StartCoroutine(entityToAttack.TakeAttack(spell));
+        entityToAttack.TakeAttack(spell);
 
         DecreaseAP(spell.SpellDatas.PaCost);
     }
@@ -167,25 +156,27 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// Recieves a spell and does the the effect of the spell.
     /// </summary>
-    /// <param name="attackingSpell"></param>
-    public IEnumerator TakeAttack(Spell spellReceived)
+    /// <param name="spellReceived"> Spell received by the entity. </param>
+    public void TakeAttack(Spell spellReceived)
     {
         if (spellReceived.SpellDatas.IsForHeal)
         {
-            yield return StartCoroutine(HealHP(spellReceived.SpellDatas.Damages));
+            HealHP(spellReceived.SpellDatas.Damages);
         }
         else
         {
-            yield return StartCoroutine(TakeDamage(spellReceived.SpellDatas.Damages));
+            TakeDamage(spellReceived.SpellDatas.Damages);
         }
     }
 
     /// <summary>
     /// Applies damages of a spell.
     /// </summary>
-    /// <param name="damage"> Damages to take. </param>
-    public IEnumerator TakeDamage(int damages)
+    /// <param name="damages"> Damages to take. </param>
+    public void TakeDamage(int damages)
     {
+        Debug.Log(Name + " looses " + damages + "HP");
+
         HP -= damages;
 
         if (HP < 0)
@@ -193,20 +184,17 @@ public abstract class Entity : MonoBehaviour
             HP = 0;
             BattleManager.Instance.EntityDeath(this);
         }
-
-        yield return null;
     }
 
     /// <summary>
     /// Applies the healing of a spell.
     /// </summary>
     /// <param name="heal"> HP to heal. </param>
-    public IEnumerator HealHP(int heal)
+    public void HealHP(int heal)
     {
+        Debug.Log(Name + " heals " + heal + "HP");
         // Prevents the healing over the maximum of HP
         HP = Mathf.Clamp(HP + heal, 0, EntityDatas.MaxHP);
-
-        yield return null;
     }
     
     /// <summary>

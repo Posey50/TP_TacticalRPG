@@ -14,15 +14,11 @@ public class PlayerActiveState : IPlayerState
         _playerStateMachine.BattleManager.CurrentActiveEntity = _playerStateMachine.PlayerMain;
         SetSpellButton();
         _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered += OnAction;
-
-        Debug.Log(playerStateMachine.PlayerMain.Name + " Enters active State");
     }
 
     public void OnExit(PlayerStateMachine playerStateMachine)
     {
         _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered -= OnAction;
-
-        Debug.Log(playerStateMachine.PlayerMain.Name + " exits active State");
     }
 
     /// <summary>
@@ -76,7 +72,7 @@ public class PlayerActiveState : IPlayerState
     /// Called when the mouse left button is released and checks to move or make attack the playable entity.
     /// </summary>
     /// <param name="selectedSquare"> Selected square when the button is clicked. </param>
-    private void OnLeftClick(Square selectedSquare)
+    private async void OnLeftClick(Square selectedSquare)
     {
         PlayerMain playerMain = _playerStateMachine.PlayerMain;
 
@@ -91,14 +87,14 @@ public class PlayerActiveState : IPlayerState
                 playerMain.Actions.CurrentRange.Contains(selectedSquare) && 
                 selectedSpell.SpellDatas.PaCost <= playerMain.AP)
             {
-                playerMain.StartAttack(selectedSpell, entityOnThisSquare);
+                playerMain.Attack(selectedSpell, entityOnThisSquare);
             }
             // If there is no selected spell and no entity on the square selected and if the path is less or equal to left MP then moves to the selected square
             else if (selectedSpell == null && 
                 entityOnThisSquare == null && 
                 playerMain.Cursor.Path.Count <= playerMain.MP)
             {
-                playerMain.StartFollowPath(playerMain.Cursor.Path);
+                await playerMain.FollowThePath(playerMain.Cursor.Path);
             }
         }
     }

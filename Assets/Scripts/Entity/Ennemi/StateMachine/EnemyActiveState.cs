@@ -1,5 +1,3 @@
-using UnityEngine;
-
 public class EnemyActiveState : IEnemyState
 {
     /// <summary>
@@ -15,6 +13,6 @@ public class EnemyActiveState : IEnemyState
 
     public void OnExit(EnemyStateMachine enemyStateMachine)
     {
-        Debug.Log("Enemy Exit ActiveState");
+        
     }
 }

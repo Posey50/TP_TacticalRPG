@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 public class BattleManager : MonoBehaviour
 {
@@ -89,13 +90,20 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     public void NextEntityTurn()
     {
-        if (EntitiesInActionOrder[0].TryGetComponent<PlayerStateMachine>(out PlayerStateMachine playerStateMachine))
+        if (EntitiesInActionOrder.Count > 0)
         {
-            playerStateMachine.ChangeState(playerStateMachine.ActiveState);
+            if (EntitiesInActionOrder[0].TryGetComponent<PlayerStateMachine>(out PlayerStateMachine playerStateMachine))
+            {
+                playerStateMachine.ChangeState(playerStateMachine.ActiveState);
+            }
+            else if (EntitiesInActionOrder[0].TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemyStateMachine))
+            {
+                enemyStateMachine.ChangeState(enemyStateMachine.ActiveState);
+            }
         }
-        else if (EntitiesInActionOrder[0].TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemyStateMachine))
+        else
         {
-            enemyStateMachine.ChangeState(enemyStateMachine.ActiveState);
+            NewBattleTurn();
         }
     }
 
