@@ -12,9 +12,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b823ee967184e1438880e1ef06ed1cb, type: 3}
   m_Name: HealTarget
   m_EditorClassIdentifier: 
-  _name: 
-  _paCost: 0
-  _damages: 0
-  _range: 0
-  _isForHeal: 0
+  _name: Heal
+  _paCost: 5
+  _damages: 250
+  _range: 9
+  _isForHeal: 1
   _sprite: {fileID: 0}

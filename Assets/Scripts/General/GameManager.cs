@@ -11,16 +11,19 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// List of all instances of entity in the game.
     /// </summary>
+    [field: SerializeField]
     public List<Entity> EntitiesInGame { get; set; } = new();
 
     /// <summary>
     /// List of all instances of entity as playable in the game.
     /// </summary>
+    [field: SerializeField]
     public List<Entity> PlayableEntitiesInGame { get; set; } = new();
 
     /// <summary>
     /// List of all instances of entity as enemy in the game.
     /// </summary>
+    [field: SerializeField]
     public List<Entity> EnemiesInGame { get; set; } = new();
 
     /// <summary>

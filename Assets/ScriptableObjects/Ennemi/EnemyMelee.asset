@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9fa2966545db34bbf71216810fb788, type: 3}
   m_Name: EnemyMelee
   m_EditorClassIdentifier: 
-  Name: Enemy
-  Class: Melee
-  MPs: 8
-  APs: 30
-  MaxHP: 80
-  Speed: 20
+  _name: orque
+  _class: efsfesf
+  _mP: 7
+  _aP: 10
+  _maxHP: 1000
+  _speed: 10
   _spells:
-  - _actionBase: {fileID: 11400000, guid: 59c64108fc0590c45acbbd9201b98715, type: 2}
-  - _actionBase: {fileID: 11400000, guid: 922da584c9eab5442b4ae7d36383111b, type: 2}
+  - _spellDatas: {fileID: 11400000, guid: 59c64108fc0590c45acbbd9201b98715, type: 2}
+  _moveSpeed: 0.3

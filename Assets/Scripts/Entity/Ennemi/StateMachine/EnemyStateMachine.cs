@@ -1,49 +1,61 @@
 using UnityEngine;
+
 public class EnemyStateMachine : MonoBehaviour
 {
-    public MainNameEnemy Main { get; private set; }
-    public EnemyActiveState EnemyActiveState { get; private set; }
-    public EnemyInactiveState EnemyIinactiveState { get; private set; }
+    /// <summary>
+    /// Main component of the enemy.
+    /// </summary>
+    public EnemyMain EnemyMain { get; private set; }
+
+    /// <summary>
+    /// Manager of the battle.
+    /// </summary>
+    public BattleManager BattleManager { get; private set; }
+
+    /// <summary>
+    /// Active state of the enemy.
+    /// </summary>
+    public EnemyActiveState ActiveState { get; private set; } = new ();
+
+    /// <summary>
+    /// Inactive state of the enemy.
+    /// </summary>
+    public EnemyInactiveState InactiveState { get; private set; } = new ();
     
-    private IEnemyState _currentEnemyState;
+    /// <summary>
+    /// Current state of the enemy.
+    /// </summary>
+    public IEnemyState CurrentState { get; private set; }
 
     public void Start()
     {
-        EnemyActiveState = new();
-        EnemyIinactiveState = new();
+        EnemyMain = GetComponent<EnemyMain>();
+        BattleManager = BattleManager.Instance;
 
-        ChangeToInactive();
+        EnemyMain.TurnIsEnd += DesactiveEntity;
+
+        // Sets state by default
+        ChangeState(InactiveState);
     }
 
     /// <summary>
-    /// Stats current state to Active
+    /// Called to desactive the entity.
     /// </summary>
-    public void ChangeToActive()
+    private void DesactiveEntity()
     {
-        ChangeState(EnemyActiveState);
+        ChangeState(InactiveState);
     }
 
     /// <summary>
-    /// Stats current state to Inactive
+    /// Called to change the current state.
     /// </summary>
-    public void ChangeToInactive()
-    {
-        ChangeState(EnemyIinactiveState);
-    }
-
-    /// <summary>
-    /// Changes the player's state. Also calls the states OnExit and OnEnter
-    /// </summary>
-    /// <param name="newState"></param>
+    /// <param name="newState"> New state to set. </param>
     public void ChangeState(IEnemyState newState)
     {
-        if (_currentEnemyState != null)
-        {
-            _currentEnemyState.OnExit(this);
-        }
+        CurrentState?.OnExit(this);
 
-        _currentEnemyState = newState;
+        CurrentState = newState;
 
-        _currentEnemyState.OnEnter(this);
+        CurrentState.OnEnter(this);
     }
 }

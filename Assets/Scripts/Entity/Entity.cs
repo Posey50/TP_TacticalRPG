@@ -2,6 +2,9 @@ using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
 using System.Collections;
+using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
+using UnityEditor.Experimental.GraphView;
 
 public abstract class Entity : MonoBehaviour
 {
@@ -23,16 +26,19 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// Movement points which determines the number of movement that an entity cans do in one turn.
     /// </summary>
+    [field: SerializeField]
     public int MP { get; protected set; }
 
     /// <summary>
     /// Action points which determines the total ammount of action points that an entity can use in one turn.
     /// </summary>
+    [field: SerializeField]
     public int AP { get; protected set; }
 
     /// <summary>
     /// Health points of the entity.
     /// </summary>
+    [field: SerializeField]
     public int HP { get; protected set; }
 
     /// <summary>
@@ -43,12 +49,13 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// List of spells that the entity can use.
     /// </summary>
-    public List<Spell> Spells { get; protected set; }
+    public List<Spell> Spells { get; protected set; } = new ();
 
     /// <summary>
     /// Square on which the entity is located.
     /// </summary>
-    public Square SquareUnderTheEntity { get; protected set; }
+    [field: SerializeField]
+    public Square SquareUnderTheEntity { get; set; }
 
     /// <summary>
     /// A value indicating if the entity is moving.
@@ -60,15 +67,11 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     protected float _moveSpeed;
 
-    [SerializeField]
-    protected Square _startingSquare;
 
-    private void Awake()
-    {
-        SquareUnderTheEntity = _startingSquare;
-        SquareUnderTheEntity.SetEntity(this);
-        transform.position = SquareUnderTheEntity.transform.position;
-    }
+    // Observer
+    public delegate void EntityDelegate();
+
+    public event EntityDelegate TurnIsEnd;
 
     /// <summary>
     /// Called to hydrate the entity with their datas.
@@ -83,35 +86,33 @@ public abstract class Entity : MonoBehaviour
         Speed = EntityDatas.Speed;
         Spells = EntityDatas.Spells;
         _moveSpeed = EntityDatas.MoveSpeed;
-    }
 
-    /// <summary>
-    /// Called to start following a path.
-    /// </summary>
-    /// <param name="path"> Path to follow. </param>
-    public void StartFollowPath(List<Square> path)
-    {
-        StartCoroutine(FollowThePath(path));
+        Debug.Log(Name + "is init");
     }
 
     /// <summary>
     /// Makes the entity following a path.
     /// </summary>
     /// <param name="path"> Path to follow. </param>
-    private IEnumerator FollowThePath(List<Square> path)
+    public async UniTask FollowThePath(List<Square> path)
     {
-        IsMoving = true;
+        if(path != null)
+        {
+            IsMoving = true;
 
-        SquareUnderTheEntity.LeaveSquare();
+            SquareUnderTheEntity.LeaveSquare();
 
-        Vector3[] pathToFollow = AStarManager.Instance.ConvertSquaresIntoPositions(path).ToArray();
+            Vector3[] pathToFollow = AStarManager.Instance.ConvertSquaresIntoPositions(path).ToArray();
 
-        yield return transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear).OnWaypointChange((int i) => path[i].ResetMaterial()).WaitForCompletion();
+            await transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear, PathMode.Full3D).SetEase(Ease.Linear).OnWaypointChange((int i) => path[i - 1].ResetMaterial()).AsyncWaitForCompletion();
 
-        SquareUnderTheEntity = path[^1];
-        SquareUnderTheEntity.SetEntity(this);
+            DecreaseMP(path.Count);
 
-        IsMoving = false;
+            SquareUnderTheEntity = path[^1];
+            SquareUnderTheEntity.SetEntity(this);
+
+            IsMoving = false;
+        }
     }
 
     /// <summary>
@@ -141,17 +142,21 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// Attack an entity with the spell given.
     /// </summary>
-    /// <param name="attackedSquare"> Spell used. </param>
-    /// <param name="attackingSpell"> Entity to attack. </param>
+    /// <param name="spell"> Spell used. </param>
+    /// <param name="entityToAttack"> Entity to attack. </param>
     public void Attack(Spell spell, Entity entityToAttack)
     {
+        Debug.Log(Name + " attacks " + entityToAttack.Name + " with " + spell.SpellDatas.Name);
+
         entityToAttack.TakeAttack(spell);
+
+        DecreaseAP(spell.SpellDatas.PaCost);
     }
 
     /// <summary>
     /// Recieves a spell and does the the effect of the spell.
     /// </summary>
-    /// <param name="attackingSpell"></param>
+    /// <param name="spellReceived"> Spell received by the entity. </param>
     public void TakeAttack(Spell spellReceived)
     {
         if (spellReceived.SpellDatas.IsForHeal)
@@ -167,9 +172,11 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// Applies damages of a spell.
     /// </summary>
-    /// <param name="damage"> Damages to take. </param>
+    /// <param name="damages"> Damages to take. </param>
     public void TakeDamage(int damages)
     {
+        Debug.Log(Name + " looses " + damages + "HP");
+
         HP -= damages;
 
         if (HP < 0)
@@ -185,6 +192,7 @@ public abstract class Entity : MonoBehaviour
     /// <param name="heal"> HP to heal. </param>
     public void HealHP(int heal)
     {
+        Debug.Log(Name + " heals " + heal + "HP");
         // Prevents the healing over the maximum of HP
         HP = Mathf.Clamp(HP + heal, 0, EntityDatas.MaxHP);
     }
@@ -192,9 +200,23 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// Resets MP and AP of the entity.
     /// </summary>
-    public virtual void ResetPoints()
+    public void ResetPoints()
     {
         MP = EntityDatas.MP;
         AP = EntityDatas.AP;
+    }
+
+    /// <summary>
+    /// Called when the entity has end its turn.
+    /// </summary>
+    public void EndOfTheTurn()
+    {
+        TurnIsEnd?.Invoke();
+
+        BattleManager battleManager = BattleManager.Instance;
+
+        battleManager.EntitiesInActionOrder.Remove(this);
+        battleManager.NextEntityTurn();
+        ResetPoints();
     }
 }

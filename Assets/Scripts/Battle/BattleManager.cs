@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections.Generic;
+using Cysharp.Threading.Tasks;
 
 public class BattleManager : MonoBehaviour
 {
@@ -17,27 +18,29 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// List of all entities controlled by the player.
     /// </summary>
-    public List<Entity> PlayableEntitiesInBattle { get; set; }
+    public List<Entity> PlayableEntitiesInBattle { get; set; } = new();
 
     /// <summary>
     /// List of all enemies in battle.
     /// </summary>
-    public List<Entity> EnemiesInBattle { get; set; }
+    public List<Entity> EnemiesInBattle { get; set; } = new();
 
     /// <summary>
     /// List of entities in their order of action.
     /// </summary>
-    public List<Entity> EntitiesInActionOrder { get; set; }
+    public List<Entity> EntitiesInActionOrder { get; set; } = new ();
 
     /// <summary>
     /// List of squares where enemies will spawn.
     /// </summary>
-    public List<Square> EnemiesSquares { get; set; }
+    [field: SerializeField]
+    public List<Square> EnemiesSquares { get; set; } = new ();
 
     /// <summary>
     /// List of squares where playable entities will spawn.
     /// </summary>
-    public List<Square> PlayerSquares { get; set; }
+    [field: SerializeField]
+    public List<Square> PlayerSquares { get; set; } = new ();
 
     /// <summary>
     /// The current active entity in the battle.
@@ -87,21 +90,35 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     public void NextEntityTurn()
     {
-        if (EntitiesInActionOrder[0].TryGetComponent<PlayerStateMachine>(out PlayerStateMachine playerStateMachine))
+        if (EntitiesInActionOrder.Count > 0)
         {
-            playerStateMachine.ChangeToActive();
+            if (EntitiesInActionOrder[0].TryGetComponent<PlayerStateMachine>(out PlayerStateMachine playerStateMachine))
+            {
+                playerStateMachine.ChangeState(playerStateMachine.ActiveState);
+            }
+            else if (EntitiesInActionOrder[0].TryGetComponent<EnemyStateMachine>(out EnemyStateMachine enemyStateMachine))
+            {
+                enemyStateMachine.ChangeState(enemyStateMachine.ActiveState);
+            }
         }
-        else if (EntitiesInActionOrder[0].TryGetComponent<EnemyStateMachine>(out EnemyStateMachine ennemyStateMachine))
+        else
         {
-            // TODO
-            //ennemyStateMachine.ChangeToActive();
+            NewBattleTurn();
         }
     }
 
     /// <summary>
-    /// Called when an entity dies. Removes the entity from the battle.
+    /// Called to end the turn of the current active entity.
     /// </summary>
-    /// <param name="deadEntity"> the dead entity.</param>
+    public void EndOfTheCurrentEntityTurn()
+    {
+        CurrentActiveEntity.EndOfTheTurn();
+    }
+
+    /// <summary>
+    /// Called when an entity dies and removes the entity from the battle.
+    /// </summary>
+    /// <param name="deadEntity"> The dead entity to remove. </param>
     public void EntityDeath(Entity deadEntity)
     {
         if (PlayableEntitiesInBattle.Contains(deadEntity))

@@ -21,6 +21,9 @@ public class Cursor : MonoBehaviour
     private void Start()
     {
         _playerMain = GetComponent<PlayerMain>();
+
+        _playerMain.TurnIsEnd += UnselectSquareForPath;
+        _playerMain.TurnIsEnd += UnselectSquareForAttack;
     }
 
     /// <summary>
@@ -34,7 +37,7 @@ public class Cursor : MonoBehaviour
         {
             if (_playerMain.Actions.SelectedSpell == null)
             {
-                if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+                if (currentSquarePointed != null && currentSquarePointed != SelectedSquare && currentSquarePointed.EntityOnThisSquare == null)
                 {
                     // Hides the previous path
                     UnselectSquareForPath();
@@ -42,7 +45,7 @@ public class Cursor : MonoBehaviour
                     SelectedSquare = currentSquarePointed;
 
                     // Gets the new one
-                    Path = AStarManager.Instance.CalculateShortestPathBetween(_playerMain.SquareUnderTheEntity, SelectedSquare);
+                    Path = AStarManager.Instance.CalculateShortestPathBetween(_playerMain.SquareUnderTheEntity, SelectedSquare, false);
 
                     // Shows the new one
                     HighlightGroundManager.Instance.ShowPath(Path);

@@ -6,7 +6,11 @@ public class Test : MonoBehaviour
 {
     public Square departure;
 
-    public int range;
+    public Square arrival;
+
+    public int minRange;
+
+    public int maxRange;
 
     public Material material;
 
@@ -19,7 +23,7 @@ public class Test : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        List<Square> list = AStarManager.Instance.CalculateRange(departure, range);
+        List<Square> list = AStarManager.Instance.CalculateShortestPathBetween(departure, arrival, true);
 
         for (int i = 0; i < list.Count; i++)
         {

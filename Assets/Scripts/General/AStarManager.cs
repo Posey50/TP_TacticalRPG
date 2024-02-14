@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using UnityEngine;
 
 public class AStarManager : MonoBehaviour
@@ -27,24 +28,11 @@ public class AStarManager : MonoBehaviour
     /// </summary>
     /// <param name="departure"> Departure of the path. </param>
     /// <param name="arrival"> Arrival of the path. </param>
+    /// <param name="itsToReachAnEntity"> A value indicating if the calculation is to reach an entity. </param>
     /// <returns></returns>
-    public List<Square> CalculateShortestPathBetween(Square departure, Square arrival)
+    public List<Square> CalculateShortestPathBetween(Square departure, Square arrival, bool itsToReachAnEntity)
     {
-        List<Square> shortestPath = ShortestPath(departure, arrival, new(), new(), new());
-
-        if (shortestPath != null)
-        {
-            for (int i = 0; i < shortestPath.Count; i++)
-            {
-                shortestPath[i].ResetSquare();
-            }
-
-            return shortestPath;
-        }
-        else
-        {
-            return null;
-        }
+        return ShortestPath(departure, arrival, itsToReachAnEntity, new(), new(), new());
     }
 
     /// <summary>
@@ -52,11 +40,12 @@ public class AStarManager : MonoBehaviour
     /// </summary>
     /// <param name="departure"> Square from which we choose the next one. </param>
     /// <param name="arrival"> Arrival of the path. </param>
+    /// <param name="itsToReachAnEntity"> A value indicating if the calculation is to reach an entity. </param>
     /// <param name="openSquares"> List of open squares that must be browsed. </param>
     /// <param name="shortestPath"> Shortest path to complete at the end of the calculation. </param>
     /// <param name="squaresUsedInTheCalculation"> Squares used in the calculation. </param>
     /// <returns></returns>
-    private List<Square> ShortestPath(Square departure, Square arrival, List<Square> openSquares, List<Square> shortestPath, List<Square> squaresUsedInTheCalculation)
+    private List<Square> ShortestPath(Square departure, Square arrival, bool itsToReachAnEntity, List<Square> openSquares, List<Square> shortestPath, List<Square> squaresUsedInTheCalculation)
     {
         if (departure != null)
         {
@@ -84,30 +73,46 @@ public class AStarManager : MonoBehaviour
                     // ...foreach neighbors...
                     for (int i = 0; i < departure.Neighbors.Count; i++)
                     {
-                        // ...if the neighbor is not already open or closed and if there is no entity on it, then add this square to the open squares list,
+                        // ...if the neighbor is not already open or closed, then add this square to the open squares list,
                         // calculates its distance to the arrival and assignes its previous square to access to it
                         Square neighbor = departure.Neighbors[i];
 
-                        if (!openSquares.Contains(neighbor) && !neighbor.IsClosed && neighbor.EntityOnThisSquare == null)
+                        if (!openSquares.Contains(neighbor) && !neighbor.IsClosed)
                         {
-                            if (!squaresUsedInTheCalculation.Contains(neighbor))
+                            // If the calculation is not to reach an entity and if there is no entity on the neighbor
+                            if (!itsToReachAnEntity && neighbor.EntityOnThisSquare == null)
                             {
-                                squaresUsedInTheCalculation.Add(neighbor);
-                            }
+                                if (!squaresUsedInTheCalculation.Contains(neighbor))
+                                {
+                                    squaresUsedInTheCalculation.Add(neighbor);
+                                }
 
-                            openSquares.Add(neighbor);
-                            CalculateDistanceBetween(neighbor, arrival);
-                            neighbor.PreviousSquare = departure;
+                                openSquares.Add(neighbor);
+                                CalculateDistanceBetween(neighbor, arrival);
+                                neighbor.PreviousSquare = departure;
+                            }
+                            // If it's to reach an entity and if there is an entity and if it's the arrival, ignores the entity
+                            else if (itsToReachAnEntity && (neighbor.EntityOnThisSquare == null || neighbor.EntityOnThisSquare == arrival.EntityOnThisSquare))
+                            {
+                                if (!squaresUsedInTheCalculation.Contains(neighbor))
+                                {
+                                    squaresUsedInTheCalculation.Add(neighbor);
+                                }
+
+                                openSquares.Add(neighbor);
+                                CalculateDistanceBetween(neighbor, arrival);
+                                neighbor.PreviousSquare = departure;
+                            }
                         }
                     }
 
                     // Finally, performs again this action with the closest open square as the departure
-                    return ShortestPath(ClosestOpenSquare(openSquares), arrival, openSquares, shortestPath, squaresUsedInTheCalculation);
+                    return ShortestPath(ClosestOpenSquare(openSquares), arrival, itsToReachAnEntity, openSquares, shortestPath, squaresUsedInTheCalculation);
                 }
                 else
                 {
                     // If the departure doesn't have neighbors, performs again this action with the other closest open square as the departure
-                    return ShortestPath(ClosestOpenSquare(openSquares), arrival, openSquares, shortestPath, squaresUsedInTheCalculation);
+                    return ShortestPath(ClosestOpenSquare(openSquares), arrival, itsToReachAnEntity, openSquares, shortestPath, squaresUsedInTheCalculation);
                 }
             }
             else
@@ -193,7 +198,7 @@ public class AStarManager : MonoBehaviour
         {
             shortestPath.Reverse();
             ResetAllSquaresUsed(squaresUsedInTheCalculation);
-            return shortestPath;
+            return shortestPath.ToArray()[1..].ToList();
         }
     }
 
@@ -224,56 +229,5 @@ public class AStarManager : MonoBehaviour
         }
 
         return path;
-    }
-
-    /// <summary>
-    /// Called to get all squares in the range given.
-    /// </summary>
-    /// <param name="departure"> Center of the range. </param>
-    /// <param name="range"> Range. </param>
-    /// <returns></returns>
-    public List<Square> CalculateRange(Square departure, int range)
-    {
-        List<Square> squaresInRange = new ();
-        List<Square> squaresOpen = new ();
-
-        squaresInRange.Add(departure);
-        squaresOpen.Add(departure);
-
-        // For each layer of the range
-        for (int i = 0; i < range; i++)
-        {
-            // List of squares to check in the layer
-            List<Square> squaresToCheck = new(squaresOpen);
-
-            // For each square in the layer
-            for (int j = 0; j < squaresToCheck.Count; j++)
-            {
-                // Current square to check
-                Square currentSquaresToCheck = squaresToCheck[j];
-
-                // For each neighbor of the current square to check
-                for (int k = 0; k < currentSquaresToCheck.Neighbors.Count; k++)
-                {
-                    // Current neighbor
-                    Square currentNeighbor = currentSquaresToCheck.Neighbors[k];
-
-                    // Checks if the neighbor is already stocked in the range
-                    if (currentNeighbor != null && !squaresInRange.Contains(currentNeighbor))
-                    {
-                        squaresInRange.Add(currentNeighbor);
-                        squaresOpen.Add(currentNeighbor);
-                    }
-                }
-
-                // Remove the current square to the open squares list
-                squaresOpen.Remove(currentSquaresToCheck);
-            }
-
-            // Clear the list of squares to check in the layer
-            squaresToCheck.Clear();
-        }
-
-        return squaresInRange;
     }
 }

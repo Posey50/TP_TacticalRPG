@@ -4,21 +4,21 @@ using UnityEngine.InputSystem;
 public class PlayerActiveState : IPlayerState
 {
     /// <summary>
-    /// Player state machine of the playable entity.
+    /// State machine of the playable entity.
     /// </summary>
     private PlayerStateMachine _playerStateMachine;
 
     public void OnEnter(PlayerStateMachine playerStateMachine)
     {
         _playerStateMachine = playerStateMachine;
-        _playerStateMachine.BattleManager.CurrentActiveEntity = _playerStateMachine.Main;
+        _playerStateMachine.BattleManager.CurrentActiveEntity = _playerStateMachine.PlayerMain;
         SetSpellButton();
-        _playerStateMachine.Main.PlayerInput.onActionTriggered += OnAction;
+        _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered += OnAction;
     }
 
     public void OnExit(PlayerStateMachine playerStateMachine)
     {
-        _playerStateMachine.Main.PlayerInput.onActionTriggered -= OnAction;
+        _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered -= OnAction;
     }
 
     /// <summary>
@@ -30,13 +30,13 @@ public class PlayerActiveState : IPlayerState
         switch (context.action.name)
         {
             case "CursorMove":
-                _playerStateMachine.Main.Cursor.UpdateSelectedSquare(context.action.ReadValue<Vector2>());
+                _playerStateMachine.PlayerMain.Cursor.UpdateSelectedSquare(context.action.ReadValue<Vector2>());
                 break;
 
             case "MouseLeftClick":
                 if (context.canceled)
                 {
-                    Square selectedSquare = _playerStateMachine.Main.Cursor.SelectedSquare;
+                    Square selectedSquare = _playerStateMachine.PlayerMain.Cursor.SelectedSquare;
                     if (selectedSquare != null)
                     {
                         OnLeftClick(selectedSquare);
@@ -57,13 +57,13 @@ public class PlayerActiveState : IPlayerState
     /// </summary>
     private void SetSpellButton()
     {
-        for (int i = 0; i < _playerStateMachine.Main.Spells.Count; i++)
+        for (int i = 0; i < _playerStateMachine.PlayerMain.Spells.Count; i++)
         {
             SpellButton spellButton = _playerStateMachine.SpellButtonsManager.SpellButtons[i];
 
-            if (_playerStateMachine.Main.Spells[i].SpellDatas != null && spellButton != null)
+            if (_playerStateMachine.PlayerMain.Spells[i].SpellDatas != null && spellButton != null)
             {
-                spellButton.Spell = _playerStateMachine.Main.Spells[i];
+                spellButton.Spell = _playerStateMachine.PlayerMain.Spells[i];
             }
         }
     }
@@ -72,9 +72,9 @@ public class PlayerActiveState : IPlayerState
     /// Called when the mouse left button is released and checks to move or make attack the playable entity.
     /// </summary>
     /// <param name="selectedSquare"> Selected square when the button is clicked. </param>
-    private void OnLeftClick(Square selectedSquare)
+    private async void OnLeftClick(Square selectedSquare)
     {
-        PlayerMain playerMain = _playerStateMachine.Main;
+        PlayerMain playerMain = _playerStateMachine.PlayerMain;
 
         if (!playerMain.IsMoving)
         {
@@ -82,14 +82,19 @@ public class PlayerActiveState : IPlayerState
             Entity entityOnThisSquare = selectedSquare.EntityOnThisSquare;
 
             // If there is a selected spell and an entity on the selected square and if the selected square is in the range of the spell then attacks the entity
-            if (selectedSpell != null && entityOnThisSquare != null && playerMain.Actions.CurrentRange.Contains(selectedSquare))
+            if (selectedSpell != null && 
+                entityOnThisSquare != null && 
+                playerMain.Actions.CurrentRange.Contains(selectedSquare) && 
+                selectedSpell.SpellDatas.PaCost <= playerMain.AP)
             {
                 playerMain.Attack(selectedSpell, entityOnThisSquare);
             }
             // If there is no selected spell and no entity on the square selected and if the path is less or equal to left MP then moves to the selected square
-            else if (selectedSpell == null && entityOnThisSquare == null && playerMain.Cursor.Path.Count <= playerMain.MP)
+            else if (selectedSpell == null && 
+                entityOnThisSquare == null && 
+                playerMain.Cursor.Path.Count <= playerMain.MP)
             {
-                playerMain.StartFollowPath(playerMain.Cursor.Path);
+                await playerMain.FollowThePath(playerMain.Cursor.Path);
             }
         }
     }
@@ -99,7 +104,7 @@ public class PlayerActiveState : IPlayerState
     /// </summary>
     private void OnRigthClick()
     {
-        PlayerMain playerMain = _playerStateMachine.Main;
+        PlayerMain playerMain = _playerStateMachine.PlayerMain;
 
         if (!playerMain.IsMoving)
         {
