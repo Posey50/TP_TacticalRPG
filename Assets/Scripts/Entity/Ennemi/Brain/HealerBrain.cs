@@ -165,9 +165,9 @@ public class HealerBrain : Brain
     /// <returns></returns>
     private Spell BestSpellToUse(List<Spell> spells, Entity allyToHelp)
     {
-        if (spells.Count != 1)
+        if (spells.Count > 1)
         {
-            // Get a copy of spells
+            // Gets a copy of spells
             List<Spell> spellsToCheck = new(spells);
 
             // Creates the dictionary which will stocks combinations of two spells with the percentage of heal on the ally to go help
@@ -183,25 +183,36 @@ public class HealerBrain : Brain
                 {
                     Spell currentSpellToCheck = spellsToCheck[j];
 
-                    // If the combination is possible and if it's with itself
-                    if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP && currentStartingSpell == currentSpellToCheck)
+                    // If the combination is a combination of the two same spells
+                    if (currentStartingSpell == currentSpellToCheck)
                     {
-                        // Calculate the percentage of HP to heal that it represents
-                        int percentageOfHeal = (int)((currentStartingSpell.SpellDatas.Damages / (allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
+                        // If the combination is possible
+                        if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
+                        {
+                            // Calculates the percentage of HP to heal that it represents
+                            int percentageOfHeal = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
 
-                        // Add the spell as a combination
-                        spellsCombinationInOrderOfHealing.Add(new List<Spell>() { currentStartingSpell }, percentageOfHeal);
+                            // Adds the combination
+                            spellsCombinationInOrderOfHealing.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfHeal);
+                        }
+                        // Checks if the spell is possible alone
+                        else if (currentStartingSpell.SpellDatas.PaCost <= _enemyMain.AP)
+                        {
+                            // Calculates the percentage of HP to heal that it represents
+                            int percentageOfHeal = (int)((currentStartingSpell.SpellDatas.Damages / (allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
+
+                            // Adds the spell as a combination
+                            spellsCombinationInOrderOfHealing.Add(new List<Spell>() { currentStartingSpell }, percentageOfHeal);
+                        }
                     }
-                    // If the combination is possible and if it's not with itself
+                    // If it's not a combination of the two same spells and if the combination is possible
                     else if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                     {
-                        List<Spell> combination = new() { currentStartingSpell, currentSpellToCheck };
-
-                        // Calculate the percentage of HP to heal that it represents
+                        // Calculates the percentage of HP to heal that it represents
                         int percentageOfHeal = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
 
-                        // Add the combination
-                        spellsCombinationInOrderOfHealing.Add(combination, percentageOfHeal);
+                        // Adds the combination
+                        spellsCombinationInOrderOfHealing.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfHeal);
                     }
                 }
 
@@ -212,7 +223,7 @@ public class HealerBrain : Brain
             // Sorts combinations by descending order of their efficacity
             spellsCombinationInOrderOfHealing = spellsCombinationInOrderOfHealing.OrderByDescending(spell => spell.Value).ToDictionary(spell => spell.Key, spell => spell.Value);
 
-            // Return the best spell to use
+            // Returns the best spell to use
             return spellsCombinationInOrderOfHealing.ElementAt(0).Key[0];
         }
         else
@@ -229,7 +240,7 @@ public class HealerBrain : Brain
     /// <returns></returns>
     private IEnumerator TryToHeal(Entity allyToHeal, Spell spellToUse)
     {
-        // Get the range of the spell
+        // Gets the range of the spell
         List<Square> range = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.Range);
 
         // Checks if the ally to heal is in the range
@@ -238,14 +249,14 @@ public class HealerBrain : Brain
             // Heals the ally
             _enemyMain.Attack(spellToUse, allyToHeal);
         }
-        // If it is not
+        // If he is not
         else
         {
-            // Calculate the path to go to the ally
+            // Calculates the path to go to the ally
             Square[] pathToAlly = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, allyToHeal.SquareUnderTheEntity, true).ToArray();
 
             // Reduces the path by one for the ally and by the range of the spell to save MP
-            List<Square> pathToGetCloser = pathToAlly[..^(spellToUse.SpellDatas.Range + 1)].ToList();
+            List<Square> pathToGetCloser = pathToAlly[..^((spellToUse.SpellDatas.Range - 1) + 1)].ToList();
 
             // Makes the enemy following the path
             yield return _enemyMain.FollowThePath(pathToGetCloser);

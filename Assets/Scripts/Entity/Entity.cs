@@ -177,7 +177,7 @@ public abstract class Entity : MonoBehaviour
 
         HP -= damages;
 
-        if (HP < 0)
+        if (HP <= 0)
         {
             HP = 0;
             BattleManager.Instance.EntityDeath(this);

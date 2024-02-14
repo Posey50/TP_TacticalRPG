@@ -45,12 +45,12 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// The current active entity in the battle.
     /// </summary>
+    [field: SerializeField]
     public Entity CurrentActiveEntity { get; set; }
 
     /// <summary>
     /// Component that containes all steps of the battle.
     /// </summary>
-    [field: SerializeField]
     private BattleSteps _battleSteps;
 
     private void Awake()
@@ -79,6 +79,8 @@ public class BattleManager : MonoBehaviour
             TeamsSize = GameManager.Instance.PlayableEntitiesInGame.Count;
         }
 
+        _battleSteps = GetComponent<BattleSteps>();
+
         _battleSteps.PlacePlayers();
         _battleSteps.PlaceEnnemies();
 
@@ -92,6 +94,8 @@ public class BattleManager : MonoBehaviour
     {
         if (EntitiesInActionOrder.Count > 0)
         {
+            CurrentActiveEntity = EntitiesInActionOrder[0];
+
             if (EntitiesInActionOrder[0].TryGetComponent<PlayerStateMachine>(out PlayerStateMachine playerStateMachine))
             {
                 playerStateMachine.ChangeState(playerStateMachine.ActiveState);

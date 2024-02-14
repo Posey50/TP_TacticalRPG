@@ -11771,7 +11771,7 @@ GameObject:
   - component: {fileID: 646310329}
   - component: {fileID: 646310328}
   - component: {fileID: 646310327}
-  - component: {fileID: 646310326}
+  - component: {fileID: 646310331}
   m_Layer: 2
   m_Name: Enemy2
   m_TagString: Untagged
@@ -11794,20 +11794,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1082840606}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &646310326
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 646310324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533defbce6c477c4bb532ce63d4f7c1b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  departure: {fileID: 1111549299}
-  arrival: {fileID: 1131963565}
 --- !u!114 &646310327
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11836,7 +11822,7 @@ MonoBehaviour:
   <AP>k__BackingField: 0
   <HP>k__BackingField: 0
   <SquareUnderTheEntity>k__BackingField: {fileID: 0}
-  EntityDatas: {fileID: 11400000, guid: f0a0a15c0b704e24db77b800c50b4604, type: 2}
+  EntityDatas: {fileID: 11400000, guid: 5797880aabdad4b41a2c75aafc081094, type: 2}
 --- !u!23 &646310329
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -11887,6 +11873,18 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 646310324}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &646310331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 646310324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 38a6c5ffa80ec6d40853f073e92b29a7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &648426976
 GameObject:
   m_ObjectHideFlags: 0
@@ -21965,8 +21963,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 533defbce6c477c4bb532ce63d4f7c1b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  departure: {fileID: 1131963565}
-  arrival: {fileID: 1111549299}
 --- !u!114 &1313037317
 MonoBehaviour:
   m_ObjectHideFlags: 0
