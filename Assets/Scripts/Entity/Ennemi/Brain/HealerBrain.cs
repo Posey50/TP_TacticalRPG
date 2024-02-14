@@ -5,23 +5,17 @@ using UnityEngine;
 
 public class HealerBrain : Brain
 {
-    /// <summary>
-    /// Main component of the enemy.
-    /// </summary>
-    private EnemyMain _enemyMain;
-
-    /// <summary>
-    /// List of spells of the enemy in descending order of their range.
-    /// </summary>
-    private List<Spell> _spells;
-
-    public Square departure;
-
-    public Square arrival;
-
-    private void Start()
+    public override void InitBrain()
     {
-        _enemyMain = GetComponent<EnemyMain>();
+        base.InitBrain();
+
+        for (int i = 0;  i < _spells.Count; i++)
+        {
+            if (!_spells[i].SpellDatas.IsForHeal)
+            {
+                Debug.LogError(_spells[i].SpellDatas.Name + " is not a valid spell for " + _enemyMain.Name);
+            }
+        }
     }
 
     public override IEnumerator EnemyPattern()
@@ -31,8 +25,8 @@ public class HealerBrain : Brain
         // Waits to simulate reflexion 
         yield return new WaitForSeconds(Random.Range(1f, 4f));
 
-        // Initialises spells
-        _spells = new(_enemyMain.Spells.OrderByDescending(spell => spell.SpellDatas.Range));
+        // Sorts spells by descending order of their range
+        _spells.OrderByDescending(spell => spell.SpellDatas.Range);
 
         // Gets a copy of the list of spells of the enemy in descending order of their range
         List<Spell> spells = new(_spells);
@@ -60,6 +54,12 @@ public class HealerBrain : Brain
             }
             else
             {
+                // If the enemy has remained MP then he tries to move to a random position
+                if (_enemyMain.MP > 0)
+                {
+                    yield return StartCoroutine(MoveRandom());
+                }
+
                 // Makes the turn end
                 _enemyMain.EndOfTheTurn();
             }
@@ -68,7 +68,7 @@ public class HealerBrain : Brain
         {
             Debug.Log(_enemyMain.Name + " try to escape");
 
-            yield return StartCoroutine(TryToEscape());
+            yield return StartCoroutine(MoveRandom());
             _enemyMain.EndOfTheTurn();
         }
     }
@@ -258,53 +258,80 @@ public class HealerBrain : Brain
     /// <summary>
     /// // Called to try to find a position at a certain distance from any enemy entity
     /// </summary>
-    private IEnumerator TryToEscape()
+    private IEnumerator MoveRandom()
     {
-        int minDistanceFromAnyEnemy = 5;
-
-        // Sets the minimum distance at a certain value or less if it doesn't remain enough MP
-        if (_enemyMain.MP <  minDistanceFromAnyEnemy)
-        {
-            minDistanceFromAnyEnemy = _enemyMain.MP;
-        }
-
         // All possible positions with remaining MP
         List<Square> possiblePositions = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, _enemyMain.MP);
 
-        // For each possible position
-        for (int i = 0; i < possiblePositions.Count; i++)
+        // Tries to find a random position to go
+        for (int i = 0;  i < possiblePositions.Count; i++)
         {
-            bool isThisPositionSafe = true;
-            Square position = possiblePositions[i];
+            Square positionToGo = possiblePositions[Random.Range(0, possiblePositions.Count)];
 
-            // If there is no enemy on it
-            if (position.EntityOnThisSquare == null)
+            if (positionToGo.EntityOnThisSquare == null)
             {
-                // For each enemy entity
-                for (int j = 0; j < BattleManager.Instance.PlayableEntitiesInBattle.Count; j++) 
-                {
-                    // Calculates distance from the entity
-                    Entity enemyEntity = BattleManager.Instance.PlayableEntitiesInBattle[j];
-                    List<Square> path = AStarManager.Instance.CalculateShortestPathBetween(position, enemyEntity.SquareUnderTheEntity, true);
-                    int distanceFromThisEnemyEntity = path.Count;
-
-                    // If the distance is lower than the minimum distance then finds another position
-                    if (distanceFromThisEnemyEntity < minDistanceFromAnyEnemy)
-                    {
-                        isThisPositionSafe = false;
-                        break;
-                    }
-                }
-            }
-
-            // If the position is safe then go to this place
-            if (isThisPositionSafe)
-            {
-                List<Square> path = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, position, false);
+                List<Square> path = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, positionToGo, false);
                 yield return _enemyMain.FollowThePath(path);
                 break;
             }
+            else
+            {
+                possiblePositions.Remove(positionToGo);
+                yield return null;
+            }
         }
     }
+
+    /// <summary>
+    /// // Called to try to find a position at a certain distance from any enemy entity
+    /// </summary>
+    //private IEnumerator TryToEscape()
+    //{
+    //    int minDistanceFromAnyEnemy = 5;
+
+    //    // Sets the minimum distance at a certain value or less if it doesn't remain enough MP
+    //    if (_enemyMain.MP <  minDistanceFromAnyEnemy)
+    //    {
+    //        minDistanceFromAnyEnemy = _enemyMain.MP;
+    //    }
+
+    //    // All possible positions with remaining MP
+    //    List<Square> possiblePositions = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, _enemyMain.MP);
+
+    //    // For each possible position
+    //    for (int i = 0; i < possiblePositions.Count; i++)
+    //    {
+    //        bool isThisPositionSafe = true;
+    //        Square position = possiblePositions[i];
+
+    //        // If there is no enemy on it
+    //        if (position.EntityOnThisSquare == null)
+    //        {
+    //            // For each enemy entity
+    //            for (int j = 0; j < BattleManager.Instance.PlayableEntitiesInBattle.Count; j++) 
+    //            {
+    //                // Calculates distance from the entity
+    //                Entity enemyEntity = BattleManager.Instance.PlayableEntitiesInBattle[j];
+    //                List<Square> path = AStarManager.Instance.CalculateShortestPathBetween(position, enemyEntity.SquareUnderTheEntity, true);
+    //                int distanceFromThisEnemyEntity = path.Count;
+
+    //                // If the distance is lower than the minimum distance then finds another position
+    //                if (distanceFromThisEnemyEntity < minDistanceFromAnyEnemy)
+    //                {
+    //                    isThisPositionSafe = false;
+    //                    break;
+    //                }
+    //            }
+    //        }
+
+    //        // If the position is safe then go to this place
+    //        if (isThisPositionSafe)
+    //        {
+    //            List<Square> path = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, position, false);
+    //            yield return _enemyMain.FollowThePath(path);
+    //            break;
+    //        }
+    //    }
+    //}
 
 }

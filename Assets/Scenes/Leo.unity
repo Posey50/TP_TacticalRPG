@@ -10864,19 +10864,31 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   <TeamsSize>k__BackingField: 3
   <EnemiesSquares>k__BackingField:
+  - {fileID: 158853732}
+  - {fileID: 2066793952}
+  - {fileID: 339873067}
   - {fileID: 2128958096}
   - {fileID: 2010350729}
   - {fileID: 270085457}
   - {fileID: 1724961992}
   - {fileID: 1958767011}
   - {fileID: 542756434}
+  - {fileID: 885853315}
+  - {fileID: 1495049501}
+  - {fileID: 1305620869}
   <PlayerSquares>k__BackingField:
+  - {fileID: 1852864749}
+  - {fileID: 258696307}
+  - {fileID: 1020078057}
   - {fileID: 606339861}
   - {fileID: 1135640266}
   - {fileID: 1634612873}
   - {fileID: 1476634456}
   - {fileID: 906874261}
   - {fileID: 2079234021}
+  - {fileID: 62054780}
+  - {fileID: 1171418380}
+  - {fileID: 1027697533}
   _battleSteps: {fileID: 571786123}
 --- !u!1 &579689199
 GameObject:

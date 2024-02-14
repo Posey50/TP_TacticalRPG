@@ -71,6 +71,11 @@ public class BattleSteps : MonoBehaviour
         for (int i = 0; i < entities.Count; i++)
         {
             entities[i].InitEntity();
+
+            if (entities[i].TryGetComponent<EnemyMain>(out EnemyMain enemyMain))
+            {
+                enemyMain.Brain.InitBrain();
+            }
         }
     }
 

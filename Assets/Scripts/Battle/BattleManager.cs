@@ -121,6 +121,7 @@ public class BattleManager : MonoBehaviour
     /// <param name="deadEntity"> The dead entity to remove. </param>
     public void EntityDeath(Entity deadEntity)
     {
+        // Removes entity from datas of the battle
         if (PlayableEntitiesInBattle.Contains(deadEntity))
         {
             PlayableEntitiesInBattle.Remove(deadEntity);
@@ -134,6 +135,13 @@ public class BattleManager : MonoBehaviour
         {
             EntitiesInActionOrder.Remove(deadEntity);
         }
+
+        // Resets the square under the entity
+        deadEntity.SquareUnderTheEntity.LeaveSquare();
+        deadEntity.SquareUnderTheEntity.ResetMaterial();
+
+        // Desactive the entity
+        deadEntity.gameObject.SetActive(false);
     }
 
     /// <summary>

@@ -12,7 +12,7 @@ public class HighlightGroundManager : MonoBehaviour
     /// Material to apply if the selected square is not valid.
     /// </summary>
     [field: SerializeField]
-    public Material InvalideSquareMaterial {  get; private set; }
+    public Material InvalideSquareMaterial { get; private set; }
 
     /// <summary>
     /// Material to apply if the selected square is valid.
@@ -120,14 +120,7 @@ public class HighlightGroundManager : MonoBehaviour
         {
             for (int i = 0; i < CurrentRange.Count; i++)
             {
-                if (CurrentRange[i].EntityOnThisSquare != null)
-                {
-                    CurrentRange[i].SetMaterial(ValideSquareMaterial);
-                }
-                else
-                {
-                    CurrentRange[i].SetMaterial(RangeMaterial);
-                }
+                CurrentRange[i].SetMaterial(RangeMaterial);
             }
         }
     }

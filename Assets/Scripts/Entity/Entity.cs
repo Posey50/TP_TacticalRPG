@@ -86,8 +86,6 @@ public abstract class Entity : MonoBehaviour
         Speed = EntityDatas.Speed;
         Spells = EntityDatas.Spells;
         _moveSpeed = EntityDatas.MoveSpeed;
-
-        Debug.Log(Name + "is init");
     }
 
     /// <summary>
