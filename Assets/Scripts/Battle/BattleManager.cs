@@ -1,6 +1,8 @@
 using UnityEngine;
 using System.Collections.Generic;
 using Cysharp.Threading.Tasks;
+using Unity.VisualScripting;
+using System;
 
 public class BattleManager : MonoBehaviour
 {
@@ -47,6 +49,11 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     [field: SerializeField]
     public Entity CurrentActiveEntity { get; set; }
+
+    /// <summary>
+    /// Event to Update the UI entities order.
+    /// </summary>
+    public event Action<List<Entity>> UpadateUIEntitiesActionOrder;
 
     /// <summary>
     /// Component that containes all steps of the battle.
@@ -158,6 +165,7 @@ public class BattleManager : MonoBehaviour
         EntitiesInActionOrder.AddRange(PlayableEntitiesInBattle);
         EntitiesInActionOrder.AddRange(EnemiesInBattle);
         EntitiesInActionOrder = _battleSteps.DeterminesOrder(EntitiesInActionOrder);
+        UpadateUIEntitiesActionOrder?.Invoke(EntitiesInActionOrder);
 
         NextEntityTurn();
     }
