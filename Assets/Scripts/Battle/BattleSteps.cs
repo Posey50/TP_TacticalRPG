@@ -25,12 +25,14 @@ public class BattleSteps : MonoBehaviour
             playerSquares.Remove(squareForTheEntity);
 
             playableEntityToAdd.SquareUnderTheEntity = squareForTheEntity;
-            playableEntityToAdd.transform.position = squareForTheEntity.transform.position;
-
             squareForTheEntity.SetEntity(playableEntityToAdd);
+
+            playableEntityToAdd.InitEntity();
+
+            playableEntityToAdd.transform.position = squareForTheEntity.transform.position + playableEntityToAdd.YOffset;
         }
 
-        InitEntities(playableEntitiesInBattle);
+        //InitEntities(playableEntitiesInBattle);
     }
 
     /// <summary>
@@ -54,29 +56,15 @@ public class BattleSteps : MonoBehaviour
             enemiesSquares.Remove(squareForTheEntity);
 
             enemiesToAdd.SquareUnderTheEntity = squareForTheEntity;
-            enemiesToAdd.transform.position = squareForTheEntity.transform.position;
-
             squareForTheEntity.SetEntity(enemiesToAdd);
+
+            enemiesToAdd.InitEntity();
+            enemiesToAdd.GetComponent<EnemyMain>().Brain.InitBrain();
+
+            enemiesToAdd.transform.position = squareForTheEntity.transform.position + enemiesToAdd.YOffset;
         }
 
-        InitEntities(enemiesInBattle);
-    }
-
-    /// <summary>
-    /// Called when entities in the battle are chosen and initialises them.
-    /// </summary>
-    /// <param name="entities"> List of entities to initialise. </param>
-    private void InitEntities(List<Entity> entities)
-    {
-        for (int i = 0; i < entities.Count; i++)
-        {
-            entities[i].InitEntity();
-
-            if (entities[i].TryGetComponent<EnemyMain>(out EnemyMain enemyMain))
-            {
-                enemyMain.Brain.InitBrain();
-            }
-        }
+        //InitEntities(enemiesInBattle);
     }
 
     /// <summary>
