@@ -101,6 +101,8 @@ public class BattleManager : MonoBehaviour
     {
         if (EntitiesInActionOrder.Count > 0)
         {
+            UpadateUIEntitiesActionOrder?.Invoke(EntitiesInActionOrder);
+
             CurrentActiveEntity = EntitiesInActionOrder[0];
 
             if (EntitiesInActionOrder[0].TryGetComponent<PlayerStateMachine>(out PlayerStateMachine playerStateMachine))
@@ -165,7 +167,6 @@ public class BattleManager : MonoBehaviour
         EntitiesInActionOrder.AddRange(PlayableEntitiesInBattle);
         EntitiesInActionOrder.AddRange(EnemiesInBattle);
         EntitiesInActionOrder = _battleSteps.DeterminesOrder(EntitiesInActionOrder);
-        UpadateUIEntitiesActionOrder?.Invoke(EntitiesInActionOrder);
 
         NextEntityTurn();
     }
