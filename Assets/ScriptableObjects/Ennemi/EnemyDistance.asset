@@ -20,4 +20,5 @@ MonoBehaviour:
   _speed: 30
   _spells:
   - _spellDatas: {fileID: 11400000, guid: 922da584c9eab5442b4ae7d36383111b, type: 2}
+  - _spellDatas: {fileID: 11400000, guid: 19031e3b1aa59774985018b05b52c81b, type: 2}
   _moveSpeed: 0.3

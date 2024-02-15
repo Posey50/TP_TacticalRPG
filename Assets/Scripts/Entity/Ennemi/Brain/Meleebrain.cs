@@ -21,20 +21,15 @@ public class MeleeBrain : Brain
 
     public override IEnumerator EnemyPattern()
     {
-        Debug.Log(_enemyMain.Name + " is reflecting");
-
         // Waits to simulate reflexion 
         yield return new WaitForSeconds(3f);
 
         // Sorts spells by descending order of their range
-        _spells.OrderByDescending(spell => spell.SpellDatas.MaxRange);
-
-        // Gets a copy of the list of spells of the enemy in descending order of their range
-        List<Spell> spells = new(_spells);
+        _spells = _spells.OrderBy(spell => spell.SpellDatas.MaxRange).ToList();
 
         // Creates a dictionary which will stocks reachable playable entities with a score of priority calculated with percentage of missing HP
         // and multiplied by a proximity coefficient
-        Dictionary<Entity, int> playableEntities = EnemiesByOrderOfPriority(PlayableEntitiesByOrderOfDistance(true));
+        Dictionary<Entity, int> playableEntities = PlayableEntitiesByOrderOfPriority(PlayableEntitiesByOrderOfDistance(true));
 
         if (playableEntities.Count > 0)
         {
@@ -42,9 +37,9 @@ public class MeleeBrain : Brain
             Entity playableEntityToAttack = playableEntities.ElementAt(0).Key;
 
             // Gets the best spell to use on the playable entity to attack
-            Spell bestSpellToUse = BestSpellToUse(spells, playableEntityToAttack);
+            Spell bestSpellToUse = BestSpellToUse(_spells, playableEntityToAttack);
 
-            // Try to attack the playable entity
+            // Tries to attack the playable entity
             yield return StartCoroutine(TryToAttack(playableEntityToAttack, bestSpellToUse));
 
             // If the melee has enough AP to use the cheapest spell
@@ -78,7 +73,7 @@ public class MeleeBrain : Brain
         }
         else
         {
-            // Melee tries to move closer to the weaker playable entity
+            // Melee ends his turn
             _enemyMain.EndOfTheTurn();
         }
     }
@@ -137,7 +132,7 @@ public class MeleeBrain : Brain
     /// </summary>
     /// <param name="playableEntities"> Playable entities to sort. </param>
     /// <returns></returns>
-    private Dictionary<Entity, int> EnemiesByOrderOfPriority(Dictionary<Entity, int> playableEntities)
+    private Dictionary<Entity, int> PlayableEntitiesByOrderOfPriority(Dictionary<Entity, int> playableEntities)
     {
         if (playableEntities.Count > 0)
         {
@@ -193,7 +188,7 @@ public class MeleeBrain : Brain
                         if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
-                            int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.PaCost) / (playableEntityToAttack.EntityDatas.MaxHP - playableEntityToAttack.HP)) * 100f);
+                            int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / playableEntityToAttack.EntityDatas.MaxHP) * 100f);
 
                             // Adds the combination
                             spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfDamages);
@@ -202,7 +197,7 @@ public class MeleeBrain : Brain
                         else if (currentStartingSpell.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
-                            int percentageOfDamages = (int)((currentStartingSpell.SpellDatas.Damages / (playableEntityToAttack.EntityDatas.MaxHP - playableEntityToAttack.HP)) * 100f);
+                            int percentageOfDamages = (int)((currentStartingSpell.SpellDatas.Damages / playableEntityToAttack.EntityDatas.MaxHP) * 100f);
 
                             // Adds the spell as a combination
                             spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell }, percentageOfDamages);
@@ -212,7 +207,7 @@ public class MeleeBrain : Brain
                     else if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                     {
                         // Calculates the percentage of damages that it represents
-                        int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (playableEntityToAttack.EntityDatas.MaxHP - playableEntityToAttack.HP)) * 100f);
+                        int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / playableEntityToAttack.EntityDatas.MaxHP) * 100f);
 
                         // Adds the combination
                         spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfDamages);
@@ -223,7 +218,7 @@ public class MeleeBrain : Brain
                 spellsToCheck.Remove(currentStartingSpell);
             }
 
-            // Sorts combinations by descending order of their efficacity
+            // Sorts combinations by descending order of their efficiency
             spellsCombinationInOrderOfDamages = spellsCombinationInOrderOfDamages.OrderByDescending(spell => spell.Value).ToDictionary(spell => spell.Key, spell => spell.Value);
 
             // Returns the best spell to use
@@ -252,7 +247,7 @@ public class MeleeBrain : Brain
             // Attacks the playable entity
             _enemyMain.Attack(spellToUse, playableEntityToAttack);
         }
-        // If he is not
+        // If she is not
         else
         {
             // Calculates the path to go to the playable entity
@@ -278,7 +273,7 @@ public class MeleeBrain : Brain
     {
         // Creates a dictionary which will stocks reachable playable entities with a score of priority calculated with percentage of remaining HP
         // and multiplied by a proximity coefficient
-        Dictionary<Entity, int> playableEntities = EnemiesByOrderOfPriority(PlayableEntitiesByOrderOfDistance(false));
+        Dictionary<Entity, int> playableEntities = PlayableEntitiesByOrderOfPriority(PlayableEntitiesByOrderOfDistance(false));
 
         if (playableEntities.Count > 0)
         {

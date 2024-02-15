@@ -25,10 +25,7 @@ public class HealerBrain : Brain
         yield return new WaitForSeconds(3f);
 
         // Sorts spells by descending order of their range
-        _spells.OrderByDescending(spell => spell.SpellDatas.MaxRange);
-
-        // Gets a copy of the list of spells of the enemy in descending order of their range
-        List<Spell> spells = new(_spells);
+        _spells = _spells.OrderBy(spell => spell.SpellDatas.MaxRange).ToList();
 
         // Creates a dictionary which will stocks reachable allies with a score of priority calculated with percentage of HP to be treated
         // and multiplied by a proximity coefficient
@@ -40,9 +37,9 @@ public class HealerBrain : Brain
             Entity allyToGoHelp = allies.ElementAt(0).Key;
 
             // Gets the best spell to use on the ally to go help
-            Spell bestSpellToUse = BestSpellToUse(spells, allyToGoHelp);
+            Spell bestSpellToUse = BestSpellToUse(_spells, allyToGoHelp);
 
-            // Try to heal the ally
+            // Tries to heal the ally
             yield return StartCoroutine(TryToHeal(allyToGoHelp, bestSpellToUse));
 
             // If the healer has enough AP to use the cheapest spell
@@ -326,13 +323,17 @@ public class HealerBrain : Brain
     }
 
     /// <summary>
-    /// // Called to try to find a position at a certain distance from any enemy entity.
+    /// // Called to try to find a position at a certain distance from any playable entity.
     /// </summary>
     private IEnumerator TryToEscape()
     {
-        // All possible positions with remaining MP
-        List<Square> possiblePositions = RangeManager.Instance.CalculateRange(_enemyMain.SquareUnderTheEntity, 1, _enemyMain.MP);
+        // The list which contains all possible positions
+        List<Square> possiblePositions = new();
+
         possiblePositions.Add(_enemyMain.SquareUnderTheEntity);
+
+        // Add possible positions with remaining MP
+        possiblePositions.AddRange(RangeManager.Instance.CalculateRange(_enemyMain.SquareUnderTheEntity, 1, _enemyMain.MP));
 
         // All playable entities in battle
         List<Entity> playableEntitiesInBattle = BattleManager.Instance.PlayableEntitiesInBattle;
