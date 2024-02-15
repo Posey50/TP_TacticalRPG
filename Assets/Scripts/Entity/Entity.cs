@@ -102,7 +102,7 @@ public abstract class Entity : MonoBehaviour
 
             Vector3[] pathToFollow = AStarManager.Instance.ConvertSquaresIntoPositions(path).ToArray();
 
-            await transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear, PathMode.Full3D).SetEase(Ease.Linear).OnWaypointChange((int i) => path[i - 1].ResetMaterial()).AsyncWaitForCompletion();
+            await transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear, PathMode.Full3D).SetEase(Ease.Linear).OnWaypointChange((int i) => { if (i > 0) path[i - 1].ResetMaterial(); }).AsyncWaitForCompletion();
 
             DecreaseMP(path.Count);
 
@@ -209,6 +209,7 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     public void EndOfTheTurn()
     {
+        Debug.Log("fin du tour");
         TurnIsEnd?.Invoke();
 
         BattleManager battleManager = BattleManager.Instance;

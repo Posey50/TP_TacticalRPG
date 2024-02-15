@@ -24,15 +24,36 @@ public class AStarManager : MonoBehaviour
     }
 
     /// <summary>
-    /// Called to get the shortest path between two squares.
+    /// Called to get the shortest path for a movement.
     /// </summary>
     /// <param name="departure"> Departure of the path. </param>
     /// <param name="arrival"> Arrival of the path. </param>
-    /// <param name="itsToReachAnEntity"> A value indicating if the calculation is to reach an entity. </param>
     /// <returns></returns>
-    public List<Square> CalculateShortestPathBetween(Square departure, Square arrival, bool itsToReachAnEntity)
+    public List<Square> CalculateShortestPathForAMovement(Square departure, Square arrival)
     {
-        return ShortestPath(departure, arrival, itsToReachAnEntity, new(), new(), new());
+        return ShortestPath(departure, arrival, false, false, new(), new(), new());
+    }
+
+    /// <summary>
+    ///  Called to get the shortest path to an entity.
+    /// </summary>
+    /// <param name="departure"> Departure of the path. </param>
+    /// <param name="arrival"> Arrival of the path. </param>
+    /// <returns></returns>
+    public List<Square> CalculateShortestPathToAnEntity(Square departure, Square arrival)
+    {
+        return ShortestPath(departure, arrival, true, false, new(), new(), new());
+    }
+
+    /// <summary>
+    /// Called to get a distance between two squares
+    /// </summary>
+    /// <param name="departure"> Departure of the path. </param>
+    /// <param name="arrival"> Arrival of the path. </param>
+    /// <returns></returns>
+    public List<Square> CalculateASimpleDistance(Square departure, Square arrival)
+    {
+        return ShortestPath(departure, arrival, true, true, new(), new(), new());
     }
 
     /// <summary>
@@ -41,11 +62,12 @@ public class AStarManager : MonoBehaviour
     /// <param name="departure"> Square from which we choose the next one. </param>
     /// <param name="arrival"> Arrival of the path. </param>
     /// <param name="itsToReachAnEntity"> A value indicating if the calculation is to reach an entity. </param>
+    /// <param name="ignoreEntities"> A value indicating if the calculation as to ignores all entities. </param>
     /// <param name="openSquares"> List of open squares that must be browsed. </param>
     /// <param name="shortestPath"> Shortest path to complete at the end of the calculation. </param>
     /// <param name="squaresUsedInTheCalculation"> Squares used in the calculation. </param>
     /// <returns></returns>
-    private List<Square> ShortestPath(Square departure, Square arrival, bool itsToReachAnEntity, List<Square> openSquares, List<Square> shortestPath, List<Square> squaresUsedInTheCalculation)
+    private List<Square> ShortestPath(Square departure, Square arrival, bool itsToReachAnEntity, bool ignoreEntities, List<Square> openSquares, List<Square> shortestPath, List<Square> squaresUsedInTheCalculation)
     {
         if (departure != null)
         {
@@ -79,8 +101,8 @@ public class AStarManager : MonoBehaviour
 
                         if (!openSquares.Contains(neighbor) && !neighbor.IsClosed)
                         {
-                            // If the calculation is not to reach an entity and if there is no entity on the neighbor
-                            if (!itsToReachAnEntity && neighbor.EntityOnThisSquare == null)
+                            // If the calculation is for a movement
+                            if (!itsToReachAnEntity && !ignoreEntities && neighbor.EntityOnThisSquare == null)
                             {
                                 if (!squaresUsedInTheCalculation.Contains(neighbor))
                                 {
@@ -91,8 +113,20 @@ public class AStarManager : MonoBehaviour
                                 CalculateDistanceBetween(neighbor, arrival);
                                 neighbor.PreviousSquare = departure;
                             }
-                            // If it's to reach an entity and if there is an entity and if it's the arrival, ignores the entity
-                            else if (itsToReachAnEntity && (neighbor.EntityOnThisSquare == null || neighbor.EntityOnThisSquare == arrival.EntityOnThisSquare))
+                            // If the calculation is to reach an entity
+                            else if (itsToReachAnEntity && !ignoreEntities && (neighbor.EntityOnThisSquare == null || neighbor.EntityOnThisSquare == arrival.EntityOnThisSquare))
+                            {
+                                if (!squaresUsedInTheCalculation.Contains(neighbor))
+                                {
+                                    squaresUsedInTheCalculation.Add(neighbor);
+                                }
+
+                                openSquares.Add(neighbor);
+                                CalculateDistanceBetween(neighbor, arrival);
+                                neighbor.PreviousSquare = departure;
+                            }
+                            // If the calculation is for a simple distance
+                            else if (itsToReachAnEntity && ignoreEntities)
                             {
                                 if (!squaresUsedInTheCalculation.Contains(neighbor))
                                 {
@@ -107,12 +141,12 @@ public class AStarManager : MonoBehaviour
                     }
 
                     // Finally, performs again this action with the closest open square as the departure
-                    return ShortestPath(ClosestOpenSquare(openSquares), arrival, itsToReachAnEntity, openSquares, shortestPath, squaresUsedInTheCalculation);
+                    return ShortestPath(ClosestOpenSquare(openSquares), arrival, itsToReachAnEntity, ignoreEntities, openSquares, shortestPath, squaresUsedInTheCalculation);
                 }
                 else
                 {
                     // If the departure doesn't have neighbors, performs again this action with the other closest open square as the departure
-                    return ShortestPath(ClosestOpenSquare(openSquares), arrival, itsToReachAnEntity, openSquares, shortestPath, squaresUsedInTheCalculation);
+                    return ShortestPath(ClosestOpenSquare(openSquares), arrival, itsToReachAnEntity, ignoreEntities, openSquares, shortestPath, squaresUsedInTheCalculation);
                 }
             }
             else

@@ -1,3 +1,4 @@
+using Cysharp.Threading.Tasks;
 using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
@@ -23,7 +24,7 @@ public class MeleeBrain : Brain
         Debug.Log(_enemyMain.Name + " is reflecting");
 
         // Waits to simulate reflexion 
-        yield return new WaitForSeconds(Random.Range(1f, 4f));
+        yield return new WaitForSeconds(3f);
 
         // Sorts spells by descending order of their range
         _spells.OrderByDescending(spell => spell.SpellDatas.MaxRange);
@@ -54,9 +55,12 @@ public class MeleeBrain : Brain
             }
             else
             {
-                // If the entity has remained MP then he tries to move to a random position
+                // If the entity has remained MP then he tries to move to move closer to the weaker player
                 if (_enemyMain.MP > 0)
                 {
+                    // Waits to simulate reflexion 
+                    yield return new WaitForSeconds(3f);
+
                     yield return StartCoroutine(MoveCloserToTheWeaker());
                 }
 
@@ -64,11 +68,17 @@ public class MeleeBrain : Brain
                 _enemyMain.EndOfTheTurn();
             }
         }
+        else if (_enemyMain.MP > 0)
+        {
+            // Enemy tries to move closer to the weaker player
+            yield return StartCoroutine(MoveCloserToTheWeaker());
+
+            // Enemy ends his turn
+            _enemyMain.EndOfTheTurn();
+        }
         else
         {
-            Debug.Log(_enemyMain.Name + " try to move closer to the weaker");
-
-            yield return StartCoroutine(MoveCloserToTheWeaker());
+            // Enemy tries to move closer to the weaker player
             _enemyMain.EndOfTheTurn();
         }
     }
@@ -91,7 +101,7 @@ public class MeleeBrain : Brain
                 Entity enemy = enemiesInBattle[i];
 
                 // Calculates the shortest path between the entity and the enemy
-                List<Square> shortestPathToTheEnemy = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, enemy.SquareUnderTheEntity, true);
+                List<Square> shortestPathToTheEnemy = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, enemy.SquareUnderTheEntity);
 
                 // If the enemy is reachable with the attack that has the greatest range or if it's not for an attack
                 if (!itsToAttack || shortestPathToTheEnemy.Count <= _enemyMain.MP + _spells[0].SpellDatas.MaxRange)
@@ -240,13 +250,15 @@ public class MeleeBrain : Brain
         else
         {
             // Calculates the path to go to the enemy
-            Square[] pathToEnemy = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, enemyToAttack.SquareUnderTheEntity, true).ToArray();
+            Square[] pathToEnemy = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, enemyToAttack.SquareUnderTheEntity).ToArray();
 
             // Reduces the path by one for the enemy and by the range of the spell to save MP
             List<Square> pathToGetCloser = pathToEnemy[..^((spellToUse.SpellDatas.MaxRange - 1) + 1)].ToList();
 
-            // Makes the enemy following the path
-            yield return _enemyMain.FollowThePath(pathToGetCloser);
+            // Wait until the enemy has moved
+            UniTask followingThePath = _enemyMain.FollowThePath(pathToGetCloser);
+            yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
+
 
             // Attacks the enemy
             _enemyMain.Attack(spellToUse, enemyToAttack);
@@ -265,7 +277,7 @@ public class MeleeBrain : Brain
             Entity enemyToMoveTo = enemies.ElementAt(0).Key;
 
             // Calculates the path to go to the enemy
-            Square[] pathToEnemy = AStarManager.Instance.CalculateShortestPathBetween(_enemyMain.SquareUnderTheEntity, enemyToMoveTo.SquareUnderTheEntity, true).ToArray();
+            Square[] pathToEnemy = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, enemyToMoveTo.SquareUnderTheEntity).ToArray();
             
             // Reduces the path by one for the enemy
             pathToEnemy = pathToEnemy[..^1];
@@ -286,8 +298,9 @@ public class MeleeBrain : Brain
 
             if (pathToGetCloser.Count > 0)
             {
-                // Makes the enemy following the path
-                yield return _enemyMain.FollowThePath(pathToGetCloser);
+                // Wait until the enemy has moved
+                UniTask followingThePath = _enemyMain.FollowThePath(pathToGetCloser);
+                yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
             }
         }
     }
