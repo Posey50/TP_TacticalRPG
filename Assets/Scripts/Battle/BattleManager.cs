@@ -1,7 +1,5 @@
 using UnityEngine;
 using System.Collections.Generic;
-using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
 using System;
 
 public class BattleManager : MonoBehaviour
@@ -167,6 +165,8 @@ public class BattleManager : MonoBehaviour
         EntitiesInActionOrder.AddRange(PlayableEntitiesInBattle);
         EntitiesInActionOrder.AddRange(EnemiesInBattle);
         EntitiesInActionOrder = _battleSteps.DeterminesOrder(EntitiesInActionOrder);
+        
+        UpadateUIEntitiesActionOrder?.Invoke(EntitiesInActionOrder);
 
         NextEntityTurn();
     }

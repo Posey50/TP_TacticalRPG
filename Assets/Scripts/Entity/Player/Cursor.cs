@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System;
 using UnityEngine;
 
 public class Cursor : MonoBehaviour
@@ -17,7 +18,7 @@ public class Cursor : MonoBehaviour
     /// Main component of the playable entity.
     /// </summary>
     private PlayerMain _playerMain;
-
+    
     private void Start()
     {
         _playerMain = GetComponent<PlayerMain>();
