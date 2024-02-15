@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using UnityEngine;
 
@@ -44,6 +45,13 @@ public class HighlightGroundManager : MonoBehaviour
     [field: SerializeField]
     public List<Square> CurrentRange { get; private set; }
 
+    /// <summary>
+    /// Event to Update the UI of MP to mmove.
+    /// </summary>
+    public event Action<int> ShowMPUI;
+    public event Action HideMPUI;
+
+
     private void Awake()
     {
         // Singleton
@@ -64,6 +72,7 @@ public class HighlightGroundManager : MonoBehaviour
     /// <param name="path"> Path to show. </param>
     public void ShowPath(List<Square> path)
     {
+        ShowMPUI?.Invoke(path.Count);
         CurrentPath = path;
 
         if (CurrentPath != null)
@@ -97,6 +106,8 @@ public class HighlightGroundManager : MonoBehaviour
     /// </summary>
     public void HideCurrentPath()
     {
+        HideMPUI?.Invoke();
+
         if (CurrentPath != null)
         {
             for (int i = 0; i < CurrentPath.Count; i++)
