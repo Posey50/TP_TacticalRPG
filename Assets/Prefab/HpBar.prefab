@@ -189,7 +189,7 @@ MonoBehaviour:
   _backDmgColor: {r: 0.8189768, g: 0.93207544, b: 0.3921751, a: 1}
   _tweenDuration: 1
   _tweenInterval: 0.05
-  _txtDmgHeal: {fileID: 0}
+  _txtDmgHeal: {fileID: 2410721321731926281}
 --- !u!1 &7082250541848372949
 GameObject:
   m_ObjectHideFlags: 0
