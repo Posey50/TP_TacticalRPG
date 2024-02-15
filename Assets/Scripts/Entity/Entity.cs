@@ -60,6 +60,8 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     public bool IsMoving { get; private set; }
 
+    public Vector3 YOffset { get; private set; }
+
     /// <summary>
     /// Speed at which the entity moves.
     /// </summary>
@@ -93,6 +95,8 @@ public abstract class Entity : MonoBehaviour
         _moveSpeed = EntityDatas.MoveSpeed;
 
         _spriteRenderer = GetComponent<SpriteRenderer>();
+
+        YOffset = new Vector3(0, (SquareUnderTheEntity.GetComponent<Collider>().bounds.size.y / 2f) + (_spriteRenderer.bounds.size.y / 6f), 0);
     }
 
     /// <summary>
@@ -108,6 +112,11 @@ public abstract class Entity : MonoBehaviour
             SquareUnderTheEntity.LeaveSquare();
 
             Vector3[] pathToFollow = AStarManager.Instance.ConvertSquaresIntoPositions(path).ToArray();
+
+            for (int i = 0; i < pathToFollow.Length; i++)
+            {
+                pathToFollow[i] += YOffset;
+            }
 
             await transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear, PathMode.Full3D).SetEase(Ease.Linear).OnWaypointChange((int i) => { if (i > 0) path[i - 1].ResetMaterial(); }).AsyncWaitForCompletion();
 
