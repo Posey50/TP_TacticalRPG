@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: EnemyHealer
   m_EditorClassIdentifier: 
   _name: Fee
-  _class: efsfesf
+  _class: Healer
   _mP: 5
   _aP: 10
   _maxHP: 500

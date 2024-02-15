@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using System.Collections;
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+using System;
 
 public abstract class Entity : MonoBehaviour
 {
@@ -67,11 +65,18 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     protected float _moveSpeed;
 
+    //Events
+    public event Action<int> DamageRecieved;
+    public event Action<int> HealRecieved;
+
 
     // Observer
     public delegate void EntityDelegate();
 
     public event EntityDelegate TurnIsEnd;
+
+    // Visual feedback
+    private SpriteRenderer _spriteRenderer;
 
     /// <summary>
     /// Called to hydrate the entity with their datas.
@@ -86,6 +91,8 @@ public abstract class Entity : MonoBehaviour
         Speed = EntityDatas.Speed;
         Spells = EntityDatas.Spells;
         _moveSpeed = EntityDatas.MoveSpeed;
+
+        _spriteRenderer = GetComponent<SpriteRenderer>();
     }
 
     /// <summary>
@@ -177,6 +184,17 @@ public abstract class Entity : MonoBehaviour
 
         HP -= damages;
 
+        DOTween.Sequence()
+            .Append(
+                _spriteRenderer.DOColor(Color.red, 0.1f)
+            )
+            .AppendInterval(0.05f)
+            .Append(
+                _spriteRenderer.DOColor(Color.white, 0.1f)
+            );
+
+        DamageRecieved?.Invoke(damages);
+
         if (HP <= 0)
         {
             HP = 0;
@@ -193,6 +211,17 @@ public abstract class Entity : MonoBehaviour
         Debug.Log(Name + " heals " + heal + "HP");
         // Prevents the healing over the maximum of HP
         HP = Mathf.Clamp(HP + heal, 0, EntityDatas.MaxHP);
+
+        DOTween.Sequence()
+            .Append(
+                _spriteRenderer.DOColor(Color.green, 0.1f)
+            )
+            .AppendInterval(0.05f)
+            .Append(
+                _spriteRenderer.DOColor(Color.white, 0.1f)
+            );
+
+        HealRecieved?.Invoke(heal);
     }
     
     /// <summary>

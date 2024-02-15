@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9fa2966545db34bbf71216810fb788, type: 3}
   m_Name: Player2
   m_EditorClassIdentifier: 
-  _name: Jesaispas
-  _class: Jesaispas
+  _name: Stephane
+  _class: Player
   _mP: 10
   _aP: 10
   _maxHP: 1000
-  _speed: 40
+  _speed: 20
   _spells:
   - _spellDatas: {fileID: 11400000, guid: 19031e3b1aa59774985018b05b52c81b, type: 2}
   - _spellDatas: {fileID: 11400000, guid: 922da584c9eab5442b4ae7d36383111b, type: 2}

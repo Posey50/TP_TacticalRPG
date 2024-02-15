@@ -13,11 +13,11 @@ MonoBehaviour:
   m_Name: EnemyHealer 1
   m_EditorClassIdentifier: 
   _name: Guerisseuse
-  _class: efsfesf
+  _class: Healer
   _mP: 5
   _aP: 10
   _maxHP: 500
-  _speed: 20
+  _speed: 15
   _spells:
   - _spellDatas: {fileID: 11400000, guid: 21aeda2288057a64ea95004fd7b4591b, type: 2}
   _moveSpeed: 0.3
