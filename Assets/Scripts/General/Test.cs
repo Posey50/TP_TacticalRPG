@@ -23,7 +23,7 @@ public class Test : MonoBehaviour
     {
         yield return new WaitForSeconds(1f);
 
-        List<Square> list = AStarManager.Instance.CalculateShortestPathBetween(departure, arrival, true);
+        List<Square> list = AStarManager.Instance.CalculateShortestPathForAMovement(departure, arrival);
 
         for (int i = 0; i < list.Count; i++)
         {
