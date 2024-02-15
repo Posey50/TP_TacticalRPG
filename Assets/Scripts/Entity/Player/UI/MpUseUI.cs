@@ -3,7 +3,7 @@ using UnityEngine;
 
 public class MpUseUI : MonoBehaviour
 {
-    [SerializeField] private TextMeshProUGUI TextMpUse;
+    [SerializeField] private TextMeshProUGUI _textMpUse;
     public void Start()
     {
         HighlightGroundManager.Instance.ShowMPUI += NotifyShowUI;
@@ -15,8 +15,8 @@ public class MpUseUI : MonoBehaviour
     /// </summary>
     public void NotifyShowUI(int MPDecrease)
     {
-        TextMpUse.gameObject.SetActive(true);
-        TextMpUse.text = "MP : -" + MPDecrease;
+        _textMpUse.gameObject.SetActive(true);
+        _textMpUse.text = "MP : -" + MPDecrease;
     }
 
     /// <summary>
@@ -24,6 +24,6 @@ public class MpUseUI : MonoBehaviour
     /// </summary>
     public void NotifyHideUI()
     {
-        TextMpUse.gameObject.SetActive(false);
+        _textMpUse.gameObject.SetActive(false);
     }
 }
