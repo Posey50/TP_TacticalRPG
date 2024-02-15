@@ -41,7 +41,7 @@ public class Actions : MonoBehaviour
 
             _playerMain.Cursor.UnselectSquareForPath();
 
-            CurrentRange = RangeManager.Instance.CalculateComplexeRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.MinRange, spell.SpellDatas.MaxRange);
+            CurrentRange = RangeManager.Instance.CalculateRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.MinRange, spell.SpellDatas.MaxRange);
 
             HighlightGroundManager.Instance.ShowRange(CurrentRange);
         }

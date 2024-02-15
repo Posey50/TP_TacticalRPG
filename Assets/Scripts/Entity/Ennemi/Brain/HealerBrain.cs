@@ -45,21 +45,21 @@ public class HealerBrain : Brain
             // Try to heal the ally
             yield return StartCoroutine(TryToHeal(allyToGoHelp, bestSpellToUse));
 
-            // If the enemy has enough AP to use the cheapest spell
+            // If the healer has enough AP to use the cheapest spell
             if (_enemyMain.AP > _spells[^1].SpellDatas.PaCost)
             {
-                // Restart a patern
+                // Restarts a patern
                 StartCoroutine(EnemyPattern());
             }
             else
             {
-                // If the enemy has remained MP then he tries to escape as far away from an enemy as possible
+                // If the entity has remained MP then he tries to escape as far away from an enemy as possible
                 if (_enemyMain.MP > 0)
                 {
                     // Waits to simulate reflexion 
                     yield return new WaitForSeconds(3f);
 
-                    // Enemy tries to escape
+                    // healer tries to escape
                     yield return StartCoroutine(TryToEscape());
                 }
 
@@ -69,8 +69,8 @@ public class HealerBrain : Brain
         }
         else if (_enemyMain.MP > 0)
         {
-            // Enemy tries to escape
-            yield return StartCoroutine(TryToEscape());
+            // Healer tries to move closer to the weaker ally
+            yield return StartCoroutine(MoveCloserToTheWeakerAlly());
 
             // Healer ends his turn
             _enemyMain.EndOfTheTurn();
@@ -84,7 +84,7 @@ public class HealerBrain : Brain
 
 
     /// <summary>
-    /// Called to get a dictionary of allied enemies sorted in descending order of their distance of the enemy with a score of priority seted to 0
+    /// Called to get a dictionary of allied enemies sorted in descending order of their distance of the healer with a score of priority seted to 0
     /// </summary>
     /// <returns></returns>
     private Dictionary<Entity, int> AlliesByOrderOfDistance()
@@ -93,17 +93,17 @@ public class HealerBrain : Brain
         Dictionary<Entity, int> allies = new();
         List<Entity> alliesInBattle = new(BattleManager.Instance.EnemiesInBattle);
 
-        // Removes itself of the enemies
+        // Removes itself of the allies
         alliesInBattle.Remove(_enemyMain);
 
         if (alliesInBattle.Count > 0)
         {
-            // For each allied enemy
+            // For each ally
             for (int i = 0; i < alliesInBattle.Count; i++)
             {
                 Entity ally = alliesInBattle[i];
 
-                // Calculate the shortest path between the enemy and his ally
+                // Calculates the shortest path between the healer and his ally
                 List<Square> shortestPathToTheAlly = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, ally.SquareUnderTheEntity);
 
                 // If the ally is reachable with the attack that has the greatest range
@@ -116,8 +116,14 @@ public class HealerBrain : Brain
 
             if (allies.Count > 1)
             {
-                // Sorts allies by descending order of their distance to the enemy by reseting score to 0
-                allies = allies.OrderByDescending(allies => allies.Value).ToDictionary(allies => allies.Key, allies => 0);
+                // Sorts allies by ascending order of their distance to the enemy by reseting score to 0
+                allies = allies.OrderBy(allies => allies.Value).ToDictionary(allies => allies.Key, allies => 0);
+
+                // Attributes a distance coefficient for each ally
+                for (int i = 0; i < allies.Count; i++)
+                {
+                    allies[allies.ElementAt(i).Key] = allies.Count - i;
+                }
             }
             else if (allies.Count == 1)
             {
@@ -130,7 +136,7 @@ public class HealerBrain : Brain
     }
 
     /// <summary>
-    /// Called to get a dictionary of allied enemies sorted in descending order of their score calculated with percentage of HP to be treated and multiplied by a proximity coefficient.
+    /// Called to get a dictionary of allies sorted in ascending order of their score calculated with percentage of HP to be treated and multiplied by a proximity coefficient.
     /// </summary>
     /// <param name="allies"> Allies to sort. </param>
     /// <returns></returns>
@@ -138,17 +144,17 @@ public class HealerBrain : Brain
     {
         if (allies.Count > 0)
         {
-            // For each allied enemy
+            // For each ally
             for (int i = 0; i < allies.Count; i++)
             {
                 Entity ally = allies.ElementAt(i).Key;
 
                 int missingHP = ally.EntityDatas.MaxHP - ally.HP;
 
-                // Checks if there is hp to heal
+                // Checks if there is HP to heal
                 if (missingHP > 0)
                 {
-                    allies[ally] = (int)(missingHP / ally.EntityDatas.MaxHP * 100f) * i;
+                    allies[ally] = (int)(missingHP / ally.EntityDatas.MaxHP * 100f) * allies[ally];
                 }
                 else
                 {
@@ -242,6 +248,49 @@ public class HealerBrain : Brain
     }
 
     /// <summary>
+    /// Called to move to the weaker ally.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator MoveCloserToTheWeakerAlly()
+    {
+        // Creates a dictionary which will stocks allies with their distances
+        Dictionary<Entity, int> allies = AlliesByOrderOfDistance();
+
+        if (allies.Count > 0)
+        {
+            // Gets the ally to go to
+            Entity allyToMoveTo = allies.ElementAt(0).Key;
+
+            // Calculates the path to go to the ally
+            Square[] pathToAlly = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, allyToMoveTo.SquareUnderTheEntity).ToArray();
+
+            // Reduces the path by one for the ally
+            pathToAlly = pathToAlly[..^1];
+
+            // The path to follow
+            List<Square> pathToGetCloser;
+
+            // Checks if the path is too long to reach the end
+            if (pathToAlly.Length >= _enemyMain.MP)
+            {
+                // Reduces the path by the difference between the length of the path and the remaining MP
+                pathToGetCloser = pathToAlly[..^(pathToAlly.Length - _enemyMain.MP)].ToList();
+            }
+            else
+            {
+                pathToGetCloser = pathToAlly.ToList();
+            }
+
+            if (pathToGetCloser.Count > 0)
+            {
+                // Wait until the healer has moved
+                UniTask followingThePath = _enemyMain.FollowThePath(pathToGetCloser);
+                yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
+            }
+        }
+    }
+
+    /// <summary>
     /// Called to try to heal an ally with a spell.
     /// </summary>
     /// <param name="allyToHeal"> Ally to heal. </param>
@@ -250,7 +299,7 @@ public class HealerBrain : Brain
     private IEnumerator TryToHeal(Entity allyToHeal, Spell spellToUse)
     {
         // Gets the range of the spell
-        List<Square> range = RangeManager.Instance.CalculateComplexeRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MinRange, spellToUse.SpellDatas.MaxRange);
+        List<Square> range = RangeManager.Instance.CalculateRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MinRange, spellToUse.SpellDatas.MaxRange);
 
         // Checks if the ally to heal is in the range
         if (range.Contains(allyToHeal.SquareUnderTheEntity))
@@ -267,7 +316,7 @@ public class HealerBrain : Brain
             // Reduces the path by one for the ally and by the range of the spell to save MP
             List<Square> pathToGetCloser = pathToAlly[..^((spellToUse.SpellDatas.MaxRange - 1) + 1)].ToList();
 
-            // Wait until the healer has moved
+            // Waits until the healer has moved
             UniTask followingThePath = _enemyMain.FollowThePath(pathToGetCloser);
             yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
 
@@ -277,12 +326,13 @@ public class HealerBrain : Brain
     }
 
     /// <summary>
-    /// // Called to try to find a position at a certain distance from any enemy entity
+    /// // Called to try to find a position at a certain distance from any enemy entity.
     /// </summary>
     private IEnumerator TryToEscape()
     {
         // All possible positions with remaining MP
-        List<Square> possiblePositions = RangeManager.Instance.CalculateComplexeRange(_enemyMain.SquareUnderTheEntity, 1, _enemyMain.MP);
+        List<Square> possiblePositions = RangeManager.Instance.CalculateRange(_enemyMain.SquareUnderTheEntity, 1, _enemyMain.MP);
+        possiblePositions.Add(_enemyMain.SquareUnderTheEntity);
 
         // All playable entities in battle
         List<Entity> playableEntitiesInBattle = BattleManager.Instance.PlayableEntitiesInBattle;
@@ -301,19 +351,19 @@ public class HealerBrain : Brain
                 Square position = possiblePositions[j];
                 bool isThisPositionSafe = true;
 
-                // If there is no enemy on it
+                // If there is no entity on it
                 if (position.EntityOnThisSquare == null)
                 {
-                    // For each enemy entity
+                    // For each playable entity
                     for (int k = 0; k < playableEntitiesInBattle.Count; k++)
                     {                       
-                        // Calculates distance from the entity
-                        Entity enemyEntity = playableEntitiesInBattle[k];
-                        List<Square> path = AStarManager.Instance.CalculateASimpleDistance(position, enemyEntity.SquareUnderTheEntity);
-                        int distanceFromThisEnemyEntity = path.Count;
+                        // Calculates distance from the playable entity
+                        Entity playableEntity = playableEntitiesInBattle[k];
+                        List<Square> path = AStarManager.Instance.CalculateASimpleDistance(position, playableEntity.SquareUnderTheEntity);
+                        int distanceFromThisPlayableEntity = path.Count;
 
                         // If the distance is lower than the minimum distance then finds another position
-                        if (distanceFromThisEnemyEntity < minDistance)
+                        if (distanceFromThisPlayableEntity < minDistance)
                         {
                             isThisPositionSafe = false;
                             break;
@@ -325,13 +375,13 @@ public class HealerBrain : Brain
                     isThisPositionSafe = false;
                 }
 
-                // If the position is safe then go this position
+                // If the position is safe then go to this position
                 if (isThisPositionSafe)
                 {
                     HasFoundASafePlace = true;
                     List<Square> path = AStarManager.Instance.CalculateShortestPathForAMovement(_enemyMain.SquareUnderTheEntity, position);
 
-                    // Wait until the healer has moved
+                    // Waits until the healer has moved
                     UniTask followingThePath = _enemyMain.FollowThePath(path);
                     yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
                     break;

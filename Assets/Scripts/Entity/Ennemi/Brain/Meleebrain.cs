@@ -32,135 +32,141 @@ public class MeleeBrain : Brain
         // Gets a copy of the list of spells of the enemy in descending order of their range
         List<Spell> spells = new(_spells);
 
-        // Creates a dictionary which will stocks reachable enemies with a score of priority calculated with percentage of remaining HP
+        // Creates a dictionary which will stocks reachable playable entities with a score of priority calculated with percentage of missing HP
         // and multiplied by a proximity coefficient
-        Dictionary<Entity, int> enemies = EnemiesByOrderOfPriority(EnemiesByOrderOfDistance(true));
+        Dictionary<Entity, int> playableEntities = EnemiesByOrderOfPriority(PlayableEntitiesByOrderOfDistance(true));
 
-        if (enemies.Count > 0)
+        if (playableEntities.Count > 0)
         {
-            // Gets the enemy to attack
-            Entity enemyToAttack = enemies.ElementAt(0).Key;
+            // Gets the playable entity to attack
+            Entity playableEntityToAttack = playableEntities.ElementAt(0).Key;
 
-            // Gets the best spell to use on the ally to go help
-            Spell bestSpellToUse = BestSpellToUse(spells, enemyToAttack);
+            // Gets the best spell to use on the playable entity to attack
+            Spell bestSpellToUse = BestSpellToUse(spells, playableEntityToAttack);
 
-            // Try to attack the enemy
-            yield return StartCoroutine(TryToAttack(enemyToAttack, bestSpellToUse));
+            // Try to attack the playable entity
+            yield return StartCoroutine(TryToAttack(playableEntityToAttack, bestSpellToUse));
 
-            // If the entity has enough AP to use the cheapest spell
+            // If the melee has enough AP to use the cheapest spell
             if (_enemyMain.AP > _spells[^1].SpellDatas.PaCost)
             {
-                // Restart a patern
+                // Restarts a patern
                 StartCoroutine(EnemyPattern());
             }
             else
             {
-                // If the entity has remained MP then he tries to move to move closer to the weaker player
+                // If the melee has remained MP then he tries to move closer to the weaker playable entity
                 if (_enemyMain.MP > 0)
                 {
                     // Waits to simulate reflexion 
                     yield return new WaitForSeconds(3f);
 
-                    yield return StartCoroutine(MoveCloserToTheWeaker());
+                    yield return StartCoroutine(MoveCloserToTheWeakerPlayableEntity());
                 }
 
-                // Makes the turn end
+                // Melee end his turn
                 _enemyMain.EndOfTheTurn();
             }
         }
         else if (_enemyMain.MP > 0)
         {
-            // Enemy tries to move closer to the weaker player
-            yield return StartCoroutine(MoveCloserToTheWeaker());
+            // Melee tries to move closer to the weaker playable entity
+            yield return StartCoroutine(MoveCloserToTheWeakerPlayableEntity());
 
-            // Enemy ends his turn
+            // Melee ends his turn
             _enemyMain.EndOfTheTurn();
         }
         else
         {
-            // Enemy tries to move closer to the weaker player
+            // Melee tries to move closer to the weaker playable entity
             _enemyMain.EndOfTheTurn();
         }
     }
 
     /// <summary>
-    /// Called to get a dictionary of enemies sorted in descending order of their distance of the enemy with a score of priority seted to 0
+    /// Called to get a dictionary of playable entities sorted in ascending order of their distance of the melee with a score of priority
     /// </summary>
     /// <returns></returns>
-    private Dictionary<Entity, int> EnemiesByOrderOfDistance(bool itsToAttack)
+    private Dictionary<Entity, int> PlayableEntitiesByOrderOfDistance(bool itsToAttack)
     {
-        // Creates a dictionary which will stocks enemies with a score of priority
-        Dictionary<Entity, int> enemies = new();
-        List<Entity> enemiesInBattle = new(BattleManager.Instance.PlayableEntitiesInBattle);
+        // Creates a dictionary which will stocks playable entities with a score of priority
+        Dictionary<Entity, int> playableEntities = new();
+        List<Entity> playableEntitiesInBattle = new(BattleManager.Instance.PlayableEntitiesInBattle);
 
-        if (enemiesInBattle.Count > 0)
+        if (playableEntitiesInBattle.Count > 0)
         {
-            // For each enemy
-            for (int i = 0; i < enemiesInBattle.Count; i++)
+            // For each playable entity
+            for (int i = 0; i < playableEntitiesInBattle.Count; i++)
             {
-                Entity enemy = enemiesInBattle[i];
+                Entity playableEntity = playableEntitiesInBattle[i];
 
-                // Calculates the shortest path between the entity and the enemy
-                List<Square> shortestPathToTheEnemy = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, enemy.SquareUnderTheEntity);
+                // Calculates the shortest path between the melee and the playable entity
+                List<Square> shortestPathToThePlayableEntity = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, playableEntity.SquareUnderTheEntity);
 
-                // If the enemy is reachable with the attack that has the greatest range or if it's not for an attack
-                if (!itsToAttack || shortestPathToTheEnemy.Count <= _enemyMain.MP + _spells[0].SpellDatas.MaxRange)
+                // If the playable entity is reachable with the attack that has the greatest range or if it's not for an attack
+                if (!itsToAttack || shortestPathToThePlayableEntity.Count <= _enemyMain.MP + _spells[0].SpellDatas.MaxRange)
                 {
-                    // Add the enemy to the list of enemies
-                    enemies.Add(enemy, shortestPathToTheEnemy.Count);
+                    // Add the playable entity to the list of playable entities
+                    playableEntities.Add(playableEntity, shortestPathToThePlayableEntity.Count);
                 }
             }
 
-            if (enemies.Count > 1)
+            if (playableEntities.Count > 1)
             {
-                // Sorts enemies by descending order of their distance to the entity by reseting score to 0
-                enemies = enemies.OrderByDescending(enemies => enemies.Value).ToDictionary(enemies => enemies.Key, enemies => 0);
+                // Sorts playable entities by ascending order of their distance to the melee
+                playableEntities = playableEntities.OrderBy(enemies => enemies.Value).ToDictionary(enemies => enemies.Key, enemies => 0);
+
+                // Attributes a distance coefficient for each playable entity
+                for (int i = 0; i < playableEntities.Count; i++)
+                {
+                    playableEntities[playableEntities.ElementAt(i).Key] = playableEntities.Count - i;
+                }
             }
-            else if (enemies.Count == 1)
+            else if (playableEntities.Count == 1)
             {
                 // Resets score to 0
-                enemies[enemies.ElementAt(0).Key] = 0;
+                playableEntities[playableEntities.ElementAt(0).Key] = 0;
             }
         }
 
-        return enemies;
+        return playableEntities;
     }
 
     /// <summary>
-    /// Called to get a dictionary of enemies sorted in ascending order of their score calculated with percentage of remaining HP and multiplied by a proximity coefficient.
+    /// Called to get a dictionary of playable entities sorted in ascending order of their score calculated with percentage of missing HP and multiplied by a proximity coefficient.
     /// </summary>
-    /// <param name="enemies"> Allies to sort. </param>
+    /// <param name="playableEntities"> Playable entities to sort. </param>
     /// <returns></returns>
-    private Dictionary<Entity, int> EnemiesByOrderOfPriority(Dictionary<Entity, int> enemies)
+    private Dictionary<Entity, int> EnemiesByOrderOfPriority(Dictionary<Entity, int> playableEntities)
     {
-        if (enemies.Count > 0)
+        if (playableEntities.Count > 0)
         {
-            // For each enemy
-            for (int i = 0; i < enemies.Count; i++)
+            // For each playable entity
+            for (int i = 0; i < playableEntities.Count; i++)
             {
-                Entity enemy = enemies.ElementAt(i).Key;
+                Entity playableEntity = playableEntities.ElementAt(i).Key;
 
-                // Calculates the percentage of remaining HP
-                enemies[enemy] = (int)(enemy.HP / enemy.EntityDatas.MaxHP * 100f) * i;
+                // Calculates the percentage of missing HP and multiplies with the distance coefficient
+                playableEntities[playableEntity] = (int)(playableEntity.EntityDatas.MaxHP - playableEntity.HP / playableEntity.EntityDatas.MaxHP * 100f) * playableEntities[playableEntity];
             }
 
-            if (enemies.Count > 1)
+            if (playableEntities.Count > 1)
             {
-                // Sorts enemies by ascending order of their score
-                enemies = enemies.OrderBy(allies => allies.Value).ToDictionary(allies => allies.Key, allies => allies.Value);
+                // Sorts playable entities by descending order of their score
+                playableEntities = playableEntities.OrderByDescending(allies => allies.Value).ToDictionary(allies => allies.Key, allies => allies.Value);
             }
         }
 
-        return enemies;
+        return playableEntities;
     }
 
     /// <summary>
     /// Called to get the best spell to use by anticipating a move in advance.
     /// </summary>
     /// <param name="spells"> List of spells. </param>
-    /// <param name="enemyToAttack"> The enemy to attack. </param>
+    /// <param name="playableEntityToAttack"> The playable entity to attack. </param>
     /// <returns></returns>
-    private Spell BestSpellToUse(List<Spell> spells, Entity enemyToAttack)
+    private Spell BestSpellToUse(List<Spell> spells, Entity playableEntityToAttack)
     {
         if (spells.Count > 1)
         {
@@ -187,7 +193,7 @@ public class MeleeBrain : Brain
                         if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
-                            int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.PaCost) / (enemyToAttack.EntityDatas.MaxHP - enemyToAttack.HP)) * 100f);
+                            int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.PaCost) / (playableEntityToAttack.EntityDatas.MaxHP - playableEntityToAttack.HP)) * 100f);
 
                             // Adds the combination
                             spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfDamages);
@@ -196,7 +202,7 @@ public class MeleeBrain : Brain
                         else if (currentStartingSpell.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
-                            int percentageOfDamages = (int)((currentStartingSpell.SpellDatas.Damages / (enemyToAttack.EntityDatas.MaxHP - enemyToAttack.HP)) * 100f);
+                            int percentageOfDamages = (int)((currentStartingSpell.SpellDatas.Damages / (playableEntityToAttack.EntityDatas.MaxHP - playableEntityToAttack.HP)) * 100f);
 
                             // Adds the spell as a combination
                             spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell }, percentageOfDamages);
@@ -206,7 +212,7 @@ public class MeleeBrain : Brain
                     else if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                     {
                         // Calculates the percentage of damages that it represents
-                        int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (enemyToAttack.EntityDatas.MaxHP - enemyToAttack.HP)) * 100f);
+                        int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (playableEntityToAttack.EntityDatas.MaxHP - playableEntityToAttack.HP)) * 100f);
 
                         // Adds the combination
                         spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfDamages);
@@ -230,74 +236,78 @@ public class MeleeBrain : Brain
     }
 
     /// <summary>
-    /// Called to try to attack an enemy with a spell.
+    /// Called to try to attack a playable entity with a spell.
     /// </summary>
-    /// <param name="enemyToAttack"> Ally to heal. </param>
+    /// <param name="playableEntityToAttack"> Playable entity to attack. </param>
     /// <param name="spellToUse"> Spell to use. </param>
     /// <returns></returns>
-    private IEnumerator TryToAttack(Entity enemyToAttack, Spell spellToUse)
+    private IEnumerator TryToAttack(Entity playableEntityToAttack, Spell spellToUse)
     {
         // Gets the range of the spell
-        List<Square> range = RangeManager.Instance.CalculateComplexeRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MinRange, spellToUse.SpellDatas.MaxRange);
+        List<Square> range = RangeManager.Instance.CalculateRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MinRange, spellToUse.SpellDatas.MaxRange);
 
-        // Checks if the enemy to attack is in the range
-        if (range.Contains(enemyToAttack.SquareUnderTheEntity))
+        // Checks if the playable entity to attack is in the range
+        if (range.Contains(playableEntityToAttack.SquareUnderTheEntity))
         {
-            // Attacks the enemy
-            _enemyMain.Attack(spellToUse, enemyToAttack);
+            // Attacks the playable entity
+            _enemyMain.Attack(spellToUse, playableEntityToAttack);
         }
         // If he is not
         else
         {
-            // Calculates the path to go to the enemy
-            Square[] pathToEnemy = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, enemyToAttack.SquareUnderTheEntity).ToArray();
+            // Calculates the path to go to the playable entity
+            Square[] pathToPlayableEntity = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, playableEntityToAttack.SquareUnderTheEntity).ToArray();
 
-            // Reduces the path by one for the enemy and by the range of the spell to save MP
-            List<Square> pathToGetCloser = pathToEnemy[..^((spellToUse.SpellDatas.MaxRange - 1) + 1)].ToList();
+            // Reduces the path by one for the playable entity and by the range of the spell to save MP
+            List<Square> pathToGetCloser = pathToPlayableEntity[..^((spellToUse.SpellDatas.MaxRange - 1) + 1)].ToList();
 
-            // Wait until the enemy has moved
+            // Wait until the melee has moved
             UniTask followingThePath = _enemyMain.FollowThePath(pathToGetCloser);
             yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
 
-            // Attacks the enemy
-            _enemyMain.Attack(spellToUse, enemyToAttack);
+            // Attacks the playable entity
+            _enemyMain.Attack(spellToUse, playableEntityToAttack);
         }
     }
 
-    private IEnumerator MoveCloserToTheWeaker()
+    /// <summary>
+    /// Called to move to the weaker playable entity.
+    /// </summary>
+    /// <returns></returns>
+    private IEnumerator MoveCloserToTheWeakerPlayableEntity()
     {
-        // Creates a dictionary which will stocks reachable enemies with a score of priority calculated with percentage of remaining HP
+        // Creates a dictionary which will stocks reachable playable entities with a score of priority calculated with percentage of remaining HP
         // and multiplied by a proximity coefficient
-        Dictionary<Entity, int> enemies = EnemiesByOrderOfPriority(EnemiesByOrderOfDistance(false));
+        Dictionary<Entity, int> playableEntities = EnemiesByOrderOfPriority(PlayableEntitiesByOrderOfDistance(false));
 
-        if (enemies.Count > 0)
+        if (playableEntities.Count > 0)
         {
-            // Gets the enemy to attack
-            Entity enemyToMoveTo = enemies.ElementAt(0).Key;
+            // Gets the playable entity to attack
+            Entity playableEntityToMoveTo = playableEntities.ElementAt(0).Key;
 
-            // Calculates the path to go to the enemy
-            Square[] pathToEnemy = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, enemyToMoveTo.SquareUnderTheEntity).ToArray();
-            
-            // Reduces the path by one for the enemy
-            pathToEnemy = pathToEnemy[..^1];
+            // Calculates the path to go to the playable entity
+            Square[] pathToPlayableEntity = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, playableEntityToMoveTo.SquareUnderTheEntity).ToArray();
+
+            // Reduces the path by one for the playable entity
+            pathToPlayableEntity = pathToPlayableEntity[..^1];
 
             // The path to follow
             List<Square> pathToGetCloser;
 
             // Checks if the path is too long to reach the end
-            if (pathToEnemy.Length >= _enemyMain.MP)
+            if (pathToPlayableEntity.Length >= _enemyMain.MP)
             {
                 // Reduces the path by the difference between the length of the path and the remaining MP
-                pathToGetCloser = pathToEnemy[..^(pathToEnemy.Length - _enemyMain.MP)].ToList();
+                pathToGetCloser = pathToPlayableEntity[..^(pathToPlayableEntity.Length - _enemyMain.MP)].ToList();
             }
             else
             {
-                pathToGetCloser = pathToEnemy.ToList();
+                pathToGetCloser = pathToPlayableEntity.ToList();
             }
 
             if (pathToGetCloser.Count > 0)
             {
-                // Wait until the enemy has moved
+                // Wait until the melee has moved
                 UniTask followingThePath = _enemyMain.FollowThePath(pathToGetCloser);
                 yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
             }

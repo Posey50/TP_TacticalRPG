@@ -36,7 +36,29 @@ public class Cursor : MonoBehaviour
 
         if (!_playerMain.IsMoving)
         {
-            if (_playerMain.Actions.SelectedSpell == null)
+            if (_playerMain.Actions.SelectedSpell != null)
+            {
+                if (_playerMain.Actions.SelectedSpell.SpellDatas != null)
+                {
+                    if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+                    {
+                        // Hides the previous square selected
+                        UnselectSquareForAttack();
+
+                        // Gets the new one
+                        SelectedSquare = currentSquarePointed;
+
+                        // Shows the new one
+                        HighlightGroundManager.Instance.HighlightSelectedSquareForAttack(SelectedSquare);
+                    }
+                    else if (currentSquarePointed == null)
+                    {
+                        // Hides the previous square selected
+                        UnselectSquareForAttack();
+                    }
+                }
+            }
+            else
             {
                 if (currentSquarePointed != null && currentSquarePointed != SelectedSquare && currentSquarePointed.EntityOnThisSquare == null)
                 {
@@ -55,25 +77,6 @@ public class Cursor : MonoBehaviour
                 {
                     // Hides the path
                     UnselectSquareForPath();
-                }
-            }
-            else
-            {
-                if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
-                {
-                    // Hides the previous square selected
-                    UnselectSquareForAttack();
-
-                    // Gets the new one
-                    SelectedSquare = currentSquarePointed;
-
-                    // Shows the new one
-                    HighlightGroundManager.Instance.HighlightSelectedSquareForAttack(SelectedSquare);
-                }
-                else if (currentSquarePointed == null)
-                {
-                    // Hides the previous square selected
-                    UnselectSquareForAttack();
                 }
             }
         }
