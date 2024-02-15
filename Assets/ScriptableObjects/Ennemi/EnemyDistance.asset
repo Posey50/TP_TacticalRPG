@@ -12,12 +12,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9fa2966545db34bbf71216810fb788, type: 3}
   m_Name: EnemyDistance
   m_EditorClassIdentifier: 
-  _name: arc
-  _class: efsfesf
+  _name: Archer
+  _class: Distance
   _mP: 5
   _aP: 10
   _maxHP: 500
-  _speed: 10
+  _speed: 30
   _spells:
   - _spellDatas: {fileID: 11400000, guid: 922da584c9eab5442b4ae7d36383111b, type: 2}
   _moveSpeed: 0.3

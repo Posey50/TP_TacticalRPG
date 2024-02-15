@@ -12,8 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9fa2966545db34bbf71216810fb788, type: 3}
   m_Name: EnemyMelee
   m_EditorClassIdentifier: 
-  _name: orque
-  _class: efsfesf
+  _name: Orque
+  _class: Melee
   _mP: 7
   _aP: 10
   _maxHP: 1000
