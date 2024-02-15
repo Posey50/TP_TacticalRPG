@@ -238,7 +238,7 @@ public class MeleeBrain : Brain
     private IEnumerator TryToAttack(Entity enemyToAttack, Spell spellToUse)
     {
         // Gets the range of the spell
-        List<Square> range = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MaxRange);
+        List<Square> range = RangeManager.Instance.CalculateComplexeRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MinRange, spellToUse.SpellDatas.MaxRange);
 
         // Checks if the enemy to attack is in the range
         if (range.Contains(enemyToAttack.SquareUnderTheEntity))
@@ -258,7 +258,6 @@ public class MeleeBrain : Brain
             // Wait until the enemy has moved
             UniTask followingThePath = _enemyMain.FollowThePath(pathToGetCloser);
             yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
-
 
             // Attacks the enemy
             _enemyMain.Attack(spellToUse, enemyToAttack);

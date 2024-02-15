@@ -250,7 +250,7 @@ public class HealerBrain : Brain
     private IEnumerator TryToHeal(Entity allyToHeal, Spell spellToUse)
     {
         // Gets the range of the spell
-        List<Square> range = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MaxRange);
+        List<Square> range = RangeManager.Instance.CalculateComplexeRange(_enemyMain.SquareUnderTheEntity, spellToUse.SpellDatas.MinRange, spellToUse.SpellDatas.MaxRange);
 
         // Checks if the ally to heal is in the range
         if (range.Contains(allyToHeal.SquareUnderTheEntity))
@@ -282,7 +282,7 @@ public class HealerBrain : Brain
     private IEnumerator TryToEscape()
     {
         // All possible positions with remaining MP
-        List<Square> possiblePositions = RangeManager.Instance.CalculateSimpleRange(_enemyMain.SquareUnderTheEntity, _enemyMain.MP);
+        List<Square> possiblePositions = RangeManager.Instance.CalculateComplexeRange(_enemyMain.SquareUnderTheEntity, 1, _enemyMain.MP);
 
         // All playable entities in battle
         List<Entity> playableEntitiesInBattle = BattleManager.Instance.PlayableEntitiesInBattle;

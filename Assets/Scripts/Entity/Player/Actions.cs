@@ -7,12 +7,12 @@ public class Actions : MonoBehaviour
     /// Spell currently selected.
     /// </summary>
     [field: SerializeField]
-    public Spell SelectedSpell { get; set; } = new ();
+    public Spell SelectedSpell { get; set; } = new();
 
     /// <summary>
     /// Current range where the player can attack.
     /// </summary>
-    public List<Square> CurrentRange {  get; set; }
+    public List<Square> CurrentRange { get; set; }
 
     /// <summary>
     /// Main component of the playable entity.
@@ -41,14 +41,7 @@ public class Actions : MonoBehaviour
 
             _playerMain.Cursor.UnselectSquareForPath();
 
-            if (spell.SpellDatas.Type == Type.melee || spell.SpellDatas.Type == Type.heal)
-            {
-                CurrentRange = RangeManager.Instance.CalculateSimpleRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.MaxRange);
-            }
-            else if (spell.SpellDatas.Type == Type.distance)
-            {
-                CurrentRange = RangeManager.Instance.CalculateComplexeRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.MinRange, spell.SpellDatas.MaxRange);
-            }
+            CurrentRange = RangeManager.Instance.CalculateComplexeRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.MinRange, spell.SpellDatas.MaxRange);
 
             HighlightGroundManager.Instance.ShowRange(CurrentRange);
         }
