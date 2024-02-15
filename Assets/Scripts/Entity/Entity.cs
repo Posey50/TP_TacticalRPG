@@ -193,13 +193,13 @@ public abstract class Entity : MonoBehaviour
                 _spriteRenderer.DOColor(Color.white, 0.1f)
             );
 
-        DamageRecieved?.Invoke(damages);
-
         if (HP <= 0)
         {
             HP = 0;
             BattleManager.Instance.EntityDeath(this);
         }
+
+        DamageRecieved?.Invoke(damages);
     }
 
     /// <summary>
