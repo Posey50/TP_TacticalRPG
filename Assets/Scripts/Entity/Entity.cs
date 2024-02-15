@@ -1,10 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using DG.Tweening;
-using System.Collections;
 using Cysharp.Threading.Tasks;
-using Unity.VisualScripting;
-using UnityEditor.Experimental.GraphView;
+using System;
 
 public abstract class Entity : MonoBehaviour
 {
@@ -67,11 +65,17 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     protected float _moveSpeed;
 
+    //Events
+    public event Action<int> HealthChange;
+
 
     // Observer
     public delegate void EntityDelegate();
 
     public event EntityDelegate TurnIsEnd;
+
+    // Visual feedback
+    //private SpriteRenderer _spriteRenderer;
 
     /// <summary>
     /// Called to hydrate the entity with their datas.
@@ -165,6 +169,8 @@ public abstract class Entity : MonoBehaviour
         {
             TakeDamage(spellReceived.SpellDatas.Damages);
         }
+
+        HealthChange?.Invoke(HP);
     }
 
     /// <summary>
