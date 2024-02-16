@@ -22746,7 +22746,7 @@ MonoBehaviour:
   - {fileID: 1726411813}
   - {fileID: 1322613158}
   - {fileID: 1022805350}
-  <CurrentActiveEntity>k__BackingField: {fileID: 0}
+  _timer: {fileID: 0}
 --- !u!1 &1115299294
 GameObject:
   m_ObjectHideFlags: 0
@@ -41664,9 +41664,9 @@ Transform:
 SceneRoots:
   m_ObjectHideFlags: 0
   m_Roots:
+  - {fileID: 1914196098}
   - {fileID: 1935256346}
   - {fileID: 1626827769}
   - {fileID: 765229098}
-  - {fileID: 1914196098}
   - {fileID: 1977145360}
   - {fileID: 1126831690}
