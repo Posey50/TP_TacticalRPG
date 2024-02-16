@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Player1
   m_EditorClassIdentifier: 
   _name: John
-  _class: Warrior
+  _class: Player
   _mP: 10
   _aP: 10
   _maxHP: 850
