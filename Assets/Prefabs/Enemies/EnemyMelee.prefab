@@ -12,8 +12,9 @@ GameObject:
   - component: {fileID: 5944373621439750522}
   - component: {fileID: 4862985753047101543}
   - component: {fileID: 1761911284425750523}
-  - component: {fileID: 5509349269253642585}
-  - component: {fileID: -2644122164115754176}
+  - component: {fileID: 2942374359776988916}
+  - component: {fileID: -6099164733807746402}
+  - component: {fileID: 4258591018076756214}
   m_Layer: 2
   m_Name: EnemyMelee
   m_TagString: Untagged
@@ -31,7 +32,7 @@ Transform:
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: -0.38268343, z: 0, w: 0.92387956}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 4, y: 4, z: 4}
+  m_LocalScale: {x: 2, y: 2, z: 2}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -77,7 +78,7 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: -874698799, guid: 2987a822363b9a440aace6d804f06c93, type: 3}
+  m_Sprite: {fileID: 21300000, guid: 49a3f1bc9dfb1da4b85d3ba77589b74c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -104,7 +105,7 @@ MonoBehaviour:
   <AP>k__BackingField: 0
   <HP>k__BackingField: 0
   <SquareUnderTheEntity>k__BackingField: {fileID: 0}
-  EntityDatas: {fileID: 11400000, guid: f0a0a15c0b704e24db77b800c50b4604, type: 2}
+  EntityDatas: {fileID: 11400000, guid: 5797880aabdad4b41a2c75aafc081094, type: 2}
 --- !u!114 &1761911284425750523
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -117,7 +118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7a68f0d7d60f2c043967c1bf8acf2d7a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &5509349269253642585
+--- !u!114 &2942374359776988916
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -126,10 +127,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 3493758675677462632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 533defbce6c477c4bb532ce63d4f7c1b, type: 3}
+  m_Script: {fileID: 11500000, guid: 38a6c5ffa80ec6d40853f073e92b29a7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &-2644122164115754176
+--- !u!114 &-6099164733807746402
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -138,6 +139,27 @@ MonoBehaviour:
   m_GameObject: {fileID: 3493758675677462632}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d53b534e077e40945aabc0667efbf29e, type: 3}
+  m_Script: {fileID: 11500000, guid: 84063bb275da07349ab972dccb4497c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!95 &4258591018076756214
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3493758675677462632}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: afd16c2f8cca6034189373ed8ac3ddbd, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0
+  m_WriteDefaultValuesOnDisable: 0
