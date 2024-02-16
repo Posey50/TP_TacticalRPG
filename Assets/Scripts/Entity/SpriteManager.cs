@@ -93,17 +93,43 @@ public class SpriteManager : MonoBehaviour
     {
         Vector3 entityPos = transform.position;
 
-        if ((position.x <= entityPos.x && position.z <= entityPos.z) || (position.z <= entityPos.z && position.x >= entityPos.x))
+        position -= entityPos;
+
+        if (0 <= position.z)
         {
-            _spriteRenderer.flipX = true;
-        }
-        else if ((position.x <= entityPos.x && position.z >= entityPos.z) || (position.z >= entityPos.z && position.x >= entityPos.x))
-        {
-            _spriteRenderer.flipX = false;
+            if (0 < position.x)
+            {
+                _spriteRenderer.flipX = false;
+            }
+            else
+            {
+                if (Mathf.Abs(position.x) <= Mathf.Abs(position.z))
+                {
+                    _spriteRenderer.flipX = false;
+                }
+                else
+                {
+                    _spriteRenderer.flipX = true;
+                }
+            }
         }
         else
         {
-            _spriteRenderer.flipX = false;
+            if (0 >= position.x)
+            {
+                _spriteRenderer.flipX = true;
+            }
+            else
+            {
+                if (Mathf.Abs(position.z) > Mathf.Abs(position.x))
+                {
+                    _spriteRenderer.flipX = true;
+                }
+                else
+                {
+                    _spriteRenderer.flipX = false;
+                }
+            }
         }
     }
 }
