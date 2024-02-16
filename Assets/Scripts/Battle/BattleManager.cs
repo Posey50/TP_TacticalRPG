@@ -171,6 +171,9 @@ public class BattleManager : MonoBehaviour
 
         // Desactives the entity
         deadEntity.gameObject.SetActive(false);
+
+        //Check if the game has ended
+        CheckEndGame();
     }
 
     /// <summary>
@@ -187,5 +190,21 @@ public class BattleManager : MonoBehaviour
         UpadateUIEntitiesActionOrder?.Invoke(EntitiesInActionOrder);
 
         NextEntityTurn();
+    }
+
+    /// <summary>
+    /// Called to check if the game has ended/
+    /// </summary>
+    private void CheckEndGame()
+    {
+        if (EnemiesInBattle.Count == 0)
+        {
+            GameManager.Instance.GameOver(true);
+        }
+
+        if (PlayableEntitiesInBattle.Count == 0)
+        {
+            GameManager.Instance.GameOver(false);
+        }
     }
 }

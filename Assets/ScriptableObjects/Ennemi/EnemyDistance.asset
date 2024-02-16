@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9fa2966545db34bbf71216810fb788, type: 3}
   m_Name: EnemyDistance
   m_EditorClassIdentifier: 
-  _name: Archer
+  _name: Dragon
   _class: Distance
   _mP: 5
   _aP: 10

@@ -6,7 +6,7 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/TittleScene.unity
+    path: Assets/Scenes/TitleScene.unity
     guid: 1f144c31084edea468a243604535870d
   - enabled: 1
     path: Assets/Scenes/MenuScene.unity
@@ -15,6 +15,9 @@ EditorBuildSettings:
     path: Assets/Scenes/SceneMap.unity
     guid: 1750683984edbf043ab8d7e53fb1bca6
   - enabled: 1
-    path: Assets/Scenes/Leo.unity
-    guid: 41e2b67d155357d4dbd6976f71b0e0a3
+    path: Assets/Scenes/VictoryScene.unity
+    guid: 81fdb0be967e3a44e95d4c8c73a4f18f
+  - enabled: 1
+    path: Assets/Scenes/DefeatScene.unity
+    guid: 39a245b2322771d4c90d1cb7ba0a1f21
   m_configObjects: {}
