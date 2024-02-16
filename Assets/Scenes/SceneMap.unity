@@ -209,12 +209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &14190067
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -333,12 +328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &14952065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -594,12 +584,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &48883059
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -718,12 +703,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &60586094
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -842,12 +822,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &78924579
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -966,12 +941,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &83250919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1169,12 +1139,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &87348960
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1284,6 +1249,8 @@ RectTransform:
   - {fileID: 1820428511}
   - {fileID: 289186486}
   - {fileID: 938644081}
+  - {fileID: 637876465}
+  - {fileID: 1687681232}
   m_Father: {fileID: 1763776340}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
@@ -1401,12 +1368,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &97297111
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1596,12 +1558,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &107268147
 GameObject:
   m_ObjectHideFlags: 0
@@ -1696,12 +1653,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &119126003
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1930,12 +1882,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &149642194
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2054,12 +2001,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &156528710
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2270,12 +2212,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &164085330
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2394,12 +2331,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &165598448
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2518,12 +2450,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &168044403
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2689,12 +2616,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &171842821
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2813,12 +2735,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &190283524
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -2937,12 +2854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &196650543
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3061,12 +2973,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &199169957
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3185,12 +3092,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &204133996
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3309,12 +3211,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &209580745
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3405,7 +3302,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &212383131
 RectTransform:
   m_ObjectHideFlags: 0
@@ -3581,12 +3478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &215207912
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -3880,12 +3772,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &225289978
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4004,12 +3891,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &226743413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4128,12 +4010,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &234991295
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4252,12 +4129,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &235083329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4376,12 +4248,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &242046092
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4500,12 +4367,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &252768191
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4624,12 +4486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &264844401
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -4811,12 +4668,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &272893984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5104,7 +4956,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &282257181
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5252,7 +5104,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &286379442
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5446,7 +5298,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &289186486
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5608,12 +5460,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &292159291
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5732,12 +5579,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &296404076
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -5919,12 +5761,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &300571096
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6043,12 +5880,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &304250603
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6234,12 +6066,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &310128742
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6358,12 +6185,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &313067525
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6482,12 +6304,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &315885444
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6669,12 +6486,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &343523288
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6872,12 +6684,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &361252304
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -6996,12 +6803,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &365119023
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7317,12 +7119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &403575033
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7441,12 +7238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &406735984
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7565,12 +7357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &410587531
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7689,12 +7476,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &420814031
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7813,12 +7595,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &422372222
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -7937,12 +7714,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &433922996
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8061,12 +7833,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &438185277
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8232,12 +7999,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &439103110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8356,12 +8118,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &442225979
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8480,12 +8237,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &450394541
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8604,12 +8356,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &459603146
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8728,12 +8475,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &465947922
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -8915,12 +8657,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &470543741
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9126,12 +8863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &501046438
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9250,12 +8982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &501898319
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9583,12 +9310,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &535275413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9786,12 +9508,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &547804581
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -9910,12 +9627,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &554684702
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10105,12 +9817,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &568945546
 GameObject:
   m_ObjectHideFlags: 0
@@ -10158,12 +9865,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &568945549
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10282,12 +9984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &579542316
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10477,12 +10174,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &582826426
 GameObject:
   m_ObjectHideFlags: 0
@@ -10530,12 +10222,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &582826429
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10654,12 +10341,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &590304366
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10819,12 +10501,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &594591396
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -10943,12 +10620,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &601193940
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11067,12 +10739,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &605307808
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11191,12 +10858,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &605798203
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11359,12 +11021,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &617099402
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11483,12 +11140,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &621077555
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11607,12 +11259,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &623190258
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11802,12 +11449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &637618221
 GameObject:
   m_ObjectHideFlags: 0
@@ -11855,12 +11497,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &637618224
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -11932,6 +11569,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 637618221}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &637876464
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 637876465}
+  - component: {fileID: 637876467}
+  - component: {fileID: 637876466}
+  m_Layer: 5
+  m_Name: Victory
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!224 &637876465
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637876464}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 87524050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &637876466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637876464}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 0.392}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &637876467
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 637876464}
+  m_CullTransparentMesh: 1
 --- !u!1 &644377395
 GameObject:
   m_ObjectHideFlags: 0
@@ -12224,12 +11936,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &652904976
 GameObject:
   m_ObjectHideFlags: 0
@@ -12277,12 +11984,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &652904979
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12480,12 +12182,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &657018522
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12675,12 +12372,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &663079062
 GameObject:
   m_ObjectHideFlags: 0
@@ -12728,12 +12420,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &663079065
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -12915,12 +12602,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &670396020
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13039,12 +12721,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &679313635
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13297,12 +12974,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &685837676
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13500,12 +13172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &690580826
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13624,12 +13291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &693737329
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13748,12 +13410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &703346412
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13872,12 +13529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &704255061
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -13996,12 +13648,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &716993365
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14167,12 +13814,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &738922541
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14291,12 +13933,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &747044303
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14452,12 +14089,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &754421918
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14610,12 +14242,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &761946125
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14734,12 +14361,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &761957087
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14858,12 +14480,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &782071299
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -14982,12 +14599,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &785024959
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15297,12 +14909,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &803390415
 GameObject:
   m_ObjectHideFlags: 0
@@ -15350,12 +14957,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &803390418
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15547,12 +15149,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &819196416
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15671,12 +15268,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &819506291
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15831,12 +15423,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &844799568
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -15955,12 +15542,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &847294131
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16079,12 +15661,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &854964469
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16203,12 +15780,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &863552714
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16327,12 +15899,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &865604419
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16530,12 +16097,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &870268757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16717,12 +16279,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &882767759
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -16841,12 +16398,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &885504582
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17002,12 +16554,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &894589934
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17132,12 +16679,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &905460179
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17304,7 +16846,7 @@ PrefabInstance:
     - target: {fileID: 1501964591082690714, guid: e5d62e0c1fae722468703117ad42934f,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6383768940514371799, guid: e5d62e0c1fae722468703117ad42934f,
         type: 3}
@@ -17511,12 +17053,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &940587757
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17769,12 +17306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &964536944
 GameObject:
   m_ObjectHideFlags: 0
@@ -17822,12 +17354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &964536947
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -17946,12 +17473,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &967059538
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18070,12 +17592,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &976197966
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18194,12 +17711,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &981345596
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18318,12 +17830,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &988437349
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18442,12 +17949,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &991077787
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18563,16 +18065,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8aa5fc73dd81bd45964ae821a4ea2a1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <InvalideSquareMaterial>k__BackingField: {fileID: 2100000, guid: 5df8a05e22ac44e4194de8971125f1a0,
-    type: 2}
-  <ValideSquareMaterial>k__BackingField: {fileID: 2100000, guid: 10ea892b8fa7b794baa32ebd92534256,
-    type: 2}
-  <PathMaterial>k__BackingField: {fileID: 2100000, guid: 314572ff1c3b23749a091eb6e8d340f7,
-    type: 2}
-  <RangeMaterial>k__BackingField: {fileID: 2100000, guid: 447ea21500c24224e8e1d1535ee2c708,
-    type: 2}
-  <CurrentPath>k__BackingField: []
-  <CurrentRange>k__BackingField: []
+  <InvalideSquareColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <ValideSquareColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <PathColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <RangeColor>k__BackingField: {r: 0, g: 0, b: 0, a: 0}
+  <CurrentHighlightSquare>k__BackingField: {fileID: 0}
+  <CurrentHighlightPath>k__BackingField: []
+  <CurrentHighlightRange>k__BackingField: []
 --- !u!1 &1015674137
 GameObject:
   m_ObjectHideFlags: 0
@@ -18620,12 +18119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1015674140
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18744,12 +18238,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1019150845
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -18868,12 +18357,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1028874533
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19150,12 +18634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1044054641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19274,12 +18753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1054253562
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19544,12 +19018,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1072095123
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -19725,12 +19194,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1076721901
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20093,12 +19557,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1089608172
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20217,12 +19676,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1091101153
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20341,12 +19795,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1120261561
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20465,12 +19914,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1135580253
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20589,12 +20033,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1143899089
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20713,12 +20152,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1144472537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20837,12 +20271,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1147651722
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -20961,12 +20390,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1150610014
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21085,12 +20509,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1156194788
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21272,12 +20691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1159740792
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21469,12 +20883,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1166075110
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21629,12 +21038,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1180114768
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21753,12 +21157,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1183363537
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -21960,12 +21359,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1206865227
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22084,12 +21478,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1209831152
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22271,12 +21660,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1221802450
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22395,12 +21779,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1231915855
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22582,12 +21961,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1240240467
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22706,12 +22080,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1240308713
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -22958,6 +22327,127 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!1 &1257313329
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1257313330}
+  - component: {fileID: 1257313333}
+  - component: {fileID: 1257313332}
+  - component: {fileID: 1257313331}
+  m_Layer: 5
+  m_Name: Menu
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1257313330
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257313329}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1552866117}
+  m_Father: {fileID: 1687681232}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 0}
+  m_AnchoredPosition: {x: 0, y: 41.4875}
+  m_SizeDelta: {x: 0, y: 82.975}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1257313331
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257313329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4e29b1a8efbd4b44bb3f3716e73f07ff, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Navigation:
+    m_Mode: 3
+    m_WrapAround: 0
+    m_SelectOnUp: {fileID: 0}
+    m_SelectOnDown: {fileID: 0}
+    m_SelectOnLeft: {fileID: 0}
+    m_SelectOnRight: {fileID: 0}
+  m_Transition: 1
+  m_Colors:
+    m_NormalColor: {r: 1, g: 1, b: 1, a: 0}
+    m_HighlightedColor: {r: 0.36862746, g: 0.36862746, b: 0.36862746, a: 0.21568628}
+    m_PressedColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 1}
+    m_SelectedColor: {r: 0.9607843, g: 0.9607843, b: 0.9607843, a: 1}
+    m_DisabledColor: {r: 0.78431374, g: 0.78431374, b: 0.78431374, a: 0.5019608}
+    m_ColorMultiplier: 1
+    m_FadeDuration: 0
+  m_SpriteState:
+    m_HighlightedSprite: {fileID: 0}
+    m_PressedSprite: {fileID: 0}
+    m_SelectedSprite: {fileID: 0}
+    m_DisabledSprite: {fileID: 0}
+  m_AnimationTriggers:
+    m_NormalTrigger: Normal
+    m_HighlightedTrigger: Highlighted
+    m_PressedTrigger: Pressed
+    m_SelectedTrigger: Selected
+    m_DisabledTrigger: Disabled
+  m_Interactable: 1
+  m_TargetGraphic: {fileID: 1257313332}
+  m_OnClick:
+    m_PersistentCalls:
+      m_Calls: []
+--- !u!114 &1257313332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257313329}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1257313333
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1257313329}
+  m_CullTransparentMesh: 1
 --- !u!1 &1264080577
 GameObject:
   m_ObjectHideFlags: 0
@@ -23005,12 +22495,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1264080580
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23129,12 +22614,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1269647924
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23253,12 +22733,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1271940819
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23377,12 +22852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1279480342
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23501,12 +22971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1289347995
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23956,12 +23421,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1299005368
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24127,12 +23587,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1313870285
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24204,6 +23659,81 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1313870282}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1315524285
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1315524286}
+  - component: {fileID: 1315524288}
+  - component: {fileID: 1315524287}
+  m_Layer: 5
+  m_Name: Image
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1315524286
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315524285}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1687681232}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0.5}
+  m_AnchorMax: {x: 1, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 100}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1315524287
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315524285}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.5882353}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 0}
+  m_Type: 0
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1315524288
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1315524285}
+  m_CullTransparentMesh: 1
 --- !u!1 &1318527983
 GameObject:
   m_ObjectHideFlags: 0
@@ -24251,12 +23781,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1318527986
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24375,12 +23900,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1319858176
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24626,12 +24146,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1327822066
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24818,12 +24333,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1336679856
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -24942,12 +24452,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1336982422
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25129,12 +24634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1350059550
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25253,12 +24753,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1358258911
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25377,12 +24872,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1370793363
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25501,12 +24991,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1399717177
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25719,12 +25204,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1423096413
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25843,12 +25323,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1423554962
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -25973,12 +25448,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1425783333
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26225,12 +25695,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1443976151
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26428,12 +25893,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1448626063
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26552,12 +26012,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1452333451
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26676,12 +26131,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1459725398
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26841,12 +26291,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1464228670
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -26965,12 +26410,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1475343641
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27089,12 +26529,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1475448375
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27292,12 +26727,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1478249149
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27416,12 +26846,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1485779699
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27575,12 +27000,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1499188383
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27699,12 +27119,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1500632499
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -27870,12 +27285,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1515198681
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28112,12 +27522,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1526570266
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28236,12 +27641,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1526614944
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28360,12 +27760,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1528158982
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28567,12 +27962,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1530516285
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28738,12 +28128,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1532221916
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -28941,12 +28326,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1539079779
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29065,12 +28445,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1542875823
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29268,12 +28643,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1551923497
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29345,6 +28715,140 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1551923494}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1552866116
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1552866117}
+  - component: {fileID: 1552866119}
+  - component: {fileID: 1552866118}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1552866117
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552866116}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1257313330}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 501.60693, y: 0}
+  m_SizeDelta: {x: -1003.214, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1552866118
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552866116}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: Back to menu
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 24
+  m_fontSizeBase: 24
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &1552866119
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1552866116}
+  m_CullTransparentMesh: 1
 --- !u!1 &1557245427
 GameObject:
   m_ObjectHideFlags: 0
@@ -29392,12 +28896,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1557245430
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29469,6 +28968,134 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1557245427}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1577462627
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1577462628}
+  - component: {fileID: 1577462629}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1577462628
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577462627}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1657639257}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!82 &1577462629
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1577462627}
+  m_Enabled: 1
+  serializedVersion: 4
+  OutputAudioMixerGroup: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: 38c0f02c9996f1d4c8e2847ab6058e0e, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: 0.33
+  m_Pitch: 1
+  Loop: 0
+  Mute: 0
+  Spatialize: 0
+  SpatializePostEffects: 0
+  Priority: 200
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    - serializedVersion: 3
+      time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
+  reverbZoneMixCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - serializedVersion: 3
+      time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+      weightedMode: 0
+      inWeight: 0.33333334
+      outWeight: 0.33333334
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+    m_RotationOrder: 4
 --- !u!1 &1582353328
 GameObject:
   m_ObjectHideFlags: 0
@@ -29516,12 +29143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1582353331
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29640,12 +29262,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1587957085
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29764,12 +29381,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1597163125
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -29888,12 +29500,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1599028634
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30012,12 +29619,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1610308658
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30254,12 +29856,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1622626304
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30378,12 +29975,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1625969193
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30573,12 +30165,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &1633925127
 GameObject:
   m_ObjectHideFlags: 0
@@ -30626,12 +30213,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1633925130
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30750,12 +30332,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1639481333
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -30874,12 +30451,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1640972788
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31239,12 +30811,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1646178973
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31363,12 +30930,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1653233108
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31440,6 +31002,38 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1653233105}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &1657639256
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1657639257}
+  m_Layer: 0
+  m_Name: ----Sound----
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1657639257
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1657639256}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 5.172262, y: 0.60585594, z: 8.98979}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1577462628}
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1660830043
 GameObject:
   m_ObjectHideFlags: 0
@@ -31487,12 +31081,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1660830046
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31611,12 +31200,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1677266522
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -31798,12 +31382,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1686053267
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32009,6 +31588,84 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1687144498}
   m_CullTransparentMesh: 1
+--- !u!1 &1687681231
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1687681232}
+  - component: {fileID: 1687681234}
+  - component: {fileID: 1687681233}
+  m_Layer: 5
+  m_Name: Lose
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &1687681232
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687681231}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children:
+  - {fileID: 1315524286}
+  - {fileID: 2052712991}
+  - {fileID: 1257313330}
+  m_Father: {fileID: 87524050}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0, y: 0}
+  m_AnchorMax: {x: 1, y: 1}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 0, y: 0}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &1687681233
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687681231}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fe87c0e1cc204ed48ad3b37840f39efc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.8156863}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
+  m_Type: 1
+  m_PreserveAspect: 0
+  m_FillCenter: 1
+  m_FillMethod: 4
+  m_FillAmount: 1
+  m_FillClockwise: 1
+  m_FillOrigin: 0
+  m_UseSpriteMesh: 0
+  m_PixelsPerUnitMultiplier: 1
+--- !u!222 &1687681234
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1687681231}
+  m_CullTransparentMesh: 1
 --- !u!1 &1689543649
 GameObject:
   m_ObjectHideFlags: 0
@@ -32056,12 +31713,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1689543652
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32312,12 +31964,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1704975439
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32436,12 +32083,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1714665857
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32560,12 +32202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1717160405
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -32937,12 +32574,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1739934289
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33061,12 +32693,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1745267209
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33185,12 +32812,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1750275249
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33309,12 +32931,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1758073385
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33496,12 +33113,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1759810440
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33700,12 +33312,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1765966735
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33824,12 +33431,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1769400556
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -33948,12 +33550,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1769419554
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34151,12 +33748,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1794394279
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34275,12 +33867,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1802666121
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34399,12 +33986,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1807534429
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34736,12 +34318,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1816199397
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34860,12 +34437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1817028145
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -34984,12 +34556,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1819202250
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35111,7 +34678,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1820428511
 RectTransform:
   m_ObjectHideFlags: 0
@@ -35285,12 +34852,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1821031548
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35409,12 +34971,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1823054765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35533,12 +35090,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1830370332
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35657,12 +35209,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1833719488
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35781,12 +35328,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1839970973
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -35905,12 +35447,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1850553954
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36035,12 +35572,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1864463573
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36159,12 +35691,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1868906909
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36489,12 +36016,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1880466930
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36684,12 +36206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &1899572662
 GameObject:
   m_ObjectHideFlags: 0
@@ -36737,12 +36254,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1899572665
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36861,12 +36373,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1900682260
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -36985,12 +36492,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1908853620
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37109,12 +36611,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1913815305
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37233,12 +36730,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1917588763
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37428,12 +36920,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!1 &1929613587
 GameObject:
   m_ObjectHideFlags: 0
@@ -37481,12 +36968,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1929613590
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37605,12 +37087,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1946722051
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37729,12 +37206,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1948434928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -37853,12 +37325,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1948812073
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38027,12 +37494,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1963169919
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38269,12 +37731,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1976154601
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38393,12 +37850,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1992657595
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38517,12 +37969,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &1997318928
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -38820,7 +38267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &2019044583
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -38996,12 +38443,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2022623156
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39120,12 +38562,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2025201361
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39307,12 +38744,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2035988765
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39431,12 +38863,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2038412313
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39555,12 +38982,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2039268172
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39664,12 +39086,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2040738026
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -39933,12 +39350,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2041441793
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40057,12 +39469,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2045088168
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40134,6 +39541,141 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2045088165}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!1 &2052712990
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 2052712991}
+  - component: {fileID: 2052712993}
+  - component: {fileID: 2052712992}
+  m_Layer: 5
+  m_Name: Text (TMP)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!224 &2052712991
+RectTransform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052712990}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1687681232}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+  m_AnchorMin: {x: 0.5, y: 0.5}
+  m_AnchorMax: {x: 0.5, y: 0.5}
+  m_AnchoredPosition: {x: 0, y: 0}
+  m_SizeDelta: {x: 408.5891, y: 142.7062}
+  m_Pivot: {x: 0.5, y: 0.5}
+--- !u!114 &2052712992
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052712990}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f4688fdb7df04437aeb418b961361dc5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Material: {fileID: 0}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_RaycastTarget: 1
+  m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
+  m_Maskable: 1
+  m_OnCullStateChanged:
+    m_PersistentCalls:
+      m_Calls: []
+  m_text: You Lose
+  m_isRightToLeft: 0
+  m_fontAsset: {fileID: 11400000, guid: 9a820d8f125a9b548bcc7a7c64b37f6b, type: 2}
+  m_sharedMaterial: {fileID: 3916733655447552674, guid: 9a820d8f125a9b548bcc7a7c64b37f6b,
+    type: 2}
+  m_fontSharedMaterials: []
+  m_fontMaterial: {fileID: 0}
+  m_fontMaterials: []
+  m_fontColor32:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontColor: {r: 1, g: 1, b: 1, a: 1}
+  m_enableVertexGradient: 0
+  m_colorMode: 3
+  m_fontColorGradient:
+    topLeft: {r: 1, g: 1, b: 1, a: 1}
+    topRight: {r: 1, g: 1, b: 1, a: 1}
+    bottomLeft: {r: 1, g: 1, b: 1, a: 1}
+    bottomRight: {r: 1, g: 1, b: 1, a: 1}
+  m_fontColorGradientPreset: {fileID: 0}
+  m_spriteAsset: {fileID: 0}
+  m_tintAllSprites: 0
+  m_StyleSheet: {fileID: 0}
+  m_TextStyleHashCode: -1183493901
+  m_overrideHtmlColors: 0
+  m_faceColor:
+    serializedVersion: 2
+    rgba: 4294967295
+  m_fontSize: 75
+  m_fontSizeBase: 75
+  m_fontWeight: 400
+  m_enableAutoSizing: 0
+  m_fontSizeMin: 18
+  m_fontSizeMax: 72
+  m_fontStyle: 0
+  m_HorizontalAlignment: 2
+  m_VerticalAlignment: 512
+  m_textAlignment: 65535
+  m_characterSpacing: 0
+  m_wordSpacing: 0
+  m_lineSpacing: 0
+  m_lineSpacingMax: 0
+  m_paragraphSpacing: 0
+  m_charWidthMaxAdj: 0
+  m_enableWordWrapping: 1
+  m_wordWrappingRatios: 0.4
+  m_overflowMode: 0
+  m_linkedTextComponent: {fileID: 0}
+  parentLinkedComponent: {fileID: 0}
+  m_enableKerning: 1
+  m_enableExtraPadding: 0
+  checkPaddingRequired: 0
+  m_isRichText: 1
+  m_parseCtrlCharacters: 1
+  m_isOrthographic: 1
+  m_isCullingEnabled: 0
+  m_horizontalMapping: 0
+  m_verticalMapping: 0
+  m_uvLineOffset: 0
+  m_geometrySortingOrder: 0
+  m_IsTextObjectScaleStatic: 0
+  m_VertexBufferAutoSizeReduction: 0
+  m_useMaxVisibleDescender: 1
+  m_pageToDisplay: 1
+  m_margin: {x: 0, y: 0, z: 0, w: 0}
+  m_isUsingLegacyAnimationComponent: 0
+  m_isVolumetricText: 0
+  m_hasFontAssetChanged: 0
+  m_baseMaterial: {fileID: 0}
+  m_maskOffset: {x: 0, y: 0, z: 0, w: 0}
+--- !u!222 &2052712993
+CanvasRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2052712990}
+  m_CullTransparentMesh: 1
 --- !u!1001 &2058569212
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -40260,12 +39802,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2069189926
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40384,12 +39921,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2089028009
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40626,12 +40158,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2097495689
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40750,12 +40277,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2100146708
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40874,12 +40396,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2100909300
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -40998,12 +40515,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2102858962
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41122,12 +40634,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2108788391
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41404,12 +40911,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2124346134
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41528,12 +41030,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b4fd13fd84b08a948a59a232271352f5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  <EntityOnThisSquare>k__BackingField: {fileID: 0}
   <Neighbors>k__BackingField: []
-  <PreviousSquare>k__BackingField: {fileID: 0}
-  <StepsForAccess>k__BackingField: 0
-  <F>k__BackingField: 0
-  <IsClosed>k__BackingField: 0
 --- !u!65 &2135971625
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -41725,3 +41222,4 @@ SceneRoots:
   - {fileID: 1819312550}
   - {fileID: 890583615}
   - {fileID: 592792809}
+  - {fileID: 1657639257}
