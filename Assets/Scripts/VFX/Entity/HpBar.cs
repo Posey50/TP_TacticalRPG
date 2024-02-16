@@ -1,6 +1,5 @@
 using DG.Tweening;
 using System.Collections;
-using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -20,8 +19,8 @@ public class HpBar : MonoBehaviour
     {
         _txtDmgHeal.gameObject.SetActive(false);
         _entity = GetComponent<Entity>();
-        _entity.DamageRecieved += OnDamageTaken;
-        _entity.HealRecieved += OnHealTaken;
+        _entity.DamageReceived += OnDamageTaken;
+        _entity.HealReceived += OnHealTaken;
     }
 
     

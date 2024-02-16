@@ -21,15 +21,17 @@ public class BattleSteps : MonoBehaviour
             playableEntitiesInGame.Remove(playableEntityToAdd);
             playableEntitiesInBattle.Add(playableEntityToAdd);
 
+            // Gets the starting position for the entity
             Square squareForTheEntity = playerSquares[Random.Range(0, playerSquares.Count)];
             playerSquares.Remove(squareForTheEntity);
 
+            // Sets the starting position for the entity
             playableEntityToAdd.SquareUnderTheEntity = squareForTheEntity;
             squareForTheEntity.SetEntity(playableEntityToAdd);
+            playableEntityToAdd.transform.position = squareForTheEntity.transform.position;
 
+            // Initialises the entity
             playableEntityToAdd.InitEntity();
-
-            playableEntityToAdd.transform.position = squareForTheEntity.transform.position + playableEntityToAdd.YOffset;
         }
     }
 
@@ -50,16 +52,18 @@ public class BattleSteps : MonoBehaviour
             enemiesInGame.Remove(enemiesToAdd);
             enemiesInBattle.Add(enemiesToAdd);
 
+            // Gets the starting position for the entity
             Square squareForTheEntity = enemiesSquares[Random.Range(0, enemiesSquares.Count)];
             enemiesSquares.Remove(squareForTheEntity);
 
+            // Sets the starting position for the entity
             enemiesToAdd.SquareUnderTheEntity = squareForTheEntity;
             squareForTheEntity.SetEntity(enemiesToAdd);
+            enemiesToAdd.transform.position = squareForTheEntity.transform.position;
 
+            // Initialises the entity
             enemiesToAdd.InitEntity();
             enemiesToAdd.GetComponent<EnemyMain>().Brain.InitBrain();
-
-            enemiesToAdd.transform.position = squareForTheEntity.transform.position + enemiesToAdd.YOffset;
         }
     }
 

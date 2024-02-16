@@ -60,35 +60,50 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     public bool IsMoving { get; private set; }
 
-    public Vector3 YOffset { get; private set; }
-
     /// <summary>
     /// Speed at which the entity moves.
     /// </summary>
     protected float _moveSpeed;
 
-    //Events
-    public event Action<int> DamageRecieved;
-    public event Action<int> HealRecieved;
-    public event Action<int> UpadateMpUI;
-    public event Action<int> UpadateApUI;
-    public event Action<bool> IsMove;
-    public event Action StartAttack;
-    public event Action EndAttack;
+    /// <summary>
+    /// Manager of the sprite of the entity.
+    /// </summary>
+    private SpriteManager _spriteManager;
 
     // Observer
-    public delegate void EntityDelegate();
+    public delegate void EntityActionsDelegate();
 
-    public event EntityDelegate TurnIsEnd;
+    public event EntityActionsDelegate Initialised;
+    public event EntityActionsDelegate Moved;
+    public event EntityActionsDelegate StopMoved;
+    public event EntityActionsDelegate StartAttack;
+    public event EntityActionsDelegate TakeDamages;
+    public event EntityActionsDelegate IsHeal;
+    public event EntityActionsDelegate TurnIsEnd;
+    public event EntityActionsDelegate IsDead;
 
-    // Visual feedback
-    private SpriteRenderer _spriteRenderer;
+    public delegate void MovingDatasDelegate(Square square);
+
+    public event MovingDatasDelegate MovingTo;
+
+    public delegate void AttackingDatasDelegate(Entity entity);
+
+    public event AttackingDatasDelegate IsAttacking;
+
+    public delegate void DatasDelegate(int datas);
+
+    public event DatasDelegate DamageReceived;
+    public event DatasDelegate HealReceived;
+    public event DatasDelegate MPChanged;
+    public event DatasDelegate APChanged;
 
     /// <summary>
     /// Called to hydrate the entity with their datas.
     /// </summary>
     public void InitEntity()
     {
+        _spriteManager = GetComponent<SpriteManager>();
+
         Name = EntityDatas.Name;
         Class = EntityDatas.Class;
         MP = EntityDatas.MP;
@@ -98,11 +113,11 @@ public abstract class Entity : MonoBehaviour
         Spells = EntityDatas.Spells;
         _moveSpeed = EntityDatas.MoveSpeed;
 
-        _spriteRenderer = GetComponent<SpriteRenderer>();
+        // Anounces that the entity is initialised
+        Initialised?.Invoke();
 
-        YOffset = new Vector3(0, (SquareUnderTheEntity.GetComponent<Collider>().bounds.size.y / 2f) + (_spriteRenderer.bounds.size.y / 6f), 0);
-        UpadateMpUI?.Invoke(MP);
-        UpadateApUI?.Invoke(AP);
+        MPChanged?.Invoke(MP);
+        APChanged?.Invoke(AP);
     }
 
     /// <summary>
@@ -114,15 +129,19 @@ public abstract class Entity : MonoBehaviour
         if(path != null)
         {
             IsMoving = true;
-            IsMove?.Invoke(IsMoving);
+
+            // Anounces that the entity is moving
+            Moved?.Invoke();
+            MovingTo?.Invoke(path[path.Count - 1]);
 
             SquareUnderTheEntity.LeaveSquare();
 
             Vector3[] pathToFollow = AStarManager.Instance.ConvertSquaresIntoPositions(path).ToArray();
 
+            // Raises the path
             for (int i = 0; i < pathToFollow.Length; i++)
             {
-                pathToFollow[i] += YOffset;
+                pathToFollow[i] += _spriteManager.YOffset;
             }
 
             await transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear, PathMode.Full3D).SetEase(Ease.Linear).OnWaypointChange((int i) => { if (i > 0) path[i - 1].ResetColor(); }).AsyncWaitForCompletion();
@@ -132,8 +151,10 @@ public abstract class Entity : MonoBehaviour
             SquareUnderTheEntity = path[^1];
             SquareUnderTheEntity.SetEntity(this);
 
+            // Anounces that the entity is not anymore moving
+            StopMoved?.Invoke();
+
             IsMoving = false;
-            IsMove?.Invoke(IsMoving);
         }
     }
 
@@ -146,7 +167,9 @@ public abstract class Entity : MonoBehaviour
         if (amount <= MP)
         {
             MP -= amount;
-            UpadateMpUI?.Invoke(MP);
+
+            // Anounces that MP has changed
+            MPChanged?.Invoke(MP);
         }
     }
 
@@ -159,7 +182,9 @@ public abstract class Entity : MonoBehaviour
         if (amount <= AP)
         {
             AP -= amount;
-            UpadateApUI?.Invoke(AP);
+
+            // Anounces that AP has changed
+            APChanged?.Invoke(AP);
         }
     }
 
@@ -170,13 +195,12 @@ public abstract class Entity : MonoBehaviour
     /// <param name="entityToAttack"> Entity to attack. </param>
     public void Attack(Spell spell, Entity entityToAttack)
     {
+        // Anounces that the entity is attacking
         StartAttack?.Invoke();
-        Debug.Log(Name + " attacks " + entityToAttack.Name + " with " + spell.SpellDatas.Name);
 
         entityToAttack.TakeAttack(spell);
 
         DecreaseAP(spell.SpellDatas.PaCost);
-        StartAttack?.Invoke();
     }
 
     /// <summary>
@@ -201,26 +225,20 @@ public abstract class Entity : MonoBehaviour
     /// <param name="damages"> Damages to take. </param>
     public void TakeDamage(int damages)
     {
-        Debug.Log(Name + " looses " + damages + "HP");
-
         HP -= damages;
 
-        DOTween.Sequence()
-            .Append(
-                _spriteRenderer.DOColor(Color.red, 0.1f)
-            )
-            .AppendInterval(0.05f)
-            .Append(
-                _spriteRenderer.DOColor(Color.white, 0.1f)
-            );
+        // Anounces that the entity has taken damages
+        TakeDamages?.Invoke();
+        DamageReceived?.Invoke(damages);
 
         if (HP <= 0)
         {
             HP = 0;
+
+            // Anounces that entity is dead
+            IsDead?.Invoke();
             BattleManager.Instance.EntityDeath(this);
         }
-
-        DamageRecieved?.Invoke(damages);
     }
 
     /// <summary>
@@ -229,20 +247,12 @@ public abstract class Entity : MonoBehaviour
     /// <param name="heal"> HP to heal. </param>
     public void HealHP(int heal)
     {
-        Debug.Log(Name + " heals " + heal + "HP");
         // Prevents the healing over the maximum of HP
         HP = Mathf.Clamp(HP + heal, 0, EntityDatas.MaxHP);
 
-        DOTween.Sequence()
-            .Append(
-                _spriteRenderer.DOColor(Color.green, 0.1f)
-            )
-            .AppendInterval(0.05f)
-            .Append(
-                _spriteRenderer.DOColor(Color.white, 0.1f)
-            );
-
-        HealRecieved?.Invoke(heal);
+        // Anounces that the entity has been heal
+        IsHeal?.Invoke();
+        HealReceived?.Invoke(heal);
     }
     
     /// <summary>
@@ -253,8 +263,9 @@ public abstract class Entity : MonoBehaviour
         MP = EntityDatas.MP;
         AP = EntityDatas.AP;
 
-        UpadateMpUI?.Invoke(MP);
-        UpadateApUI?.Invoke(AP);
+        // Anounces that MP and AP have changed
+        MPChanged?.Invoke(MP);
+        APChanged?.Invoke(AP);
     }
 
     /// <summary>
@@ -262,7 +273,7 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     public void EndOfTheTurn()
     {
-        Debug.Log("fin du tour");
+        // Anounces that the turn is ended
         TurnIsEnd?.Invoke();
 
         BattleManager battleManager = BattleManager.Instance;

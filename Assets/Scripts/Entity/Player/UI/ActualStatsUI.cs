@@ -10,8 +10,8 @@ public class ActualStatsUI : MonoBehaviour
     void Start()
     {
         _entity = GetComponent<Entity>();
-        _entity.UpadateMpUI += NotifyUdateMP;
-        _entity.UpadateApUI += NotifyUdatePA;
+        _entity.MPChanged += NotifyUdateMP;
+        _entity.APChanged += NotifyUdatePA;
     }
 
     public void NotifyUdatePA(int newAP)

@@ -1,58 +1,66 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
 public class EntityAnimator : MonoBehaviour
 {
     /// <summary>
-    /// The Entity
+    /// Main component of the entity.
     /// </summary>
     private Entity _entity;
 
     /// <summary>
-    /// The Entity's animator
+    /// Animator component of the entity.
     /// </summary>
-    private Animator _anim;
+    private Animator _animator;
 
     void Start()
     {
         _entity = GetComponent<Entity>();
-        _anim = GetComponent<Animator>();
+        _animator = GetComponent<Animator>();
 
-        _entity.IsMove += Walk;
+        _entity.Moved += Walk;
+        _entity.StopMoved += StopWalk;
         _entity.StartAttack += Attack;
-        _entity.DamageRecieved += Hit;
-
+        _entity.TakeDamages += Hit;
+        _entity.IsDead += Dies;
     }
 
-    private void Walk(bool isMoving)
+    /// <summary>
+    /// Called to start entity walking.
+    /// </summary>
+    private void Walk()
     {
-        if (isMoving)
-        {
-            Debug.Log("Move");
-            _anim.SetTrigger("EntityStartMoving");
-        }
-        else
-        {
-            Debug.Log("Idle");
-            _anim.SetTrigger("EntityStopMoving");
-        }
+        _animator.SetTrigger("EntityStartMoving");
     }
 
+    /// <summary>
+    /// Called to stop entity walking.
+    /// </summary>
+    private void StopWalk()
+    {
+        _animator.SetTrigger("EntityStopMoving");
+    }
+
+    /// <summary>
+    /// Called to make the entity attacking.
+    /// </summary>
     private void Attack()
     {
-        Debug.Log("Attack");
-        _anim.SetTrigger("EntityAttack");
+        _animator.SetTrigger("EntityAttack");
     }
 
-    private void Hit(int i)
+    /// <summary>
+    /// Called to make the entity taking damages.
+    /// </summary>
+    private void Hit()
     {
-        Debug.Log("Hit");
-        _anim.SetTrigger("EntityHit");
+        _animator.SetTrigger("EntityHit");
     }
 
+    /// <summary>
+    /// Called to make the entity diyng.
+    /// </summary>
     private void Dies()
     {
-        _anim.SetTrigger("EntityDies");
+        _animator.SetTrigger("EntityDies");
     }
 }
