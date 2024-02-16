@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0f9fa2966545db34bbf71216810fb788, type: 3}
   m_Name: EnemyHealer
   m_EditorClassIdentifier: 
-  _name: Fee
+  _name: Demon
   _class: Healer
   _mP: 5
   _aP: 10

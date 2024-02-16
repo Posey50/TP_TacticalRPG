@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using System.Collections.Generic;
 
 public class GameManager : MonoBehaviour
@@ -60,10 +61,19 @@ public class GameManager : MonoBehaviour
     /// <summary>
     /// Called to stop the game.
     /// </summary>
-    public void GameOver()
+    public void GameOver(bool hasWon)
     {
         GameIsOver = true;
         GameOverEvent?.Invoke();
+
+        if (hasWon)
+        {
+            SceneManager.LoadScene("VictoryScene");
+        }
+        else
+        {
+            SceneManager.LoadScene("DefeatScene");
+        }
     }
 
     /// <summary>
