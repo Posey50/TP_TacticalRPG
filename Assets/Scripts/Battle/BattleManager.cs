@@ -45,7 +45,6 @@ public class BattleManager : MonoBehaviour
     /// <summary>
     /// The current active entity in the battle.
     /// </summary>
-    [field: SerializeField]
     public Entity CurrentActiveEntity { get; set; }
 
     /// <summary>
@@ -57,6 +56,12 @@ public class BattleManager : MonoBehaviour
     /// Component that containes all steps of the battle.
     /// </summary>
     private BattleSteps _battleSteps;
+
+    /// <summary>
+    /// Timer which times the turn of a playable entity.
+    /// </summary>
+    [SerializeField]
+    private Timer _timer;
 
     // Observer
     public delegate void BattleManagerDelegate();
@@ -77,8 +82,13 @@ public class BattleManager : MonoBehaviour
         }
     }
 
+    private void Start()
+    {
+        _timer.TimerStop += EndOfTheCurrentEntityTurn;
+    }
+
     /// <summary>
-    /// CCalled to initialise a battle.
+    /// Called to initialise a battle.
     /// </summary>
     /// <returns></returns>
     public void InitBattle()

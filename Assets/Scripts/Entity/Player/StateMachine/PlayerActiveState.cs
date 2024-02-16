@@ -9,6 +9,12 @@ public class PlayerActiveState : IPlayerState
     /// </summary>
     private PlayerStateMachine _playerStateMachine;
 
+    // Event for the current state
+    public delegate void StateDelegate();
+
+    public event StateDelegate TurnStarted;
+    public event StateDelegate TurnEnded;
+
     // Event for the mouse cursor movement
     public delegate void CursorMovementDelegate(Vector2 cursorPosition);
 
@@ -21,6 +27,8 @@ public class PlayerActiveState : IPlayerState
 
     public void OnEnter(PlayerStateMachine playerStateMachine)
     {
+        TurnStarted?.Invoke();
+
         _playerStateMachine = playerStateMachine;
         _playerStateMachine.BattleManager.CurrentActiveEntity = _playerStateMachine.PlayerMain;
         _playerStateMachine.SpellButtonsManager.UpdateButtons(_playerStateMachine.PlayerMain);
@@ -31,6 +39,8 @@ public class PlayerActiveState : IPlayerState
     {
         _playerStateMachine.SpellButtonsManager.HideButtons();
         _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered -= OnAction;
+
+        TurnEnded?.Invoke();
     }
 
     /// <summary>
