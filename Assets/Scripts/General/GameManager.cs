@@ -36,6 +36,13 @@ public class GameManager : MonoBehaviour
     /// </summary>
     public bool GameIsOnPause { get; private set; }
 
+    // Observer
+    public delegate void GameProgressDelegate();
+
+    public event GameProgressDelegate GameOverEvent;
+
+    public event GameProgressDelegate GamePauseEvent;
+
     private void Awake()
     {
         // Singleton
@@ -56,6 +63,7 @@ public class GameManager : MonoBehaviour
     public void GameOver()
     {
         GameIsOver = true;
+        GameOverEvent?.Invoke();
     }
 
     /// <summary>
@@ -64,5 +72,6 @@ public class GameManager : MonoBehaviour
     public void GamePause()
     {
         GameIsOnPause = true;
+        GamePauseEvent?.Invoke();
     }
 }

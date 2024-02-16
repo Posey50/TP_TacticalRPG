@@ -31,8 +31,6 @@ public class BattleSteps : MonoBehaviour
 
             playableEntityToAdd.transform.position = squareForTheEntity.transform.position + playableEntityToAdd.YOffset;
         }
-
-        //InitEntities(playableEntitiesInBattle);
     }
 
     /// <summary>
@@ -63,8 +61,6 @@ public class BattleSteps : MonoBehaviour
 
             enemiesToAdd.transform.position = squareForTheEntity.transform.position + enemiesToAdd.YOffset;
         }
-
-        //InitEntities(enemiesInBattle);
     }
 
     /// <summary>

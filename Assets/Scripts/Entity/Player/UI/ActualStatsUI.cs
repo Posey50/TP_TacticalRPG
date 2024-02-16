@@ -4,20 +4,23 @@ using UnityEngine;
 public class ActualStatsUI : MonoBehaviour
 {
     [SerializeField] private TextMeshProUGUI _textActualMp;
-    [SerializeField] private TextMeshProUGUI _textActualPa;
+    [SerializeField] private TextMeshProUGUI _textActualAp;
+    private Entity _entity;
 
     void Start()
     {
-        
+        _entity = GetComponent<Entity>();
+        _entity.UpadateMpUI += NotifyUdateMP;
+        _entity.UpadateApUI += NotifyUdatePA;
     }
 
-    public void NotifyUdatePA(int newPA)
+    public void NotifyUdatePA(int newAP)
     {
-        _textActualPa.text = newPA.ToString();
+        _textActualAp.text = "AP : " + newAP.ToString();
     }
-    
+
     public void NotifyUdateMP(int newMP)
     {
-        _textActualMp.text = newMP.ToString();
+        _textActualMp.text = "MP : " + newMP.ToString();
     }
 }
