@@ -18,8 +18,9 @@ public class HpBar : MonoBehaviour
 
     private void Start()
     {
+        _txtDmgHeal.gameObject.SetActive(false);
         _entity = GetComponent<Entity>();
-
+        _entity.DamageRecieved += OnDamageTaken;
         _entity.HealRecieved += OnHealTaken;
     }
 
