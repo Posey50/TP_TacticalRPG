@@ -93,11 +93,11 @@ public class SpriteManager : MonoBehaviour
     {
         Vector3 entityPos = transform.position;
 
-        if ((position.x < entityPos.x && position.z < entityPos.z) || (position.z < entityPos.z && position.x > entityPos.x))
+        if ((position.x <= entityPos.x && position.z <= entityPos.z) || (position.z <= entityPos.z && position.x >= entityPos.x))
         {
             _spriteRenderer.flipX = true;
         }
-        else if ((position.x < entityPos.x && position.z > entityPos.z) || (position.z > entityPos.z && position.x > entityPos.x))
+        else if ((position.x <= entityPos.x && position.z >= entityPos.z) || (position.z >= entityPos.z && position.x >= entityPos.x))
         {
             _spriteRenderer.flipX = false;
         }

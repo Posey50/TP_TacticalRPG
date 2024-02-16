@@ -14,8 +14,8 @@ GameObject:
   - component: {fileID: 4962031225820548778}
   - component: {fileID: 4112248351502245127}
   - component: {fileID: -5272821584327962272}
-  - component: {fileID: 7931017976097916724}
   - component: {fileID: -2147709354915341551}
+  - component: {fileID: 7931017976097916724}
   m_Layer: 2
   m_Name: EnemyHealer
   m_TagString: Untagged
@@ -143,6 +143,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84063bb275da07349ab972dccb4497c9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2147709354915341551
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5235970117296155515}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d53b534e077e40945aabc0667efbf29e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!95 &7931017976097916724
 Animator:
   serializedVersion: 5
@@ -164,15 +176,3 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
---- !u!114 &-2147709354915341551
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5235970117296155515}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d53b534e077e40945aabc0667efbf29e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
