@@ -169,7 +169,7 @@ public class BattleManager : MonoBehaviour
         deadEntity.SquareUnderTheEntity.LeaveSquare();
         deadEntity.SquareUnderTheEntity.ResetColor();
 
-        // Desactive the entity
+        // Desactives the entity
         deadEntity.gameObject.SetActive(false);
     }
 

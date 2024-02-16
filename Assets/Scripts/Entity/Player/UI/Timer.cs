@@ -78,6 +78,8 @@ public class Timer : MonoBehaviour
 
             playableEntity.StateMachine.ActiveState.TurnStarted += LaunchTimer;
             playableEntity.StateMachine.ActiveState.TurnEnded += DesactivateTimer;
+            playableEntity.Moved += PauseTimer;
+            playableEntity.StopMoved += RelaunchTimer;
         }
     }
 
@@ -93,6 +95,25 @@ public class Timer : MonoBehaviour
         _seconds.SetText(ConvertToString(_nbrOfSeconds));
         _timeGauge.fillAmount = ConvertToPercent(_nbrOfSeconds);
 
+        _decrementTimer = StartCoroutine(DecrementChrono());
+    }
+
+    /// <summary>
+    /// Called to pause the timer.
+    /// </summary>
+    private void PauseTimer()
+    {
+        if (_decrementTimer != null)
+        {
+            StopCoroutine(_decrementTimer);
+        }
+    }
+
+    /// <summary>
+    /// Called to relaunch the timer.
+    /// </summary>
+    private void RelaunchTimer()
+    {
         _decrementTimer = StartCoroutine(DecrementChrono());
     }
 

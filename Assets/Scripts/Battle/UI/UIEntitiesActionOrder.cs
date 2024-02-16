@@ -4,8 +4,18 @@ using UnityEngine;
 
 public class UIEntitiesActionOrder : MonoBehaviour
 {
-    [SerializeField] private List<TextMeshProUGUI> _listTextEntitesOrder;
-    [SerializeField] private List<TextMeshProUGUI> _listTextEntites;
+    /// <summary>
+    /// List of entities in order of action.
+    /// </summary>
+    [SerializeField]
+    private List<TextMeshProUGUI> _listTextEntitesOrder;
+
+    /// <summary>
+    /// List of entities.
+    /// </summary>
+    [SerializeField]
+    private List<TextMeshProUGUI> _listTextEntites;
+
     public void Start()
     {
         BattleManager.Instance.UpadateUIEntitiesActionOrder += Notify;

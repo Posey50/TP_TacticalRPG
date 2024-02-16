@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,7 +8,7 @@ public class PlayerActiveState : IPlayerState
     /// </summary>
     private PlayerStateMachine _playerStateMachine;
 
-    // Event for the current state
+    // Events for the current state
     public delegate void StateDelegate();
 
     public event StateDelegate TurnStarted;
