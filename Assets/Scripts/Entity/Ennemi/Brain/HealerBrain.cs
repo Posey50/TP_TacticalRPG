@@ -43,7 +43,7 @@ public class HealerBrain : Brain
             yield return StartCoroutine(TryToHeal(allyToGoHelp, bestSpellToUse));
 
             // If the healer has enough AP to use the cheapest spell
-            if (_enemyMain.AP > _spells[^1].SpellDatas.PaCost)
+            if (_enemyMain.AP > _spells[^1].SpellDatas.APCost)
             {
                 // Restarts a patern
                 StartCoroutine(EnemyPattern());
@@ -199,7 +199,7 @@ public class HealerBrain : Brain
                     if (currentStartingSpell == currentSpellToCheck)
                     {
                         // If the combination is possible
-                        if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
+                        if (currentStartingSpell.SpellDatas.APCost + currentSpellToCheck.SpellDatas.APCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of HP to heal that it represents
                             int percentageOfHeal = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
@@ -208,7 +208,7 @@ public class HealerBrain : Brain
                             spellsCombinationInOrderOfHealing.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfHeal);
                         }
                         // Checks if the spell is possible alone
-                        else if (currentStartingSpell.SpellDatas.PaCost <= _enemyMain.AP)
+                        else if (currentStartingSpell.SpellDatas.APCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of HP to heal that it represents
                             int percentageOfHeal = (int)((currentStartingSpell.SpellDatas.Damages / (float)(allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
@@ -218,7 +218,7 @@ public class HealerBrain : Brain
                         }
                     }
                     // If it's not a combination of the two same spells and if the combination is possible
-                    else if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
+                    else if (currentStartingSpell.SpellDatas.APCost + currentSpellToCheck.SpellDatas.APCost <= _enemyMain.AP)
                     {
                         // Calculates the percentage of HP to heal that it represents
                         int percentageOfHeal = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);

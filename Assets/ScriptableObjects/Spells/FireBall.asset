@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: FireBall
   m_EditorClassIdentifier: 
   _name: Fire
-  _paCost: 5
+  _apCost: 5
   _damages: 150
   _minRange: 2
   _maxRange: 6

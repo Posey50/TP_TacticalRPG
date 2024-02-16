@@ -31,6 +31,7 @@ public class PlayerActiveState : IPlayerState
         _playerStateMachine = playerStateMachine;
         _playerStateMachine.BattleManager.CurrentActiveEntity = _playerStateMachine.PlayerMain;
         _playerStateMachine.SpellButtonsManager.UpdateButtons(_playerStateMachine.PlayerMain);
+        _playerStateMachine.PlayerMain.ResetPoints();
         _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered += OnAction;
     }
 
@@ -105,7 +106,7 @@ public class PlayerActiveState : IPlayerState
             if (selectedSpell != null && 
                 entityOnThisSquare != null && 
                 playerMain.Actions.CurrentRange.Contains(selectedSquare) && 
-                selectedSpell.SpellDatas.PaCost <= playerMain.AP)
+                selectedSpell.SpellDatas.APCost <= playerMain.AP)
             {
                 playerMain.Attack(selectedSpell, entityOnThisSquare);
             }

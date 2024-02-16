@@ -51,10 +51,6 @@ public class HighlightGroundManager : MonoBehaviour
     [field: SerializeField]
     public List<Square> CurrentHighlightRange { get; private set; }
 
-    //Event
-    public event Action<int> ShowApUI;
-
-
     private void Awake()
     {
         // Singleton
@@ -114,10 +110,8 @@ public class HighlightGroundManager : MonoBehaviour
             {
                 if (actions.CurrentRange.Contains(CurrentHighlightSquare))
                 {
-                    ShowApUI?.Invoke(actions.SelectedSpell.SpellDatas.PaCost);
-
                     if (CurrentHighlightSquare.EntityOnThisSquare != null &&
-                        actions.SelectedSpell.SpellDatas.PaCost <= currentActiveEntity.AP)
+                        actions.SelectedSpell.SpellDatas.APCost <= currentActiveEntity.AP)
                     {
                         CurrentHighlightSquare.SetColor(ValideSquareColor);
                     }
@@ -129,8 +123,6 @@ public class HighlightGroundManager : MonoBehaviour
                 else
                 {
                     CurrentHighlightSquare.SetColor(InvalideSquareColor);
-
-                    ShowApUI?.Invoke(actions.SelectedSpell.SpellDatas.PaCost);
                 }
             }
         }

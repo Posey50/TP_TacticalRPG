@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: HealTarget
   m_EditorClassIdentifier: 
   _name: Heal
-  _paCost: 5
+  _apCost: 5
   _damages: 250
   _minRange: 1
   _maxRange: 8

@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Bow
   m_EditorClassIdentifier: 
   _name: Bow
-  _paCost: 3
+  _apCost: 5
   _damages: 100
   _minRange: 3
   _maxRange: 7

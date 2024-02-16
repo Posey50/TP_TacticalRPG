@@ -18,12 +18,12 @@ public class SpellDatas : ScriptableObject
     /// Cost of the spell.
     /// </summary>
     [SerializeField]
-    private int _paCost;
+    private int _apCost;
 
     /// <summary>
     /// Gets the cost of the spell.
     /// </summary>
-    public int PaCost { get { return _paCost; } private set { } }
+    public int APCost { get { return _apCost; } private set { } }
 
     /// <summary>
     /// Damages inflincted or treated by the spell.

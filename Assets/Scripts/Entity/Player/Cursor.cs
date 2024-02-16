@@ -73,6 +73,11 @@ public class Cursor : MonoBehaviour
                         // Anounces that the new square selected has changed
                         SelectedSquareChanged?.Invoke(SelectedSquare);
 
+                        if (Path != null)
+                        {
+                            Path = null;
+                        }
+
                         // Gets the new path
                         Path = AStarManager.Instance.CalculateShortestPathForAMovement(_playerMain.SquareUnderTheEntity, SelectedSquare);
 

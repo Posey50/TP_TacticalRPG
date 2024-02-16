@@ -13,7 +13,7 @@ MonoBehaviour:
   m_Name: Knife
   m_EditorClassIdentifier: 
   _name: Knife
-  _paCost: 3
+  _apCost: 5
   _damages: 50
   _minRange: 1
   _maxRange: 1

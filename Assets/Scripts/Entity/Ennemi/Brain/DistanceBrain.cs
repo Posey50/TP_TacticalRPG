@@ -42,7 +42,7 @@ public class DistanceBrain : Brain
             yield return StartCoroutine(TryToAttack(playableEntityToAttack, BestSpellToUse(_spells, playableEntityToAttack)));
 
             // If the enemy has enough AP to use the cheapest spell
-            if (_enemyMain.AP > _spells[^1].SpellDatas.PaCost)
+            if (_enemyMain.AP > _spells[^1].SpellDatas.APCost)
             {
                 // Restarts a patern
                 StartCoroutine(EnemyPattern());
@@ -191,7 +191,7 @@ public class DistanceBrain : Brain
                     if (currentStartingSpell == currentSpellToCheck)
                     {
                         // If the combination is possible
-                        if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
+                        if (currentStartingSpell.SpellDatas.APCost + currentSpellToCheck.SpellDatas.APCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
                             int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(playableEntityToAttack.EntityDatas.MaxHP)) * 100f);
@@ -200,7 +200,7 @@ public class DistanceBrain : Brain
                             spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfDamages);
                         }
                         // Checks if the spell is possible alone
-                        else if (currentStartingSpell.SpellDatas.PaCost <= _enemyMain.AP)
+                        else if (currentStartingSpell.SpellDatas.APCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
                             int percentageOfDamages = (int)((currentStartingSpell.SpellDatas.Damages / (float)(playableEntityToAttack.EntityDatas.MaxHP)) * 100f);
@@ -210,7 +210,7 @@ public class DistanceBrain : Brain
                         }
                     }
                     // If it's not a combination of the two same spells and if the combination is possible
-                    else if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
+                    else if (currentStartingSpell.SpellDatas.APCost + currentSpellToCheck.SpellDatas.APCost <= _enemyMain.AP)
                     {
                         // Calculates the percentage of damages that it represents
                         int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(playableEntityToAttack.EntityDatas.MaxHP)) * 100f);

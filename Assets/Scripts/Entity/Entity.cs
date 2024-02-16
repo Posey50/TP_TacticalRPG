@@ -115,9 +115,6 @@ public abstract class Entity : MonoBehaviour
 
         // Anounces that the entity is initialised
         Initialised?.Invoke();
-
-        MPChanged?.Invoke(MP);
-        APChanged?.Invoke(AP);
     }
 
     /// <summary>
@@ -200,7 +197,7 @@ public abstract class Entity : MonoBehaviour
 
         entityToAttack.TakeAttack(spell);
 
-        DecreaseAP(spell.SpellDatas.PaCost);
+        DecreaseAP(spell.SpellDatas.APCost);
     }
 
     /// <summary>

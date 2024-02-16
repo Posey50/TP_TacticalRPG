@@ -40,7 +40,7 @@ public class DisplayStats : MonoBehaviour
     /// Called to update AP on sceen.
     /// </summary>
     /// <param name="newAP"> New ammount of AP. </param>
-    public void NotifyUdateAP(int newAP)
+    private void NotifyUdateAP(int newAP)
     {
         _textActualAp.text = "AP : " + newAP.ToString();
     }
@@ -49,7 +49,7 @@ public class DisplayStats : MonoBehaviour
     /// Called to update MP on sceen.
     /// </summary>
     /// <param name="newMP"> New ammount of HP. </param>
-    public void NotifyUdateMP(int newMP)
+    private void NotifyUdateMP(int newMP)
     {
         _textActualMp.text = "MP : " + newMP.ToString();
     }
@@ -57,7 +57,7 @@ public class DisplayStats : MonoBehaviour
     /// <summary>
     /// Called to active the UI.
     /// </summary>
-    public void ActiveUI()
+    private void ActiveUI()
     {
         _datasPlayer.SetActive(true);
     }
@@ -65,7 +65,7 @@ public class DisplayStats : MonoBehaviour
     /// <summary>
     /// Called to desactive the UI.
     /// </summary>
-    public void DesactiveUI()
+    private void DesactiveUI()
     {
         _datasPlayer.SetActive(false);
     }
