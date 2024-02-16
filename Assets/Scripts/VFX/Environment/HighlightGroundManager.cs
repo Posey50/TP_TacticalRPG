@@ -10,40 +10,46 @@ public class HighlightGroundManager : MonoBehaviour
     public static HighlightGroundManager Instance => _instance;
 
     /// <summary>
-    /// Material to apply if the selected square is not valid.
+    /// Color to apply if the selected square is not valid.
     /// </summary>
     [field: SerializeField]
-    public Material InvalideSquareMaterial { get; private set; }
+    public Color InvalideSquareColor { get; private set; }
 
     /// <summary>
-    /// Material to apply if the selected square is valid.
+    /// Color to apply if the selected square is valid.
     /// </summary>
     [field: SerializeField]
-    public Material ValideSquareMaterial { get; private set; }
+    public Color ValideSquareColor { get; private set; }
 
     /// <summary>
-    /// Material to apply if the square is in a path.
+    /// Color to apply if the square is in a path.
     /// </summary>
     [field: SerializeField]
-    public Material PathMaterial { get; private set; }
+    public Color PathColor { get; private set; }
 
     /// <summary>
-    /// Material to apply if the square is in a range.
+    /// Color to apply if the square is in a range.
     /// </summary>
     [field: SerializeField]
-    public Material RangeMaterial { get; private set; }
+    public Color RangeColor { get; private set; }
 
     /// <summary>
-    /// Path to show at screen.
+    /// Current selected square showed on screen.
     /// </summary>
     [field: SerializeField]
-    public List<Square> CurrentPath { get; private set; }
+    public Square CurrentHighlightSquare { get; private set; }
 
     /// <summary>
-    /// Range to show at screen.
+    /// Current path showed on screen.
     /// </summary>
     [field: SerializeField]
-    public List<Square> CurrentRange { get; private set; }
+    public List<Square> CurrentHighlightPath { get; private set; }
+
+    /// <summary>
+    /// Current range showed on screen.
+    /// </summary>
+    [field: SerializeField]
+    public List<Square> CurrentHighlightRange { get; private set; }
 
     /// <summary>
     /// Event to Update the UI of MP to mmove.
@@ -66,123 +72,173 @@ public class HighlightGroundManager : MonoBehaviour
         }
     }
 
-    /// <summary>
-    /// Set the material of each square in the path given to show the path on screen.
-    /// </summary>
-    /// <param name="path"> Path to show. </param>
-    public void ShowPath(List<Square> path)
+    private void Start()
     {
-        ShowMPUI?.Invoke(path.Count);
-        CurrentPath = path;
+        BattleManager.Instance.AllEntitiesInit += InitialiseHighlightGroundManager;
+    }
 
-        if (CurrentPath != null)
+    /// <summary>
+    /// Called to initialise the manager.
+    /// </summary>
+    private void InitialiseHighlightGroundManager()
+    {
+        for (int i = 0; i < BattleManager.Instance.PlayableEntitiesInBattle.Count; i++)
         {
-            if (CurrentPath.Count > BattleManager.Instance.CurrentActiveEntity.MP)
+            PlayerMain entity = (PlayerMain)BattleManager.Instance.PlayableEntitiesInBattle[i];
+
+            entity.Cursor.SelectedSquareChanged += HighlightSelectedSquare;
+            entity.Cursor.PathChanged += HighlightPath;
+            entity.Actions.RangeChanged += HighlightRange;
+        }
+    }
+
+    /// <summary>
+    /// Called to highlight the selected square.
+    /// </summary>
+    /// <param name="newSelectedSquare"> Square to highlight. </param>
+    private void HighlightSelectedSquare(Square newSelectedSquare)
+    {
+        // Sets the previous color on the current highlight square
+        if (CurrentHighlightSquare != null)
+        {
+            CurrentHighlightSquare.SetPreviousColor();
+        }
+
+        // Sets the new highlight square
+        CurrentHighlightSquare = newSelectedSquare;
+
+        // Checks if the selected square is a square where player can attack or not and highlights it accordingly
+        if (CurrentHighlightSquare != null)
+        {
+            Entity currentActiveEntity = BattleManager.Instance.CurrentActiveEntity;
+            Actions actions = currentActiveEntity.GetComponent<Actions>();
+
+            if (actions.CurrentRange.Contains(CurrentHighlightSquare))
             {
-                for (int i = 0; i < CurrentPath.Count; i++)
+                if (CurrentHighlightSquare.EntityOnThisSquare != null &&
+                    actions.SelectedSpell.SpellDatas.PaCost <= currentActiveEntity.AP)
                 {
-                    CurrentPath[i].SetMaterial(InvalideSquareMaterial);
+                    CurrentHighlightSquare.SetColor(ValideSquareColor);
+                }
+                else
+                {
+                    CurrentHighlightSquare.SetColor(InvalideSquareColor);
                 }
             }
             else
             {
-                for (int i = 0; i < CurrentPath.Count; i++)
+                CurrentHighlightSquare.SetColor(InvalideSquareColor);
+            }
+        }
+    }
+
+    /// <summary>
+    /// Called to highlight a path.
+    /// </summary>
+    /// <param name="newPath"> Path to highlight. </param>
+    public void HighlightPath(List<Square> newPath)
+    {
+        // Sets the original color on each square in the current highlight path
+        if (CurrentHighlightPath != null)
+        {
+            for (int i = 0; i < CurrentHighlightPath.Count; i++)
+            {
+                CurrentHighlightPath[i].ResetColor();
+            }
+        }
+
+        // Sets the new highlight path
+        CurrentHighlightPath.Clear();
+        CurrentHighlightPath = newPath;
+
+        // Checks if the new path is too long to move or not and highlight it accordingly
+        if (CurrentHighlightPath != null)
+        {
+            if (CurrentHighlightPath.Count > BattleManager.Instance.CurrentActiveEntity.MP)
+            {
+                for (int i = 0; i < CurrentHighlightPath.Count; i++)
                 {
-                    if (i == CurrentPath.Count - 1)
+                    CurrentHighlightPath[i].SetColor(InvalideSquareColor);
+                }
+            }
+            else
+            {
+                for (int i = 0; i < CurrentHighlightPath.Count; i++)
+                {
+                    if (i == CurrentHighlightPath.Count - 1)
                     {
-                        CurrentPath[i].SetMaterial(ValideSquareMaterial);
+                        CurrentHighlightPath[i].SetColor(ValideSquareColor);
                     }
                     else
                     {
-                        CurrentPath[i].SetMaterial(PathMaterial);
+                        CurrentHighlightPath[i].SetColor(PathColor);
                     }
                 }
             }
         }
     }
 
-    /// <summary>
-    /// Restores the original material of each square in the path current path showed.
-    /// </summary>
-    public void HideCurrentPath()
-    {
-        HideMPUI?.Invoke();
 
-        if (CurrentPath != null)
+    /// <summary>
+    /// Called to highlight a range.
+    /// </summary>
+    /// <param name="newRange"> Range to highlight. </param>
+    public void HighlightRange(List<Square> newRange)
+    {
+        // Sets the original color on each square in the current highlight range
+        if (CurrentHighlightRange != null)
         {
-            for (int i = 0; i < CurrentPath.Count; i++)
+            for (int i = 0; i < CurrentHighlightRange.Count; i++)
             {
-                CurrentPath[i].ResetMaterial();
+                CurrentHighlightRange[i].ResetColor();
             }
-
-            CurrentPath.Clear();
         }
-    }
 
-    /// <summary>
-    /// Called to show a range.
-    /// </summary>
-    /// <param name="range"> Range to show. </param>
-    public void ShowRange(List<Square> range)
-    {
-        CurrentRange = range;
+        // Sets the new highlight range
+        CurrentHighlightRange = newRange;
 
-        if (CurrentRange != null)
+        // Highlights the new range
+        if (CurrentHighlightRange != null)
         {
-            for (int i = 0; i < CurrentRange.Count; i++)
+            for (int i = 0; i < CurrentHighlightRange.Count; i++)
             {
-                CurrentRange[i].SetMaterial(RangeMaterial);
+                CurrentHighlightRange[i].SetColor(RangeColor);
             }
         }
     }
 
     /// <summary>
-    /// Called to hide the cuurent range showed.
+    /// Called to reset all highlightings.
     /// </summary>
-    public void HideRange()
+    private void UnhighlightAll()
     {
-        if (CurrentRange != null)
+        // Resets current highlight square
+        if (CurrentHighlightSquare != null)
         {
-            for (int i = 0; i < CurrentRange.Count; i++)
+            CurrentHighlightSquare.ResetColor();
+            CurrentHighlightSquare = null;
+        }
+
+        // Resets current highlight path
+        if (CurrentHighlightPath != null)
+        {
+            for (int i = 0; i < CurrentHighlightPath.Count; i++)
             {
-                CurrentRange[i].ResetMaterial();
+                CurrentHighlightPath[i].ResetColor();
             }
 
-            CurrentRange.Clear();
+            CurrentHighlightPath.Clear();
         }
-    }
 
-    /// <summary>
-    /// Called to highlight the selected square when a spell is selected.
-    /// </summary>
-    /// <param name="selectedSquare"> Selected square to highlight. </param>
-    public void HighlightSelectedSquareForAttack(Square selectedSquare)
-    {
-        if (BattleManager.Instance.CurrentActiveEntity.GetComponent<Actions>().CurrentRange.Contains(selectedSquare))
+        // Resets current highlight range
+        if (CurrentHighlightRange != null)
         {
-            if (selectedSquare.EntityOnThisSquare != null)
+            for (int i = 0; i < CurrentHighlightRange.Count; i++)
             {
-                selectedSquare.SetMaterial(ValideSquareMaterial);
+                CurrentHighlightRange[i].ResetColor();
             }
-            else
-            {
-                selectedSquare.SetMaterial(InvalideSquareMaterial);
-            }
-        }
-        else
-        {
-            selectedSquare.SetMaterial(InvalideSquareMaterial);
-        }
-    }
 
-    /// <summary>
-    /// Called to hide the selected square when a spell is selected.
-    /// </summary>
-    public void HideSelectedSquareForAttack(Square selectedSquare)
-    {
-        if (selectedSquare != null)
-        {
-            selectedSquare.SetPreviousMaterial();
+            CurrentHighlightRange.Clear();
         }
     }
 }

@@ -19,6 +19,11 @@ public class Actions : MonoBehaviour
     /// </summary>
     private PlayerMain _playerMain;
 
+    // Event for the range
+    public delegate void CurrentRangeDelegate(List<Square> newRange);
+
+    public event CurrentRangeDelegate RangeChanged;
+
     private void Start()
     {
         SelectedSpell = null;
@@ -30,20 +35,25 @@ public class Actions : MonoBehaviour
     /// <summary>
     /// Called when a new spell is selected.
     /// </summary>
-    /// <param name="spell"></param>
-    public void UpdateSelectedSpell(Spell spell)
+    /// <param name="newSpell"></param>
+    public void UpdateSelectedSpell(Spell newSpell)
     {
         if (!_playerMain.IsMoving)
         {
-            UnselectSpell();
+            // Unselects all in the cursor
+            _playerMain.Cursor.UnselectAll();
 
-            SelectedSpell = spell;
+            // Gets the new spell
+            SelectedSpell = newSpell;
 
-            _playerMain.Cursor.UnselectSquareForPath();
+            if (SelectedSpell != null)
+            {
+                // Gets the new range
+                CurrentRange = RangeManager.Instance.CalculateRange(_playerMain.SquareUnderTheEntity, newSpell.SpellDatas.MinRange, newSpell.SpellDatas.MaxRange);
 
-            CurrentRange = RangeManager.Instance.CalculateRange(_playerMain.SquareUnderTheEntity, spell.SpellDatas.MinRange, spell.SpellDatas.MaxRange);
-
-            HighlightGroundManager.Instance.ShowRange(CurrentRange);
+                // Anounces that the range has changed
+                RangeChanged?.Invoke(CurrentRange);
+            }
         }
     }
 
@@ -52,8 +62,6 @@ public class Actions : MonoBehaviour
     /// </summary>
     public void UnselectSpell()
     {
-        SelectedSpell = null;
-
-        HighlightGroundManager.Instance.HideRange();
+        UpdateSelectedSpell(null);      
     }
 }

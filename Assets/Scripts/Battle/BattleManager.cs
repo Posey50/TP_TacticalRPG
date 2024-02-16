@@ -58,6 +58,11 @@ public class BattleManager : MonoBehaviour
     /// </summary>
     private BattleSteps _battleSteps;
 
+    // Observer
+    public delegate void BattleManagerDelegate();
+
+    public event BattleManagerDelegate AllEntitiesInit;
+
     private void Awake()
     {
         // Singleton
@@ -88,6 +93,9 @@ public class BattleManager : MonoBehaviour
 
         _battleSteps.PlacePlayers();
         _battleSteps.PlaceEnnemies();
+
+        // Anounces that all entities in battle are initialised
+        AllEntitiesInit?.Invoke();
 
         NewBattleTurn();
     }
@@ -149,7 +157,7 @@ public class BattleManager : MonoBehaviour
 
         // Resets the square under the entity
         deadEntity.SquareUnderTheEntity.LeaveSquare();
-        deadEntity.SquareUnderTheEntity.ResetMaterial();
+        deadEntity.SquareUnderTheEntity.ResetColor();
 
         // Desactive the entity
         deadEntity.gameObject.SetActive(false);

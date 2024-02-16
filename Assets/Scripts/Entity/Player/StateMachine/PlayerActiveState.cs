@@ -1,4 +1,4 @@
-using TMPro;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -9,11 +9,20 @@ public class PlayerActiveState : IPlayerState
     /// </summary>
     private PlayerStateMachine _playerStateMachine;
 
+    // Event for the mouse cursor movement
+    public delegate void CursorMovementDelegate(Vector2 cursorPosition);
+
+    public event CursorMovementDelegate CursorMove;
+
+    // Event for the right click
+    public delegate void rightClickDelegate();
+
+    public event rightClickDelegate RightClickPressed;
+
     public void OnEnter(PlayerStateMachine playerStateMachine)
     {
         _playerStateMachine = playerStateMachine;
         _playerStateMachine.BattleManager.CurrentActiveEntity = _playerStateMachine.PlayerMain;
-        //SetSpellButton();
         _playerStateMachine.SpellButtonsManager.UpdateButtons(_playerStateMachine.PlayerMain);
         _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered += OnAction;
     }
@@ -33,7 +42,7 @@ public class PlayerActiveState : IPlayerState
         switch (context.action.name)
         {
             case "CursorMove":
-                _playerStateMachine.PlayerMain.Cursor.UpdateSelectedSquare(context.action.ReadValue<Vector2>());
+                OnCursorMove(context.action.ReadValue<Vector2>());
                 break;
 
             case "MouseLeftClick":
@@ -56,11 +65,18 @@ public class PlayerActiveState : IPlayerState
     }
 
     /// <summary>
-    /// Called to attach the spells of the current active playable entity on the spell buttons.
+    /// Called when the cursor move.
     /// </summary>
-    private void SetSpellButton()
+    /// <param name="cursorPosition"> Position of the cursor. </param>
+    public void OnCursorMove(Vector2 cursorPosition)
     {
-        _playerStateMachine.SpellButtonsManager.UpdateButtons(_playerStateMachine.PlayerMain);
+        PlayerMain playerMain = _playerStateMachine.PlayerMain;
+
+        if (!playerMain.IsMoving)
+        {
+            // Anounces that the cursor has moved
+            CursorMove?.Invoke(cursorPosition);
+        }
     }
 
     /// <summary>
@@ -95,7 +111,7 @@ public class PlayerActiveState : IPlayerState
     }
 
     /// <summary>
-    /// Called when the mouse right button is pressed and checks to cancel the attack or the movement.
+    /// Called when the mouse right button is pressed in active state.
     /// </summary>
     private void OnRigthClick()
     {
@@ -103,19 +119,8 @@ public class PlayerActiveState : IPlayerState
 
         if (!playerMain.IsMoving)
         {
-            Spell selectedSpell = playerMain.Actions.SelectedSpell;
-            Cursor cursor = playerMain.Cursor;
-            Actions actions = playerMain.Actions;
-
-            if (selectedSpell != null)
-            {
-                cursor.UnselectSquareForAttack();
-                actions.UnselectSpell();
-            }
-            else
-            {
-                cursor.UnselectSquareForPath();
-            }
+            // Anounces that the right click has been pressed
+            RightClickPressed?.Invoke();
         }
     }
 }

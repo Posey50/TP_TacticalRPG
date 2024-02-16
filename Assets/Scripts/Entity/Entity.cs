@@ -118,7 +118,7 @@ public abstract class Entity : MonoBehaviour
                 pathToFollow[i] += YOffset;
             }
 
-            await transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear, PathMode.Full3D).SetEase(Ease.Linear).OnWaypointChange((int i) => { if (i > 0) path[i - 1].ResetMaterial(); }).AsyncWaitForCompletion();
+            await transform.DOPath(pathToFollow, _moveSpeed * pathToFollow.Length, PathType.Linear, PathMode.Full3D).SetEase(Ease.Linear).OnWaypointChange((int i) => { if (i > 0) path[i - 1].ResetColor(); }).AsyncWaitForCompletion();
 
             DecreaseMP(path.Count);
 
