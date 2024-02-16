@@ -202,7 +202,7 @@ public class HealerBrain : Brain
                         if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of HP to heal that it represents
-                            int percentageOfHeal = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
+                            int percentageOfHeal = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
 
                             // Adds the combination
                             spellsCombinationInOrderOfHealing.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfHeal);
@@ -211,7 +211,7 @@ public class HealerBrain : Brain
                         else if (currentStartingSpell.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of HP to heal that it represents
-                            int percentageOfHeal = (int)((currentStartingSpell.SpellDatas.Damages / (allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
+                            int percentageOfHeal = (int)((currentStartingSpell.SpellDatas.Damages / (float)(allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
 
                             // Adds the spell as a combination
                             spellsCombinationInOrderOfHealing.Add(new List<Spell>() { currentStartingSpell }, percentageOfHeal);
@@ -221,7 +221,7 @@ public class HealerBrain : Brain
                     else if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                     {
                         // Calculates the percentage of HP to heal that it represents
-                        int percentageOfHeal = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
+                        int percentageOfHeal = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(allyToHelp.EntityDatas.MaxHP - allyToHelp.HP)) * 100f);
 
                         // Adds the combination
                         spellsCombinationInOrderOfHealing.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfHeal);

@@ -188,7 +188,7 @@ public class MeleeBrain : Brain
                         if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
-                            int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / playableEntityToAttack.EntityDatas.MaxHP) * 100f);
+                            int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(playableEntityToAttack.EntityDatas.MaxHP)) * 100f);
 
                             // Adds the combination
                             spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfDamages);
@@ -197,7 +197,7 @@ public class MeleeBrain : Brain
                         else if (currentStartingSpell.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
-                            int percentageOfDamages = (int)((currentStartingSpell.SpellDatas.Damages / playableEntityToAttack.EntityDatas.MaxHP) * 100f);
+                            int percentageOfDamages = (int)((currentStartingSpell.SpellDatas.Damages / (float)(playableEntityToAttack.EntityDatas.MaxHP)) * 100f);
 
                             // Adds the spell as a combination
                             spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell }, percentageOfDamages);
@@ -207,7 +207,7 @@ public class MeleeBrain : Brain
                     else if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                     {
                         // Calculates the percentage of damages that it represents
-                        int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / playableEntityToAttack.EntityDatas.MaxHP) * 100f);
+                        int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(playableEntityToAttack.EntityDatas.MaxHP)) * 100f);
 
                         // Adds the combination
                         spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfDamages);

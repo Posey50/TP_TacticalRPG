@@ -27,7 +27,7 @@ public class DistanceBrain : Brain
         yield return new WaitForSeconds(3f);
 
         // Sorts spells by descending order of their range
-        _spells = _spells.OrderBy(spell => spell.SpellDatas.MaxRange).ToList();
+        _spells = _spells.OrderByDescending(spell => spell.SpellDatas.MaxRange).ToList();
 
         // Creates a dictionary which will stocks reachable playable entities with a score of priority calculated with percentage of missing HP
         // and multiplied by a proximity coefficient
@@ -105,7 +105,7 @@ public class DistanceBrain : Brain
                 // If the playable entity is reachable with the attack that has the greatest range or the lowest or if it's not for an attack
                 if (!itsToAttack || 
                     shortestPathToThePlayableEntity.Count <= _enemyMain.MP + _spells[0].SpellDatas.MaxRange ||
-                    shortestPathToThePlayableEntity.Count >= _spellsByAscendingOrderOfTheirMinRange[0].SpellDatas.MinRange - _enemyMain.MP)
+                    shortestPathToThePlayableEntity.Count >= _spellsByAscendingOrderOfTheirMinRange[0].SpellDatas.MinRange + _enemyMain.MP)
                 {
                     // Add the playable entity to the list of playable entities
                     playableEntities.Add(playableEntity, shortestPathToThePlayableEntity.Count);
@@ -115,7 +115,7 @@ public class DistanceBrain : Brain
             if (playableEntities.Count > 1)
             {
                 // Sorts playable entities by ascending order of their distance to the melee
-                playableEntities = playableEntities.OrderByDescending(enemies => enemies.Value).ToDictionary(enemies => enemies.Key, enemies => 0);
+                playableEntities = playableEntities.OrderBy(enemies => enemies.Value).ToDictionary(enemies => enemies.Key, enemies => 0);
 
                 // Attributes a distance coefficient for each playable entity
                 for (int i = 0; i < playableEntities.Count; i++)
@@ -148,7 +148,7 @@ public class DistanceBrain : Brain
                 Entity playableEntity = playableEntities.ElementAt(i).Key;
 
                 // Calculates the percentage of missing HP and multiplies with the distance coefficient
-                playableEntities[playableEntity] = (int)(playableEntity.EntityDatas.MaxHP - playableEntity.HP / playableEntity.EntityDatas.MaxHP * 100f) * playableEntities[playableEntity];
+                playableEntities[playableEntity] = (int)((playableEntity.EntityDatas.MaxHP - playableEntity.HP) / playableEntity.EntityDatas.MaxHP * 100f) * playableEntities[playableEntity];
             }
 
             if (playableEntities.Count > 1)
@@ -194,7 +194,7 @@ public class DistanceBrain : Brain
                         if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
-                            int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / playableEntityToAttack.EntityDatas.MaxHP) * 100f);
+                            int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(playableEntityToAttack.EntityDatas.MaxHP)) * 100f);
 
                             // Adds the combination
                             spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfDamages);
@@ -203,7 +203,7 @@ public class DistanceBrain : Brain
                         else if (currentStartingSpell.SpellDatas.PaCost <= _enemyMain.AP)
                         {
                             // Calculates the percentage of damages that it represents
-                            int percentageOfDamages = (int)((currentStartingSpell.SpellDatas.Damages / playableEntityToAttack.EntityDatas.MaxHP) * 100f);
+                            int percentageOfDamages = (int)((currentStartingSpell.SpellDatas.Damages / (float)(playableEntityToAttack.EntityDatas.MaxHP)) * 100f);
 
                             // Adds the spell as a combination
                             spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell }, percentageOfDamages);
@@ -213,7 +213,7 @@ public class DistanceBrain : Brain
                     else if (currentStartingSpell.SpellDatas.PaCost + currentSpellToCheck.SpellDatas.PaCost <= _enemyMain.AP)
                     {
                         // Calculates the percentage of damages that it represents
-                        int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / playableEntityToAttack.EntityDatas.MaxHP) * 100f);
+                        int percentageOfDamages = (int)(((currentStartingSpell.SpellDatas.Damages + currentSpellToCheck.SpellDatas.Damages) / (float)(playableEntityToAttack.EntityDatas.MaxHP)) * 100f);
 
                         // Adds the combination
                         spellsCombinationInOrderOfDamages.Add(new List<Spell>() { currentStartingSpell, currentSpellToCheck }, percentageOfDamages);
@@ -260,7 +260,7 @@ public class DistanceBrain : Brain
         }
 
         // For each spell
-        for (int i = 0; i <= spellsCombinations.Count; i++)
+        for (int i = 0; i < spellsInOrderOfUsing.Count; i++)
         {
             Spell spellToUse = spellsInOrderOfUsing[i];
 
@@ -272,35 +272,46 @@ public class DistanceBrain : Brain
             {
                 // Attacks the playable entity
                 _enemyMain.Attack(spellToUse, playableEntityToAttack);
+                break;
             }
             // If she is not
             else
             {
-                // Calculates the path to go to the playable entity
-                Square[] pathToPlayableEntity = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, playableEntityToAttack.SquareUnderTheEntity).ToArray();
-
-                // The path to follow to get closer
-                List<Square> pathToGetCloser = new();
+                // Calculates the distance to the playable entity
+                Square[] distanceToPlayableEntity = AStarManager.Instance.CalculateASimpleDistance(_enemyMain.SquareUnderTheEntity, playableEntityToAttack.SquareUnderTheEntity).ToArray();
 
                 // If the playable entity is too far
-                if (pathToPlayableEntity.Length - 1 > (spellToUse.SpellDatas.MaxRange - 1) + 1)
+                if (distanceToPlayableEntity.Length > (spellToUse.SpellDatas.MaxRange))
                 {
-                    // Reduces the path by one for the playable entity and by the range of the spell to save MP
-                    pathToGetCloser = pathToPlayableEntity[..^((spellToUse.SpellDatas.MaxRange - 1) + 1)].ToList();
+                    // Reduces the path by the range of the spell to save MP
+                    List<Square> pathToGetCloser = distanceToPlayableEntity[..^(spellToUse.SpellDatas.MaxRange)].ToList();
+
+                    // Waits until the enemy has moved
+                    UniTask followingThePath = _enemyMain.FollowThePath(pathToGetCloser);
+                    yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
+
+                    // Attacks the playable entity
+                    _enemyMain.Attack(spellToUse, playableEntityToAttack);
+
+                    break;
                 }
-                else
+                else if (distanceToPlayableEntity.Length < spellToUse.SpellDatas.MinRange)
                 {
                     // Gets a new position to go back
-                    Square squareWhereGoBack = FindAPositionToMoveBack(spellToUse.SpellDatas.MinRange - pathToPlayableEntity.Length);
-                    pathToGetCloser = AStarManager.Instance.CalculateShortestPathForAMovement(_enemyMain.SquareUnderTheEntity, squareWhereGoBack);
+                    Square squareWhereGoBack = FindAPositionToMoveBack(spellToUse.SpellDatas.MinRange - distanceToPlayableEntity.Length);
+
+                    // The path to follow to get away from the playable entity
+                    List<Square> pathToGetAway = AStarManager.Instance.CalculateShortestPathForAMovement(_enemyMain.SquareUnderTheEntity, squareWhereGoBack);
+
+                    // Waits until the enemy has moved
+                    UniTask followingThePath = _enemyMain.FollowThePath(pathToGetAway);
+                    yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
+
+                    // Attacks the playable entity
+                    _enemyMain.Attack(spellToUse, playableEntityToAttack);
+
+                    break;
                 }
-
-                // Wait until the melee has moved
-                UniTask followingThePath = _enemyMain.FollowThePath(pathToGetCloser);
-                yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
-
-                // Attacks the playable entity
-                _enemyMain.Attack(spellToUse, playableEntityToAttack);
             }
         }
     }
@@ -318,7 +329,7 @@ public class DistanceBrain : Brain
             Square square = positionsInTheRange[i];
 
             // If the square is available and if the path go to is enough short
-            if (square == null && AStarManager.Instance.CalculateShortestPathForAMovement(_enemyMain.SquareUnderTheEntity, square).Count <= _enemyMain.MP)
+            if (square.EntityOnThisSquare == null && AStarManager.Instance.CalculateShortestPathForAMovement(_enemyMain.SquareUnderTheEntity, square).Count <= _enemyMain.MP)
             {
                 return square;
             }
