@@ -216,5 +216,6 @@ public class Timer : MonoBehaviour
     {
         // Stops the timer
         StopCoroutine(_decrementTimer);
+        _decrementTimer = null;
     }
 }

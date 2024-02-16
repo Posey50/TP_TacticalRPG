@@ -72,6 +72,14 @@ public class CostOfTheActionUI : MonoBehaviour
                             _textCost.text = "";
                         }
                     }
+                    else
+                    {
+                        _textCost.text = "";
+                    }
+                }
+                else
+                {
+                    _textCost.text = "";
                 }
             }
             else
@@ -83,6 +91,14 @@ public class CostOfTheActionUI : MonoBehaviour
                         int MPCost = activeEntity.Cursor.Path.Count;
                         _textCost.text = "- " + MPCost.ToString() + " MP";
                     }
+                    else
+                    {
+                        _textCost.text = "";
+                    }
+                }
+                else
+                {
+                    _textCost.text = "";
                 }
             }
         }
