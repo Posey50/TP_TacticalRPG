@@ -70,7 +70,11 @@ public abstract class Entity : MonoBehaviour
     //Events
     public event Action<int> DamageRecieved;
     public event Action<int> HealRecieved;
-
+    public event Action<int> UpadateMpUI;
+    public event Action<int> UpadateApUI;
+    public event Action<bool> IsMove;
+    public event Action StartAttack;
+    public event Action EndAttack;
 
     // Observer
     public delegate void EntityDelegate();
@@ -97,6 +101,8 @@ public abstract class Entity : MonoBehaviour
         _spriteRenderer = GetComponent<SpriteRenderer>();
 
         YOffset = new Vector3(0, (SquareUnderTheEntity.GetComponent<Collider>().bounds.size.y / 2f) + (_spriteRenderer.bounds.size.y / 6f), 0);
+        UpadateMpUI?.Invoke(MP);
+        UpadateApUI?.Invoke(AP);
     }
 
     /// <summary>
@@ -108,6 +114,7 @@ public abstract class Entity : MonoBehaviour
         if(path != null)
         {
             IsMoving = true;
+            IsMove?.Invoke(IsMoving);
 
             SquareUnderTheEntity.LeaveSquare();
 
@@ -126,6 +133,7 @@ public abstract class Entity : MonoBehaviour
             SquareUnderTheEntity.SetEntity(this);
 
             IsMoving = false;
+            IsMove?.Invoke(IsMoving);
         }
     }
 
@@ -138,6 +146,7 @@ public abstract class Entity : MonoBehaviour
         if (amount <= MP)
         {
             MP -= amount;
+            UpadateMpUI?.Invoke(MP);
         }
     }
 
@@ -150,6 +159,7 @@ public abstract class Entity : MonoBehaviour
         if (amount <= AP)
         {
             AP -= amount;
+            UpadateApUI?.Invoke(AP);
         }
     }
 
@@ -160,11 +170,13 @@ public abstract class Entity : MonoBehaviour
     /// <param name="entityToAttack"> Entity to attack. </param>
     public void Attack(Spell spell, Entity entityToAttack)
     {
+        StartAttack?.Invoke();
         Debug.Log(Name + " attacks " + entityToAttack.Name + " with " + spell.SpellDatas.Name);
 
         entityToAttack.TakeAttack(spell);
 
         DecreaseAP(spell.SpellDatas.PaCost);
+        StartAttack?.Invoke();
     }
 
     /// <summary>
@@ -240,6 +252,9 @@ public abstract class Entity : MonoBehaviour
     {
         MP = EntityDatas.MP;
         AP = EntityDatas.AP;
+
+        UpadateMpUI?.Invoke(MP);
+        UpadateApUI?.Invoke(AP);
     }
 
     /// <summary>
