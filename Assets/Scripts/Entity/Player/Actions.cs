@@ -29,6 +29,7 @@ public class Actions : MonoBehaviour
         SelectedSpell = null;
         _playerMain = GetComponent<PlayerMain>();
 
+        _playerMain.StateMachine.ActiveState.RightClickPressed += UnselectSpell;
         _playerMain.TurnIsEnd += UnselectSpell;
     }
 
@@ -50,10 +51,14 @@ public class Actions : MonoBehaviour
             {
                 // Gets the new range
                 CurrentRange = RangeManager.Instance.CalculateRange(_playerMain.SquareUnderTheEntity, newSpell.SpellDatas.MinRange, newSpell.SpellDatas.MaxRange);
-
-                // Anounces that the range has changed
-                RangeChanged?.Invoke(CurrentRange);
             }
+            else
+            {
+                CurrentRange = null;
+            }
+
+            // Anounces that the range has changed
+            RangeChanged?.Invoke(CurrentRange);
         }
     }
 

@@ -33,49 +33,67 @@ public class Cursor : MonoBehaviour
         _playerMain = GetComponent<PlayerMain>();
 
         _playerMain.StateMachine.ActiveState.CursorMove += UpdateSelectedSquare;
+        _playerMain.StateMachine.ActiveState.RightClickPressed += UnselectAll;
         _playerMain.TurnIsEnd += UnselectAll;
     }
 
     /// <summary>
     /// Updates the selected square and the path when mouse moves.
     /// </summary>
-    public void UpdateSelectedSquare(Vector2 mousePosition)
+    private void UpdateSelectedSquare(Vector2 mousePosition)
     {
         // Gets the square pointed by the mouse
         Square currentSquarePointed = GetSquareUnderPosition(mousePosition);
 
         if (!_playerMain.IsMoving)
         {
-            if (_playerMain.Actions.SelectedSpell != null)
+            if (currentSquarePointed != null)
             {
-                if (_playerMain.Actions.SelectedSpell.SpellDatas != null)
+                if (_playerMain.Actions.SelectedSpell != null)
                 {
-                    if (currentSquarePointed != null && currentSquarePointed != SelectedSquare)
+                    if (_playerMain.Actions.SelectedSpell.SpellDatas != null)
+                    {
+                        if (currentSquarePointed != SelectedSquare)
+                        {
+                            // Gets the new selected square
+                            SelectedSquare = currentSquarePointed;
+
+                            // Anounces that the new square selected has changed
+                            SelectedSquareChanged?.Invoke(SelectedSquare);
+                        }
+                    }
+                }
+                else
+                {
+                    if (currentSquarePointed != SelectedSquare && currentSquarePointed.EntityOnThisSquare == null)
                     {
                         // Gets the new selected square
                         SelectedSquare = currentSquarePointed;
 
                         // Anounces that the new square selected has changed
                         SelectedSquareChanged?.Invoke(SelectedSquare);
+
+                        // Gets the new path
+                        Path = AStarManager.Instance.CalculateShortestPathForAMovement(_playerMain.SquareUnderTheEntity, SelectedSquare);
+
+                        // Anounces that the path has changed
+                        PathChanged?.Invoke(Path);
                     }
                 }
             }
             else
             {
-                if (currentSquarePointed != null && currentSquarePointed != SelectedSquare && currentSquarePointed.EntityOnThisSquare == null)
-                {
-                    // Gets the new selected square
-                    SelectedSquare = currentSquarePointed;
+                // Gets the new selected square as null
+                SelectedSquare = currentSquarePointed;
 
-                    // Anounces that the new square selected has changed
-                    SelectedSquareChanged?.Invoke(SelectedSquare);
+                // Anounces that the new square selected has changed
+                SelectedSquareChanged?.Invoke(SelectedSquare);
 
-                    // Gets the new path
-                    Path = AStarManager.Instance.CalculateShortestPathForAMovement(_playerMain.SquareUnderTheEntity, SelectedSquare);
+                // Gets the new path as null
+                Path = null;
 
-                    // Anounces that the path has changed
-                    PathChanged?.Invoke(Path);
-                }
+                // Anounces that the path has changed
+                PathChanged?.Invoke(Path);
             }
         }
     }
@@ -107,7 +125,7 @@ public class Cursor : MonoBehaviour
     /// <summary>
     /// Called to unselect all.
     /// </summary>
-    private void UnselectAll()
+    public void UnselectAll()
     {
         SelectedSquare = null;
         Path = null;

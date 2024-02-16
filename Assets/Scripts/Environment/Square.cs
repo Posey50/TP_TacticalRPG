@@ -11,6 +11,7 @@ public class Square : MonoBehaviour
     /// <summary>
     /// List of neighboring squares.
     /// </summary>
+    [field: SerializeField]
     public List<Square> Neighbors { get; private set; }
 
     /// <summary>

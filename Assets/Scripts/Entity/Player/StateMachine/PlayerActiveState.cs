@@ -15,9 +15,9 @@ public class PlayerActiveState : IPlayerState
     public event CursorMovementDelegate CursorMove;
 
     // Event for the right click
-    public delegate void rightClickDelegate();
+    public delegate void RightClickDelegate();
 
-    public event rightClickDelegate RightClickPressed;
+    public event RightClickDelegate RightClickPressed;
 
     public void OnEnter(PlayerStateMachine playerStateMachine)
     {

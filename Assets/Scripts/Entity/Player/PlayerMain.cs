@@ -29,17 +29,20 @@ public class PlayerMain : Entity
     [SerializeField]
     private new EntityDatas EntityDatas;
 
-    private void Start()
+    private void Awake()
     {
-        // Entity declares itself to the game manager.
-        GameManager.Instance.EntitiesInGame.Add(this);
-        GameManager.Instance.PlayableEntitiesInGame.Add(this);
-
         // Get all components on the entity
         PlayerInput = GetComponent<PlayerInput>();
         StateMachine = GetComponent<PlayerStateMachine>();
         Cursor = GetComponent<Cursor>();
         Actions = GetComponent<Actions>();
+    }
+
+    private void Start()
+    {
+        // Entity declares itself to the game manager.
+        GameManager.Instance.EntitiesInGame.Add(this);
+        GameManager.Instance.PlayableEntitiesInGame.Add(this);
 
         // Set the entity datas with database given
         base.EntityDatas = this.EntityDatas;

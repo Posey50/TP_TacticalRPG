@@ -113,21 +113,24 @@ public class HighlightGroundManager : MonoBehaviour
             Entity currentActiveEntity = BattleManager.Instance.CurrentActiveEntity;
             Actions actions = currentActiveEntity.GetComponent<Actions>();
 
-            if (actions.CurrentRange.Contains(CurrentHighlightSquare))
+            if (actions.CurrentRange != null)
             {
-                if (CurrentHighlightSquare.EntityOnThisSquare != null &&
-                    actions.SelectedSpell.SpellDatas.PaCost <= currentActiveEntity.AP)
+                if (actions.CurrentRange.Contains(CurrentHighlightSquare))
                 {
-                    CurrentHighlightSquare.SetColor(ValideSquareColor);
+                    if (CurrentHighlightSquare.EntityOnThisSquare != null &&
+                        actions.SelectedSpell.SpellDatas.PaCost <= currentActiveEntity.AP)
+                    {
+                        CurrentHighlightSquare.SetColor(ValideSquareColor);
+                    }
+                    else
+                    {
+                        CurrentHighlightSquare.SetColor(InvalideSquareColor);
+                    }
                 }
                 else
                 {
                     CurrentHighlightSquare.SetColor(InvalideSquareColor);
                 }
-            }
-            else
-            {
-                CurrentHighlightSquare.SetColor(InvalideSquareColor);
             }
         }
     }
@@ -141,14 +144,16 @@ public class HighlightGroundManager : MonoBehaviour
         // Sets the original color on each square in the current highlight path
         if (CurrentHighlightPath != null)
         {
-            for (int i = 0; i < CurrentHighlightPath.Count; i++)
+            if (CurrentHighlightPath.Count > 0)
             {
-                CurrentHighlightPath[i].ResetColor();
+                for (int i = 0; i < CurrentHighlightPath.Count; i++)
+                {
+                    CurrentHighlightPath[i].ResetColor();
+                }
             }
         }
 
         // Sets the new highlight path
-        CurrentHighlightPath.Clear();
         CurrentHighlightPath = newPath;
 
         // Checks if the new path is too long to move or not and highlight it accordingly
@@ -188,9 +193,12 @@ public class HighlightGroundManager : MonoBehaviour
         // Sets the original color on each square in the current highlight range
         if (CurrentHighlightRange != null)
         {
-            for (int i = 0; i < CurrentHighlightRange.Count; i++)
+            if (CurrentHighlightRange.Count > 0)
             {
-                CurrentHighlightRange[i].ResetColor();
+                for (int i = 0; i < CurrentHighlightRange.Count; i++)
+                {
+                    CurrentHighlightRange[i].ResetColor();
+                }
             }
         }
 
@@ -204,41 +212,6 @@ public class HighlightGroundManager : MonoBehaviour
             {
                 CurrentHighlightRange[i].SetColor(RangeColor);
             }
-        }
-    }
-
-    /// <summary>
-    /// Called to reset all highlightings.
-    /// </summary>
-    private void UnhighlightAll()
-    {
-        // Resets current highlight square
-        if (CurrentHighlightSquare != null)
-        {
-            CurrentHighlightSquare.ResetColor();
-            CurrentHighlightSquare = null;
-        }
-
-        // Resets current highlight path
-        if (CurrentHighlightPath != null)
-        {
-            for (int i = 0; i < CurrentHighlightPath.Count; i++)
-            {
-                CurrentHighlightPath[i].ResetColor();
-            }
-
-            CurrentHighlightPath.Clear();
-        }
-
-        // Resets current highlight range
-        if (CurrentHighlightRange != null)
-        {
-            for (int i = 0; i < CurrentHighlightRange.Count; i++)
-            {
-                CurrentHighlightRange[i].ResetColor();
-            }
-
-            CurrentHighlightRange.Clear();
         }
     }
 }

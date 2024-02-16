@@ -31,8 +31,7 @@ public class PlayerStateMachine : MonoBehaviour
     /// Current state of the playable entity.
     /// </summary>
     public IPlayerState CurrentState {  get; private set; }
-
-    
+  
     void Start()
     {
         PlayerMain = GetComponent<PlayerMain>();
