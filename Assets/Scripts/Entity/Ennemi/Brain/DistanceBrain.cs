@@ -21,8 +21,6 @@ public class DistanceBrain : Brain
 
     public override IEnumerator EnemyPattern()
     {
-        Debug.Log(_enemyMain.Name + " is reflecting");
-
         // Waits to simulate reflexion 
         yield return new WaitForSeconds(3f);
 

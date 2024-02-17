@@ -1,0 +1,6 @@
+- Ajout de nouveaux ennemis/entités jouables/sorts possible, juste un manque d'assets
+- 3 comportements poussés différents pour les ennemis, Distance/Healer/Melee (choisissent la meilleur action à faire en prévoyant un coup d'avance, peuvent fuire, se rapprocher)
+- Ajout d'éléments de gamefeel (jauges HP, dégats infligés, sprites qui clignotent, entités qui s'orientent)
+- Ajout d'un chrono pour le joueur
+- Highlight des cases au sol
+- Style Tactical RPG des années 2000

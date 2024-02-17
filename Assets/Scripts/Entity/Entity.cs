@@ -194,6 +194,7 @@ public abstract class Entity : MonoBehaviour
     {
         // Anounces that the entity is attacking
         StartAttack?.Invoke();
+        IsAttacking?.Invoke(entityToAttack);
 
         entityToAttack.TakeAttack(spell);
 
