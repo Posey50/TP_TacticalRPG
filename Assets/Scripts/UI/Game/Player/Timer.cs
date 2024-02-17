@@ -79,7 +79,9 @@ public class Timer : MonoBehaviour
             playableEntity.StateMachine.ActiveState.TurnStarted += LaunchTimer;
             playableEntity.StateMachine.ActiveState.TurnEnded += DesactivateTimer;
             playableEntity.StartMoving += PauseTimer;
+            playableEntity.StartAttacking += PauseTimer;
             playableEntity.StopMoving += RelaunchTimer;
+            playableEntity.StopAttacking += RelaunchTimer;
         }
     }
 

@@ -4,7 +4,7 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class HpBar : MonoBehaviour
+public class HPGauge : MonoBehaviour
 {
     /// <summary>
     /// Health gauge.

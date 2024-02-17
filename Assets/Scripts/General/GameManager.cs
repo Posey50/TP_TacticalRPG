@@ -68,11 +68,11 @@ public class GameManager : MonoBehaviour
 
         if (hasWon)
         {
-            SceneManager.LoadScene("VictoryScene");
+            SceneManager.Instance.SwitchToVictoryScene();
         }
         else
         {
-            SceneManager.LoadScene("DefeatScene");
+            SceneManager.Instance.SwitchToDefeatScene();
         }
     }
 
