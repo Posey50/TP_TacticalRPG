@@ -186,7 +186,7 @@ public class BattleManager : MonoBehaviour
         CheckEndGame();
 
         // Indicates to the current entity that the action is ending
-        CurrentActiveEntity.IsInAction = false;
+        CurrentActiveEntity.EndOfTheAttack();
     }
 
     /// <summary>

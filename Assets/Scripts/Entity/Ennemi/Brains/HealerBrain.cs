@@ -103,8 +103,8 @@ public class HealerBrain : Brain
                 // Calculates the shortest path between the healer and his ally
                 List<Square> shortestPathToTheAlly = AStarManager.Instance.CalculateShortestPathToAnEntity(_enemyMain.SquareUnderTheEntity, ally.SquareUnderTheEntity);
 
-                // If the ally is reachable with the attack that has the greatest range
-                if (shortestPathToTheAlly.Count <= _enemyMain.MP + _spells[0].SpellDatas.MaxRange)
+                // If the ally is reachable with the attack that has the greatest range and if he has HP to heal
+                if (shortestPathToTheAlly.Count <= _enemyMain.MP + _spells[0].SpellDatas.MaxRange && ally.HP < ally.EntityDatas.MaxHP)
                 {
                     // Add the ally to the list of allies
                     allies.Add(ally, shortestPathToTheAlly.Count);

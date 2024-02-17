@@ -30,14 +30,12 @@ public class PlayerActiveState : IPlayerState
 
         _playerStateMachine = playerStateMachine;
         _playerStateMachine.BattleManager.CurrentActiveEntity = _playerStateMachine.PlayerMain;
-        _playerStateMachine.SpellButtonsManager.UpdateButtons(_playerStateMachine.PlayerMain);
         _playerStateMachine.PlayerMain.ResetPoints();
         _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered += OnAction;
     }
 
     public void OnExit(PlayerStateMachine playerStateMachine)
     {
-        _playerStateMachine.SpellButtonsManager.HideButtons();
         _playerStateMachine.PlayerMain.PlayerInput.onActionTriggered -= OnAction;
 
         TurnEnded?.Invoke();

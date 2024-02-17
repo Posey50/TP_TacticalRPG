@@ -116,7 +116,7 @@ public class HpBar : MonoBehaviour
         _txtDmgHeal.gameObject.SetActive(false);
 
         // Indicates to the current entity that the action is ending
-        BattleManager.Instance.CurrentActiveEntity.IsInAction = false;
+        BattleManager.Instance.CurrentActiveEntity.EndOfTheAttack();
     }
 
     /// <summary>
@@ -138,6 +138,6 @@ public class HpBar : MonoBehaviour
         _txtDmgHeal.gameObject.SetActive(false);
 
         // Indicates to the current entity that the action is ending
-        BattleManager.Instance.CurrentActiveEntity.IsInAction = false;
+        BattleManager.Instance.CurrentActiveEntity.EndOfTheAttack();
     }
 }

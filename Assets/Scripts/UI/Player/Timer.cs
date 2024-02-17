@@ -78,8 +78,8 @@ public class Timer : MonoBehaviour
 
             playableEntity.StateMachine.ActiveState.TurnStarted += LaunchTimer;
             playableEntity.StateMachine.ActiveState.TurnEnded += DesactivateTimer;
-            playableEntity.Moved += PauseTimer;
-            playableEntity.StopMoved += RelaunchTimer;
+            playableEntity.StartMoving += PauseTimer;
+            playableEntity.StopMoving += RelaunchTimer;
         }
     }
 
@@ -94,6 +94,7 @@ public class Timer : MonoBehaviour
 
         _seconds.SetText(ConvertToString(_nbrOfSeconds));
         _timeGauge.fillAmount = ConvertToPercent(_nbrOfSeconds);
+        _timeGauge.color = ColorOfTheGauge(_timeGauge.fillAmount);
 
         _decrementTimer = StartCoroutine(DecrementChrono());
     }
@@ -182,7 +183,7 @@ public class Timer : MonoBehaviour
     /// <returns></returns>
     private IEnumerator DecrementChrono()
     {
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(1f);
 
         if (_nbrOfSeconds - 1f == -1f)
         {
@@ -216,6 +217,5 @@ public class Timer : MonoBehaviour
 
         // Stops the timer
         StopCoroutine(_decrementTimer);
-        _decrementTimer = null;
     }
 }

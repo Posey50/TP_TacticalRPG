@@ -17,9 +17,9 @@ public class EntityAnimator : MonoBehaviour
         _entity = GetComponent<Entity>();
         _animator = GetComponent<Animator>();
 
-        _entity.Moved += Walk;
-        _entity.StopMoved += StopWalk;
-        _entity.StartAttack += Attack;
+        _entity.StartMoving += Walk;
+        _entity.StopMoving += StopWalk;
+        _entity.StartAttacking += Attack;
         _entity.TakeDamages += Hit;
         _entity.IsDead += Dies;
     }

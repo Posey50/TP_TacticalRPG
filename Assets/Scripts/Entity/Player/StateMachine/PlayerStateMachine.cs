@@ -36,7 +36,6 @@ public class PlayerStateMachine : MonoBehaviour
     {
         PlayerMain = GetComponent<PlayerMain>();
         BattleManager = BattleManager.Instance;
-        SpellButtonsManager = SpellButtonsManager.Instance;
 
         PlayerMain.TurnIsEnd += DesactiveEntity;
 

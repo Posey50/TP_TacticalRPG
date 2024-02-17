@@ -1,84 +1,86 @@
-using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
 
 public class SpellButtonsManager : MonoBehaviour
 {
-    // Singleton
-    private static SpellButtonsManager _instance = null;
-
-    public static SpellButtonsManager Instance => _instance;
-
     /// <summary>
-    /// The Buttons Representing the Spells of the player
-    /// </summary>
-    [field: SerializeField]
-    public SpellButton[] SpellButtons { get; private set; }
-
-    /// <summary>
-    /// The End Turn Button
+    /// Buttons representing spells of the player.
     /// </summary>
     [SerializeField]
-    private Button _endTurnButton;
-
-    private void Awake()
-    {
-        // Singleton
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
+    private SpellButton[] _spellButtons;
 
     private void Start()
     {
-        //_textButtons = new TextMeshProUGUI[SpellButtons.Length];
+        BattleManager.Instance.AllEntitiesInit += InitialiseSpellButtonsManager;
+    }
 
-        for (int i = 0; i < SpellButtons.Length; i++)
+    /// <summary>
+    /// Called to initialise the manager.
+    /// </summary>
+    private void InitialiseSpellButtonsManager()
+    {
+        for (int i = 0; i < BattleManager.Instance.PlayableEntitiesInBattle.Count; i++)
         {
-            //_textButtons[i] = SpellButtons[i].GetComponentInChildren<TextMeshProUGUI>();
+            PlayerMain playableEntity = (PlayerMain)BattleManager.Instance.PlayableEntitiesInBattle[i];
 
-            SpellButtons[i].gameObject.SetActive(false);
+            playableEntity.StateMachine.ActiveState.TurnStarted += UpdateSpellButtons;
+            playableEntity.StateMachine.ActiveState.TurnEnded += HideButtons;
+            playableEntity.StartAttacking += DesactivateButtons;
+            playableEntity.StopAttacking += ReactivateButtons;
+            playableEntity.StartMoving += DesactivateButtons;
+            playableEntity.StopMoving += ReactivateButtons;
         }
     }
 
     /// <summary>
-    /// Synchronises SpellButtons to the current player's Spells, then display the button. If there is no Spell to synchronise to, keep the button hidden
+    /// Synchronises spell buttons to the current player's spells, then displays the button. If there is no spell to synchronise to, keeps the button hidden
     /// </summary>
-    /// <param name="currentPlayer"></param>
-    public void UpdateButtons(PlayerMain currentPlayer)
+    private void UpdateSpellButtons()
     {
+        Entity currentPlayer = BattleManager.Instance.CurrentActiveEntity;
+
         for (int i = 0; i < currentPlayer.Spells.Count; i++)
         {
-            if (currentPlayer.Spells[i].SpellDatas != null && SpellButtons[i] != null)
+            if (currentPlayer.Spells[i].SpellDatas != null && _spellButtons[i] != null)
             {
-                SpellButtons[i].Spell = currentPlayer.Spells[i];
-                SpellButtons[i].GetComponent<Button>().image.sprite = currentPlayer.Spells[i].SpellDatas.Sprite;
+                _spellButtons[i].Spell = currentPlayer.Spells[i];
+                _spellButtons[i].GetComponent<Button>().image.sprite = currentPlayer.Spells[i].SpellDatas.Sprite;
 
-                //_textButtons[i].SetText(currentPlayer.Spells[i].SpellDatas.Name);
-
-                SpellButtons[i].gameObject.SetActive(true);
+                _spellButtons[i].gameObject.SetActive(true);
             }
         }
-
-        _endTurnButton.interactable = true;
     }
 
     /// <summary>
-    /// Hides every button spell
+    /// Called to desactivate buttons.
     /// </summary>
-    public void HideButtons()
+    private void DesactivateButtons()
     {
-        for (int i = 0; i < SpellButtons.Length; i++)
+        for (int i = 0; i < _spellButtons.Length; i++)
         {
-            SpellButtons[i].gameObject.SetActive(false);
+            _spellButtons[i].GetComponent<Button>().interactable = false;
         }
+    }
 
-        _endTurnButton.interactable = false;
+    /// <summary>
+    /// Called to reactivate buttons.
+    /// </summary>
+    private void ReactivateButtons()
+    {
+        for (int i = 0; i < _spellButtons.Length; i++)
+        {
+            _spellButtons[i].GetComponent<Button>().interactable = true;
+        }
+    }
+
+    /// <summary>
+    /// Called to hide every spell buttons.
+    /// </summary>
+    private void HideButtons()
+    {
+        for (int i = 0; i < _spellButtons.Length; i++)
+        {
+            _spellButtons[i].gameObject.SetActive(false);
+        }
     }
 }

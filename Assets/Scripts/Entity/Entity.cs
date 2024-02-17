@@ -1,8 +1,7 @@
+using Cysharp.Threading.Tasks;
+using DG.Tweening;
 using System.Collections.Generic;
 using UnityEngine;
-using DG.Tweening;
-using Cysharp.Threading.Tasks;
-using System;
 
 public abstract class Entity : MonoBehaviour
 {
@@ -24,19 +23,16 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// Movement points which determines the number of movement that an entity cans do in one turn.
     /// </summary>
-    [field: SerializeField]
     public int MP { get; protected set; }
 
     /// <summary>
     /// Action points which determines the total ammount of action points that an entity can use in one turn.
     /// </summary>
-    [field: SerializeField]
     public int AP { get; protected set; }
 
     /// <summary>
     /// Health points of the entity.
     /// </summary>
-    [field: SerializeField]
     public int HP { get; protected set; }
 
     /// <summary>
@@ -52,14 +48,12 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// Square on which the entity is located.
     /// </summary>
-    [field: SerializeField]
     public Square SquareUnderTheEntity { get; set; }
 
     /// <summary>
     /// A value indicating if the entity is moving.
     /// </summary>
-    [field: SerializeField]
-    public bool IsInAction { get; set; }
+    public bool IsInAction { get; private set; }
 
     /// <summary>
     /// Speed at which the entity moves.
@@ -71,27 +65,31 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     private SpriteManager _spriteManager;
 
-    // Observer
+    // Events for states
     public delegate void EntityActionsDelegate();
 
     public event EntityActionsDelegate Initialised;
-    public event EntityActionsDelegate Moved;
-    public event EntityActionsDelegate StopMoved;
-    public event EntityActionsDelegate StartAttack;
+    public event EntityActionsDelegate StartMoving;
+    public event EntityActionsDelegate StopMoving;
+    public event EntityActionsDelegate StartAttacking;
+    public event EntityActionsDelegate StopAttacking;
     public event EntityActionsDelegate TakeDamages;
     public event EntityActionsDelegate IsHeal;
     public event EntityActionsDelegate TurnIsEnd;
     public event EntityActionsDelegate IsDead;
 
+    // Event for movements
     public delegate void MovingDatasDelegate(Square square);
 
     public event MovingDatasDelegate MovingTo;
 
+    // Events for attacking
     public delegate void AttackingDatasDelegate(Entity entity);
 
     public event AttackingDatasDelegate IsAttacking;
     public event AttackingDatasDelegate EntityIsDead;
 
+    // Events for datas
     public delegate void DatasDelegate(int datas);
 
     public event DatasDelegate DamageReceived;
@@ -130,7 +128,7 @@ public abstract class Entity : MonoBehaviour
             IsInAction = true;
 
             // Anounces that the entity is moving
-            Moved?.Invoke();
+            StartMoving?.Invoke();
             MovingTo?.Invoke(path[path.Count - 1]);
 
             SquareUnderTheEntity.LeaveSquare();
@@ -151,7 +149,7 @@ public abstract class Entity : MonoBehaviour
             SquareUnderTheEntity.SetEntity(this);
 
             // Anounces that the entity is not anymore moving
-            StopMoved?.Invoke();
+            StopMoving?.Invoke();
 
             IsInAction = false;
         }
@@ -197,12 +195,22 @@ public abstract class Entity : MonoBehaviour
         IsInAction = true;
 
         // Anounces that the entity is attacking
-        StartAttack?.Invoke();
+        StartAttacking?.Invoke();
         IsAttacking?.Invoke(entityToAttack);
 
         await entityToAttack.TakeAttack(spell);
 
         DecreaseAP(spell.SpellDatas.APCost);
+    }
+
+    /// <summary>
+    /// Called to indicate that the attack is finished.
+    /// </summary>
+    public void EndOfTheAttack()
+    {
+        // Anounces that the attack is finished
+        StopAttacking?.Invoke();
+        IsInAction = false;
     }
 
     /// <summary>

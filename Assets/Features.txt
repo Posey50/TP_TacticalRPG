@@ -1,6 +1,8 @@
-- Ajout de nouveaux ennemis/entités jouables/sorts possible, juste un manque d'assets
-- 3 comportements poussés différents pour les ennemis, Distance/Healer/Melee (choisissent la meilleur action à faire en prévoyant un coup d'avance, peuvent fuire, se rapprocher)
-- Ajout d'éléments de gamefeel (jauges HP, dégats infligés, sprites qui clignotent, entités qui s'orientent)
-- Ajout d'un chrono pour le joueur
+- Ajout de nouveaux ennemis/entités jouables/sorts possible, juste un manque d'assets pour que ce soit cohérent
+- 3 comportements poussés différents pour les ennemis, Distance/Healer/Melee (choisissent la meilleur action à faire en prévoyant un coup d'avance, peuvent fuire, 
+	se rapprocher, etc)
+- Ajout d'éléments de gamefeel (jauges HP, dégats infligés, sprites qui clignotent, entités qui s'orientent, coûts en temps réel des actions)
+- Ajout d'un chrono pour le joueur (qui ne fonctionne plus quand il s'arrête de lui même pour une raison obscure, l'ordre d'execution est pourtant bon mais il bloque
+	sur le fait d'attendre un certain temps quand il se relance aussitôt)
 - Highlight des cases au sol
 - Style Tactical RPG des années 2000
