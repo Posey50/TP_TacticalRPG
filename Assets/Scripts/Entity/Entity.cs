@@ -58,7 +58,8 @@ public abstract class Entity : MonoBehaviour
     /// <summary>
     /// A value indicating if the entity is moving.
     /// </summary>
-    public bool IsMoving { get; private set; }
+    [field: SerializeField]
+    public bool IsInAction { get; set; }
 
     /// <summary>
     /// Speed at which the entity moves.
@@ -89,6 +90,7 @@ public abstract class Entity : MonoBehaviour
     public delegate void AttackingDatasDelegate(Entity entity);
 
     public event AttackingDatasDelegate IsAttacking;
+    public event AttackingDatasDelegate EntityIsDead;
 
     public delegate void DatasDelegate(int datas);
 
@@ -125,7 +127,7 @@ public abstract class Entity : MonoBehaviour
     {
         if(path != null)
         {
-            IsMoving = true;
+            IsInAction = true;
 
             // Anounces that the entity is moving
             Moved?.Invoke();
@@ -151,7 +153,7 @@ public abstract class Entity : MonoBehaviour
             // Anounces that the entity is not anymore moving
             StopMoved?.Invoke();
 
-            IsMoving = false;
+            IsInAction = false;
         }
     }
 
@@ -190,13 +192,15 @@ public abstract class Entity : MonoBehaviour
     /// </summary>
     /// <param name="spell"> Spell used. </param>
     /// <param name="entityToAttack"> Entity to attack. </param>
-    public void Attack(Spell spell, Entity entityToAttack)
+    public async UniTask Attack(Spell spell, Entity entityToAttack)
     {
+        IsInAction = true;
+
         // Anounces that the entity is attacking
         StartAttack?.Invoke();
         IsAttacking?.Invoke(entityToAttack);
 
-        entityToAttack.TakeAttack(spell);
+        await entityToAttack.TakeAttack(spell);
 
         DecreaseAP(spell.SpellDatas.APCost);
     }
@@ -205,15 +209,15 @@ public abstract class Entity : MonoBehaviour
     /// Recieves a spell and does the the effect of the spell.
     /// </summary>
     /// <param name="spellReceived"> Spell received by the entity. </param>
-    public void TakeAttack(Spell spellReceived)
+    public async UniTask TakeAttack(Spell spellReceived)
     {
         if (spellReceived.SpellDatas.Type == Type.heal)
         {
-            HealHP(spellReceived.SpellDatas.Damages);
+            await HealHP(spellReceived.SpellDatas.Damages);
         }
         else
         {
-            TakeDamage(spellReceived.SpellDatas.Damages);
+            await TakeDamage(spellReceived.SpellDatas.Damages);
         }
     }
 
@@ -221,7 +225,7 @@ public abstract class Entity : MonoBehaviour
     /// Applies damages of a spell.
     /// </summary>
     /// <param name="damages"> Damages to take. </param>
-    public void TakeDamage(int damages)
+    public async UniTask TakeDamage(int damages)
     {
         HP -= damages;
 
@@ -235,15 +239,17 @@ public abstract class Entity : MonoBehaviour
 
             // Anounces that entity is dead
             IsDead?.Invoke();
-            BattleManager.Instance.EntityDeath(this);
+            EntityIsDead?.Invoke(this);
         }
+
+        await UniTask.Yield();
     }
 
     /// <summary>
     /// Applies the healing of a spell.
     /// </summary>
     /// <param name="heal"> HP to heal. </param>
-    public void HealHP(int heal)
+    public async UniTask HealHP(int heal)
     {
         // Prevents the healing over the maximum of HP
         HP = Mathf.Clamp(HP + heal, 0, EntityDatas.MaxHP);
@@ -251,6 +257,8 @@ public abstract class Entity : MonoBehaviour
         // Anounces that the entity has been heal
         IsHeal?.Invoke();
         HealReceived?.Invoke(heal);
+
+        await UniTask.Yield();
     }
     
     /// <summary>

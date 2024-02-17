@@ -39,7 +39,7 @@ public class Actions : MonoBehaviour
     /// <param name="newSpell"></param>
     public void UpdateSelectedSpell(Spell newSpell)
     {
-        if (!_playerMain.IsMoving)
+        if (!_playerMain.IsInAction)
         {
             // Unselects all in the cursor
             _playerMain.Cursor.UnselectAll();

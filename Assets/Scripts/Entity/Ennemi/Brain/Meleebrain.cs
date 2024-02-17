@@ -245,7 +245,8 @@ public class MeleeBrain : Brain
         if (range.Contains(playableEntityToAttack.SquareUnderTheEntity))
         {
             // Attacks the playable entity
-            _enemyMain.Attack(spellToUse, playableEntityToAttack);
+            UniTask attacking = _enemyMain.Attack(spellToUse, playableEntityToAttack);
+            yield return new WaitUntil(() => attacking.Status != UniTaskStatus.Pending);
         }
         // If she is not
         else
@@ -261,7 +262,8 @@ public class MeleeBrain : Brain
             yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
 
             // Attacks the playable entity
-            _enemyMain.Attack(spellToUse, playableEntityToAttack);
+            UniTask attacking = _enemyMain.Attack(spellToUse, playableEntityToAttack);
+            yield return new WaitUntil(() => attacking.Status != UniTaskStatus.Pending);
         }
     }
 

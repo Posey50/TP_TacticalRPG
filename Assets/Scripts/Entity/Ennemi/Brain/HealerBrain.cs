@@ -302,7 +302,8 @@ public class HealerBrain : Brain
         if (range.Contains(allyToHeal.SquareUnderTheEntity))
         {
             // Heals the ally
-            _enemyMain.Attack(spellToUse, allyToHeal);
+            UniTask attacking = _enemyMain.Attack(spellToUse, allyToHeal);
+             yield return new WaitUntil(() => attacking.Status != UniTaskStatus.Pending);
         }
         // If he is not
         else
@@ -318,7 +319,8 @@ public class HealerBrain : Brain
             yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
 
             // Heals the ally
-            _enemyMain.Attack(spellToUse, allyToHeal);
+            UniTask attacking = _enemyMain.Attack(spellToUse, allyToHeal);
+            yield return new WaitUntil(() => attacking.Status != UniTaskStatus.Pending);
         }
     }
 

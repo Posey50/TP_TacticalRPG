@@ -82,7 +82,7 @@ public class PlayerActiveState : IPlayerState
     {
         PlayerMain playerMain = _playerStateMachine.PlayerMain;
 
-        if (!playerMain.IsMoving)
+        if (!playerMain.IsInAction)
         {
             // Anounces that the cursor has moved
             CursorMove?.Invoke(cursorPosition);
@@ -97,7 +97,7 @@ public class PlayerActiveState : IPlayerState
     {
         PlayerMain playerMain = _playerStateMachine.PlayerMain;
 
-        if (!playerMain.IsMoving)
+        if (!playerMain.IsInAction)
         {
             Spell selectedSpell = playerMain.Actions.SelectedSpell;
             Entity entityOnThisSquare = selectedSquare.EntityOnThisSquare;
@@ -108,7 +108,7 @@ public class PlayerActiveState : IPlayerState
                 playerMain.Actions.CurrentRange.Contains(selectedSquare) && 
                 selectedSpell.SpellDatas.APCost <= playerMain.AP)
             {
-                playerMain.Attack(selectedSpell, entityOnThisSquare);
+                await playerMain.Attack(selectedSpell, entityOnThisSquare);
             }
             // If there is no selected spell and no entity on the square selected and if the path is less or equal to left MP then moves to the selected square
             else if (selectedSpell == null && 
@@ -127,7 +127,7 @@ public class PlayerActiveState : IPlayerState
     {
         PlayerMain playerMain = _playerStateMachine.PlayerMain;
 
-        if (!playerMain.IsMoving)
+        if (!playerMain.IsInAction)
         {
             // Anounces that the right click has been pressed
             RightClickPressed?.Invoke();

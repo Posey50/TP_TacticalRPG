@@ -107,6 +107,16 @@ public class BattleManager : MonoBehaviour
         // Anounces that all entities in battle are initialised
         AllEntitiesInit?.Invoke();
 
+        // Listen entities
+        for (int i = 0; i < PlayableEntitiesInBattle.Count; i++)
+        {
+            PlayableEntitiesInBattle[i].EntityIsDead += EntityDeath;
+        }
+        for (int i = 0;i < EnemiesInBattle.Count; i++)
+        {
+            EnemiesInBattle[i].EntityIsDead += EntityDeath;
+        }
+
         NewBattleTurn();
     }
 
@@ -148,7 +158,7 @@ public class BattleManager : MonoBehaviour
     /// Called when an entity dies and removes the entity from the battle.
     /// </summary>
     /// <param name="deadEntity"> The dead entity to remove. </param>
-    public void EntityDeath(Entity deadEntity)
+    private void EntityDeath(Entity deadEntity)
     {
         // Removes entity from datas of the battle
         if (PlayableEntitiesInBattle.Contains(deadEntity))
@@ -174,6 +184,9 @@ public class BattleManager : MonoBehaviour
 
         //Check if the game has ended
         CheckEndGame();
+
+        // Indicates to the current entity that the action is ending
+        CurrentActiveEntity.IsInAction = false;
     }
 
     /// <summary>

@@ -1,14 +1,8 @@
-using System;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class HighlightGroundManager : MonoBehaviour
 {
-    // Singleton
-    private static HighlightGroundManager _instance = null;
-
-    public static HighlightGroundManager Instance => _instance;
-
     /// <summary>
     /// Color to apply if the selected square is not valid.
     /// </summary>
@@ -36,34 +30,17 @@ public class HighlightGroundManager : MonoBehaviour
     /// <summary>
     /// Current selected square showed on screen.
     /// </summary>
-    [field: SerializeField]
     public Square CurrentHighlightSquare { get; private set; }
 
     /// <summary>
     /// Current path showed on screen.
     /// </summary>
-    [field: SerializeField]
     public List<Square> CurrentHighlightPath { get; private set; }
 
     /// <summary>
     /// Current range showed on screen.
     /// </summary>
-    [field: SerializeField]
     public List<Square> CurrentHighlightRange { get; private set; }
-
-    private void Awake()
-    {
-        // Singleton
-        if (_instance != null && _instance != this)
-        {
-            Destroy(this.gameObject);
-            return;
-        }
-        else
-        {
-            _instance = this;
-        }
-    }
 
     private void Start()
     {

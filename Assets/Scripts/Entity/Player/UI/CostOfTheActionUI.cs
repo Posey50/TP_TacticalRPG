@@ -30,14 +30,21 @@ public class CostOfTheActionUI : MonoBehaviour
         {
             PlayerMain entity = (PlayerMain)BattleManager.Instance.PlayableEntitiesInBattle[i];
 
-            entity.Cursor.SelectedSquareChanged += UpdateCost;
             entity.StateMachine.ActiveState.TurnStarted += ActiveUI;
             entity.StateMachine.ActiveState.TurnEnded += DesactiveUI;
+            entity.Cursor.SelectedSquareChanged += UpdateAPCost;
+            entity.Cursor.PathChanged += UpdateMPCost;
         }
     }
 
-    private void UpdateCost(Square square)
+    /// <summary>
+    /// Called to update the cost in AP of a selected attack on an entity
+    /// </summary>
+    /// <param name="square"> Square selected. </param>
+    private void UpdateAPCost(Square square)
     {
+        _textCost.text = "";
+
         if (square != null)
         {
             PlayerMain activeEntity = (PlayerMain)BattleManager.Instance.CurrentActiveEntity;
@@ -57,54 +64,29 @@ public class CostOfTheActionUI : MonoBehaviour
                                     int APCost = activeEntity.Actions.SelectedSpell.SpellDatas.APCost;
                                     _textCost.text = "- " + APCost.ToString() + " AP";
                                 }
-                                else
-                                {
-                                    _textCost.text = "";
-                                }
-                            }
-                            else
-                            {
-                                _textCost.text = "";
                             }
                         }
-                        else
-                        {
-                            _textCost.text = "";
-                        }
                     }
-                    else
-                    {
-                        _textCost.text = "";
-                    }
-                }
-                else
-                {
-                    _textCost.text = "";
-                }
-            }
-            else
-            {
-                if (activeEntity.Cursor.Path != null)
-                {
-                    if (activeEntity.Cursor.Path.Count > 0)
-                    {
-                        int MPCost = activeEntity.Cursor.Path.Count;
-                        _textCost.text = "- " + MPCost.ToString() + " MP";
-                    }
-                    else
-                    {
-                        _textCost.text = "";
-                    }
-                }
-                else
-                {
-                    _textCost.text = "";
                 }
             }
         }
-        else
+    }
+
+    /// <summary>
+    /// Called to update the cost in MP of a path selected.
+    /// </summary>
+    /// <param name="path"> Path selected. </param>
+    private void UpdateMPCost(List<Square> path)
+    {
+        _textCost.text = "";
+
+        if (path != null)
         {
-            _textCost.text = "";
+            if (path.Count > 0)
+            {
+                int MPCost = path.Count;
+                _textCost.text = "- " + MPCost.ToString() + " MP";
+            }
         }
     }
 

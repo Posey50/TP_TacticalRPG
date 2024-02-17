@@ -269,7 +269,8 @@ public class DistanceBrain : Brain
             if (range.Contains(playableEntityToAttack.SquareUnderTheEntity))
             {
                 // Attacks the playable entity
-                _enemyMain.Attack(spellToUse, playableEntityToAttack);
+                UniTask attacking = _enemyMain.Attack(spellToUse, playableEntityToAttack);
+                yield return new WaitUntil(() => attacking.Status != UniTaskStatus.Pending);
                 break;
             }
             // If she is not
@@ -289,7 +290,8 @@ public class DistanceBrain : Brain
                     yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
 
                     // Attacks the playable entity
-                    _enemyMain.Attack(spellToUse, playableEntityToAttack);
+                    UniTask attacking = _enemyMain.Attack(spellToUse, playableEntityToAttack);
+                    yield return new WaitUntil(() => attacking.Status != UniTaskStatus.Pending);
 
                     break;
                 }
@@ -306,7 +308,8 @@ public class DistanceBrain : Brain
                     yield return new WaitUntil(() => followingThePath.Status != UniTaskStatus.Pending);
 
                     // Attacks the playable entity
-                    _enemyMain.Attack(spellToUse, playableEntityToAttack);
+                    UniTask attacking = _enemyMain.Attack(spellToUse, playableEntityToAttack);
+                    yield return new WaitUntil(() => attacking.Status != UniTaskStatus.Pending);
 
                     break;
                 }

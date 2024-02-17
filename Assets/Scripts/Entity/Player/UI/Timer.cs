@@ -192,9 +192,6 @@ public class Timer : MonoBehaviour
             _timeGauge.fillAmount = ConvertToPercent(_nbrOfSeconds);
             _timeGauge.color = ColorOfTheGauge(_timeGauge.fillAmount);
 
-            // Anounces that the timer is stoped
-            TimerStop?.Invoke();
-
             StopTimer();
         }
         else
@@ -214,6 +211,9 @@ public class Timer : MonoBehaviour
     /// </summary>
     private void StopTimer()
     {
+        // Anounces that the timer is stoped
+        TimerStop?.Invoke();
+
         // Stops the timer
         StopCoroutine(_decrementTimer);
         _decrementTimer = null;

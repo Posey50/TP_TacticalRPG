@@ -45,7 +45,7 @@ public class Cursor : MonoBehaviour
         // Gets the square pointed by the mouse
         Square currentSquarePointed = GetSquareUnderPosition(mousePosition);
 
-        if (!_playerMain.IsMoving)
+        if (!_playerMain.IsInAction)
         {
             if (currentSquarePointed != null)
             {
